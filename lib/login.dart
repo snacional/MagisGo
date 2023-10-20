@@ -90,7 +90,11 @@ class LoginPage extends StatelessWidget {
               children: <Widget>[
                 TextButton(
                   onPressed: () {
-                   
+                    Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => forgorPage()),
+                                );
                   },
                   child: const Text('Forgot Password?'),
                   style: TextButton.styleFrom(
@@ -104,7 +108,11 @@ class LoginPage extends StatelessWidget {
               alignment: Alignment.center,
               child: ElevatedButton(
                 onPressed: () {
-           
+            Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => HomePage()),
+                                );
                 },
                 style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(
@@ -137,7 +145,11 @@ class LoginPage extends StatelessWidget {
                     TextButton(
                       
                       onPressed: () {
-                      
+                       Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => RegisterPage()),
+                                );
                       },
                       child: const Text("Sign Up"),
                       style: TextButton.styleFrom(foregroundColor: const Color(0x85F24F04)),
