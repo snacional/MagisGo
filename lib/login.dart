@@ -20,28 +20,27 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         color: Colors.white,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Row(
               children: [
                 Align(
                   alignment: Alignment.centerLeft,
                   child: TextButton(
                     onPressed: () {
-                      // Navigate back to the previous page
-                      Navigator.pop(context);
+                    
                     },
-                    child: Icon(Icons.arrow_back, color: Colors.black),
+                    child: const Icon(Icons.arrow_back, color: Colors.black),
                   ),
                 )
               ],
             ),
-            SizedBox(height: 20),
-            Column(
+           const SizedBox(height: 20),
+           const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
@@ -60,7 +59,7 @@ class LoginPage extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 43),
+            const SizedBox(height: 43),
             TextField(
               decoration: InputDecoration(
                 labelText: 'Email',
@@ -71,7 +70,7 @@ class LoginPage extends StatelessWidget {
                 fillColor: Colors.white,
               ),
             ),
-            SizedBox(height: 30),
+           const SizedBox(height: 30),
             TextField(
               decoration: InputDecoration(
                 labelText: 'Password',
@@ -83,45 +82,38 @@ class LoginPage extends StatelessWidget {
               ),
               obscureText: true,
             ),
-            SizedBox(height: 10),
+           const SizedBox(height: 10),
             Row(
               children: <Widget>[
                 TextButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => ForgotPage()),
-                    );
+                   
                   },
-                  child: Text('Forgot Password?'),
+                  child: const Text('Forgot Password?'),
                   style: TextButton.styleFrom(
-                    primary: Color(0xFFF24F04),
+                    foregroundColor: const Color(0xFFF24F04),
                   ),
                 ),
               ],
             ),
-            SizedBox(height: 30),
+           const SizedBox(height: 30),
             Align(
               alignment: Alignment.center,
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => HomePage(),
-                      ));
+           
                 },
                 style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  primary: Color(0xFFF24F04),
+                  backgroundColor: const Color(0xFFF24F04),
                 ),
-                child: Container(
+                child: const SizedBox(
                   width: double.infinity,
                   height: 50,
                   child: Center(
-                    child: Text(
+                    child:  Text(
                       'Login',
                       style: TextStyle(
                         fontSize: 18,
@@ -131,62 +123,58 @@ class LoginPage extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Center(
               child: SizedBox(
                 width: double.infinity,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Text("Don't have an account?"),
+                    const Text("Don't have an account?"),
                     TextButton(
-                      child: Text("Sign Up"),
-                      style: TextButton.styleFrom(primary: Color(0x85F24F04)),
+                      
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => RegisterPage(),
-                          ),
-                        );
+                      
                       },
+                      child: const Text("Sign Up"),
+                      style: TextButton.styleFrom(foregroundColor: const Color(0x85F24F04)),
                     ),
                   ],
                 ),
               ),
             ),
-            SizedBox(height: 50),
+            const SizedBox(height: 50),
             Row(
               children: <Widget>[
                 Expanded(
                   child: Container(
                     height: 1,
-                    color: Color(0x85000000),
+                    color: const Color(0x85000000),
                   ),
                 ),
-                Text(' Or With ',
+                const Text(' Or With ',
                     style: TextStyle(
                         backgroundColor: Colors.white,
                         color: Color(0x85000000))),
                 Expanded(
                   child: Container(
                     height: 1,
-                    color: Color(0x85000000),
+                    color: const Color(0x85000000),
                   ),
                 ),
               ],
             ),
-            SizedBox(height: 50),
+            const SizedBox(height: 50),
             OutlinedButton(
               onPressed: () {
                 // Handle "Sign up with Google" button press
               },
               style: OutlinedButton.styleFrom(
-                side: BorderSide(color: Color(0x850B0B0B)),
+                side: const BorderSide(color: Color(0x850B0B0B)),
               ),
               child: Center(
                 // Wrapping with Center
-                child: Container(
+                child: SizedBox(
                   width: double.infinity,
                   height: 50,
                   child: Center(
@@ -198,7 +186,7 @@ class LoginPage extends StatelessWidget {
                         Image.asset(
                           'assets/G.png', // Replace with your actual image asset path
                         ),
-                        Text(
+                       const Text(
                           'Sign in with Google',
                           style: TextStyle(
                             fontSize: 18,
@@ -211,17 +199,17 @@ class LoginPage extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             OutlinedButton(
               onPressed: () {
                 // Handle "Sign up with Google" button press
               },
               style: OutlinedButton.styleFrom(
-                side: BorderSide(color: Color(0x850B0B0B)),
+                side: const BorderSide(color: Color(0x850B0B0B)),
               ),
               child: Center(
                 // Wrapping with Center
-                child: Container(
+                child: SizedBox(
                   width: double.infinity,
                   height: 50,
                   child: Center(
@@ -233,7 +221,7 @@ class LoginPage extends StatelessWidget {
                         Image.asset(
                           'assets/FB.jpg', // Replace with your actual image asset path
                         ),
-                        Text(
+                        const Text(
                           'Sign in with Facebook',
                           style: TextStyle(
                             fontSize: 18,
@@ -246,17 +234,17 @@ class LoginPage extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             OutlinedButton(
               onPressed: () {
                 // Handle "Sign up with Google" button press
               },
               style: OutlinedButton.styleFrom(
-                side: BorderSide(color: Color(0x850B0B0B)),
+                side: const BorderSide(color: Color(0x850B0B0B)),
               ),
               child: Center(
                 // Wrapping with Center
-                child: Container(
+                child: SizedBox(
                   width: double.infinity,
                   height: 50,
                   child: Center(
@@ -271,7 +259,7 @@ class LoginPage extends StatelessWidget {
                           width:
                               40, // Replace with your actual image asset path
                         ),
-                        Text(
+                        const Text(
                           'Sign in with Twitter',
                           style: TextStyle(
                             fontSize: 18,
