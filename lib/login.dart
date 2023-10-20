@@ -32,7 +32,10 @@ class LoginPage extends StatelessWidget {
                   alignment: Alignment.centerLeft,
                   child: TextButton(
                     onPressed: () {
-                    
+                 
+                      // Navigate back to the previous page
+                      Navigator.pop(context);
+                 
                     },
                     child: const Icon(Icons.arrow_back, color: Colors.black),
                   ),
