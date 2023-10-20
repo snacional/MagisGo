@@ -93,7 +93,7 @@ class LoginPage extends StatelessWidget {
                     Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => forgorPage()),
+                                      builder: (context) => ForgotPage()),
                                 );
                   },
                   child: const Text('Forgot Password?'),
