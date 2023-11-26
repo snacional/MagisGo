@@ -21,7 +21,7 @@ class StartPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         // Set the background color here
         child: Center(
           child: Column(
@@ -119,7 +119,7 @@ class StartPage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(
                             13), // Adjust the radius as needed
                       ),
-                      primary:
+                      backgroundColor:
                           Color(0xFFFD9D9D9), // Set the background color here
                     ),
                     child: Container(

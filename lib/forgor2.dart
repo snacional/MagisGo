@@ -23,7 +23,7 @@ class Forgot2Page extends StatelessWidget {
 
     return Scaffold(
       body: Container(
-         padding: EdgeInsets.all(20),
+        padding: EdgeInsets.fromLTRB(21 * fem, 73 * fem, 18 * fem, 48 * fem),
         width: double.infinity,
         decoration: BoxDecoration(
           color: Color(0xffffffff),
