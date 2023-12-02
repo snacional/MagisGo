@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: 'MagisGO',
       home: HomePage(),
     );
@@ -28,11 +30,11 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
-            padding: EdgeInsets.only(left: 20, top: 20, right: 20),
+            padding: const EdgeInsets.only(left: 20, top: 20, right: 20),
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SizedBox(height: 30),
+                  const SizedBox(height: 30),
                   // Header Container
                   Container(
                     margin: EdgeInsets.fromLTRB(
@@ -51,7 +53,7 @@ class _HomePageState extends State<HomePage> {
                                 fontSize: 20 * ffem,
                                 fontWeight: FontWeight.w600,
                                 height: 1.5 * ffem / fem,
-                                color: Color(0xff000000),
+                                color: const Color(0xff000000),
                               ),
                             ),
                           ),
@@ -73,7 +75,7 @@ class _HomePageState extends State<HomePage> {
                     margin:
                         EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 0 * fem),
                     width: double.infinity,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: Color(0x4cd9d9d9),
                     ),
                     child: Row(
@@ -102,7 +104,7 @@ class _HomePageState extends State<HomePage> {
                                   fontSize: 13 * ffem,
                                   fontWeight: FontWeight.w400,
                                   height: 1.5 * ffem / fem,
-                                  color: Color(0x7f000000),
+                                  color: const Color(0x7f000000),
                                 ),
                                 border: InputBorder.none,
                               ),
@@ -111,7 +113,7 @@ class _HomePageState extends State<HomePage> {
                                 fontSize: 13 * ffem,
                                 fontWeight: FontWeight.w400,
                                 height: 1.5 * ffem / fem,
-                                color: Color(0xff000000),
+                                color: const Color(0xff000000),
                               ),
                             ),
                           ),
@@ -121,11 +123,12 @@ class _HomePageState extends State<HomePage> {
                   ),
 
                   // Carousel Container
-                  Container(
+                  SizedBox(
                     width: double.infinity,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        const SizedBox(height: 10,),
                         Container(
                           margin: EdgeInsets.fromLTRB(
                               0 * fem, 0 * fem, 0 * fem, 4 * fem),
@@ -138,23 +141,24 @@ class _HomePageState extends State<HomePage> {
                               fontSize: 20 * ffem,
                               fontWeight: FontWeight.w600,
                               height: 1.5 * ffem / fem,
-                              color: Color(0xff000000),
+                              color: const Color(0xff000000),
                             ),
                           ),
                         ),
+                         const SizedBox(height: 10,),
                         Container(
                           margin: EdgeInsets.fromLTRB(
                               0 * fem, 0 * fem, 0 * fem, 40 * fem),
                           width: double.infinity,
                           decoration: BoxDecoration(
-                            border: Border.all(color: Color(0x7ff24f04)),
-                            color: Color(0xfffcfcfc),
+                            border: Border.all(color: const Color(0x7ff24f04)),
+                            color: const Color(0xfffcfcfc),
                             borderRadius: BorderRadius.circular(20 * fem),
                           ),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              Container(
+                              SizedBox(
                                 width: double.infinity,
                                 height: 101.37 * fem,
                                 child: Image.asset(
@@ -212,7 +216,7 @@ class _HomePageState extends State<HomePage> {
                                                       fontWeight:
                                                           FontWeight.w600,
                                                       height: 1.5 * ffem / fem,
-                                                      color: Color(0xff000000),
+                                                      color: const Color(0xff000000),
                                                     ),
                                                   ),
                                                 ],
@@ -252,7 +256,7 @@ class _HomePageState extends State<HomePage> {
                                                         height:
                                                             1.5 * ffem / fem,
                                                         color:
-                                                            Color(0xff000000),
+                                                            const Color(0xff000000),
                                                       ),
                                                     ),
                                                   ),
@@ -269,7 +273,7 @@ class _HomePageState extends State<HomePage> {
                                                           CrossAxisAlignment
                                                               .start,
                                                       children: [
-                                                        Container(
+                                                        SizedBox(
                                                           width: 15 * fem,
                                                           height: 13.7 * fem,
                                                           child: ClipRRect(
@@ -305,7 +309,7 @@ class _HomePageState extends State<HomePage> {
                                                               height: 1.5 *
                                                                   ffem /
                                                                   fem,
-                                                              color: Color(
+                                                              color: const Color(
                                                                   0xff000000),
                                                             ),
                                                           ),
@@ -320,7 +324,7 @@ class _HomePageState extends State<HomePage> {
                                         ],
                                       ),
                                     ),
-                                    Container(
+                                    SizedBox(
                                       width: double.infinity,
                                       height: 14 * fem,
                                       child: Row(
@@ -331,7 +335,7 @@ class _HomePageState extends State<HomePage> {
                                             width: 55 * fem,
                                             height: double.infinity,
                                             decoration: BoxDecoration(
-                                              color: Color(0x7fd9d9d9),
+                                              color: const Color(0x7fd9d9d9),
                                               borderRadius:
                                                   BorderRadius.circular(
                                                       20 * fem),
@@ -344,7 +348,7 @@ class _HomePageState extends State<HomePage> {
                                                   fontSize: 9 * ffem,
                                                   fontWeight: FontWeight.w600,
                                                   height: 1.5 * ffem / fem,
-                                                  color: Color(0x7f000000),
+                                                  color: const Color(0x7f000000),
                                                 ),
                                               ),
                                             ),
@@ -354,7 +358,7 @@ class _HomePageState extends State<HomePage> {
                                             width: 55 * fem,
                                             height: double.infinity,
                                             decoration: BoxDecoration(
-                                              color: Color(0x7fd9d9d9),
+                                              color: const Color(0x7fd9d9d9),
                                               borderRadius:
                                                   BorderRadius.circular(
                                                       20 * fem),
@@ -367,7 +371,7 @@ class _HomePageState extends State<HomePage> {
                                                   fontSize: 9 * ffem,
                                                   fontWeight: FontWeight.w600,
                                                   height: 1.5 * ffem / fem,
-                                                  color: Color(0x7f000000),
+                                                  color: const Color(0x7f000000),
                                                 ),
                                               ),
                                             ),
@@ -377,7 +381,7 @@ class _HomePageState extends State<HomePage> {
                                             width: 55 * fem,
                                             height: double.infinity,
                                             decoration: BoxDecoration(
-                                              color: Color(0x7fd9d9d9),
+                                              color: const Color(0x7fd9d9d9),
                                               borderRadius:
                                                   BorderRadius.circular(
                                                       20 * fem),
@@ -390,7 +394,7 @@ class _HomePageState extends State<HomePage> {
                                                   fontSize: 9 * ffem,
                                                   fontWeight: FontWeight.w600,
                                                   height: 1.5 * ffem / fem,
-                                                  color: Color(0x7f000000),
+                                                  color: const Color(0x7f000000),
                                                 ),
                                               ),
                                             ),
@@ -400,7 +404,7 @@ class _HomePageState extends State<HomePage> {
                                             width: 55 * fem,
                                             height: double.infinity,
                                             decoration: BoxDecoration(
-                                              color: Color(0x7fd9d9d9),
+                                              color: const Color(0x7fd9d9d9),
                                               borderRadius:
                                                   BorderRadius.circular(
                                                       20 * fem),
@@ -413,7 +417,7 @@ class _HomePageState extends State<HomePage> {
                                                   fontSize: 9 * ffem,
                                                   fontWeight: FontWeight.w600,
                                                   height: 1.5 * ffem / fem,
-                                                  color: Color(0x7f000000),
+                                                  color: const Color(0x7f000000),
                                                 ),
                                               ),
                                             ),
@@ -439,14 +443,14 @@ class _HomePageState extends State<HomePage> {
                       height: 97 * fem,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20 * fem),
-                        color: Color(0x40f24f04),
+                        color: const Color(0x40f24f04),
                       ),
                       child: Stack(
                         children: [
                           Positioned(
                             left: 28.2795257568 * fem,
                             top: 10 * fem,
-                            child: Container(
+                            child: SizedBox(
                               width: 127 * fem,
                               height: 53 * fem,
                               child: Column(
@@ -463,7 +467,7 @@ class _HomePageState extends State<HomePage> {
                                         fontSize: 13 * ffem,
                                         fontWeight: FontWeight.w700,
                                         height: 1.5 * ffem / fem,
-                                        color: Color(0xff000000),
+                                        color: const Color(0xff000000),
                                       ),
                                     ),
                                   ),
@@ -479,7 +483,7 @@ class _HomePageState extends State<HomePage> {
                                           fontSize: 10 * ffem,
                                           fontWeight: FontWeight.w400,
                                           height: 1.5 * ffem / fem,
-                                          color: Color(0x7f000000),
+                                          color: const Color(0x7f000000),
                                         ),
                                         children: [
                                           TextSpan(
@@ -488,7 +492,7 @@ class _HomePageState extends State<HomePage> {
                                               fontSize: 10 * ffem,
                                               fontWeight: FontWeight.w400,
                                               height: 1.5 * ffem / fem,
-                                              color: Color(0x7f000000),
+                                              color: const Color(0x7f000000),
                                             ),
                                           ),
                                           TextSpan(
@@ -497,7 +501,7 @@ class _HomePageState extends State<HomePage> {
                                               fontSize: 10 * ffem,
                                               fontWeight: FontWeight.w600,
                                               height: 1.5 * ffem / fem,
-                                              color: Color(0xfff24f04),
+                                              color: const Color(0xfff24f04),
                                             ),
                                           ),
                                         ],
@@ -541,7 +545,7 @@ class _HomePageState extends State<HomePage> {
                                         width: 56 * fem,
                                         height: 13 * fem,
                                         decoration: BoxDecoration(
-                                          color: Color(
+                                          color: const Color(
                                               0xFFF24F04), // Background color F24F04
 
                                           borderRadius: BorderRadius.circular(
@@ -554,7 +558,7 @@ class _HomePageState extends State<HomePage> {
                                             fontSize: 8 * ffem,
                                             fontWeight: FontWeight.w700,
                                             height: 1.5 * ffem / fem,
-                                            color: Color(0xffffffff),
+                                            color: const Color(0xffffffff),
                                           ),
                                         ),
                                       ),
@@ -606,11 +610,11 @@ class _HomePageState extends State<HomePage> {
                                           fontSize: 20 * ffem,
                                           fontWeight: FontWeight.w600,
                                           height: 1.5 * ffem / fem,
-                                          color: Color(0xff000000),
+                                          color: const Color(0xff000000),
                                         ),
                                       ),
                                     ),
-                                    Container(
+                                    SizedBox(
                                       // topoftheweekrx9 (0:306)
                                       width: double.infinity,
                                       child: Text(
@@ -621,7 +625,7 @@ class _HomePageState extends State<HomePage> {
                                           fontSize: 13 * ffem,
                                           fontWeight: FontWeight.w400,
                                           height: 1.5 * ffem / fem,
-                                          color: Color(0x7f000000),
+                                          color: const Color(0x7f000000),
                                         ),
                                       ),
                                     ),
@@ -647,7 +651,7 @@ class _HomePageState extends State<HomePage> {
                                   fontSize: 13 * ffem,
                                   fontWeight: FontWeight.w400,
                                   height: 1.5 * ffem / fem,
-                                  color: Color(0xff000000),
+                                  color: const Color(0xff000000),
                                 ),
                               ),
                             ),
@@ -660,13 +664,13 @@ class _HomePageState extends State<HomePage> {
                                   fontSize: 13 * ffem,
                                   fontWeight: FontWeight.w400,
                                   height: 1.5 * ffem / fem,
-                                  color: Color(0xfff24f04),
+                                  color: const Color(0xfff24f04),
                                 ),
                               ),
                             ),
                           ],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 30,
                         ),
                         Column(
@@ -683,7 +687,7 @@ class _HomePageState extends State<HomePage> {
                                   fontSize: 13 * ffem,
                                   fontWeight: FontWeight.w400,
                                   height: 1.5 * ffem / fem,
-                                  color: Color(0xff000000),
+                                  color: const Color(0xff000000),
                                 ),
                               ),
                             ),
@@ -696,13 +700,13 @@ class _HomePageState extends State<HomePage> {
                                   fontSize: 13 * ffem,
                                   fontWeight: FontWeight.w400,
                                   height: 1.5 * ffem / fem,
-                                  color: Color(0xfff24f04),
+                                  color: const Color(0xfff24f04),
                                 ),
                               ),
                             ),
                           ],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 30,
                         ),
                         Column(
@@ -719,7 +723,7 @@ class _HomePageState extends State<HomePage> {
                                   fontSize: 13 * ffem,
                                   fontWeight: FontWeight.w400,
                                   height: 1.5 * ffem / fem,
-                                  color: Color(0xff000000),
+                                  color: const Color(0xff000000),
                                 ),
                               ),
                             ),
@@ -732,7 +736,7 @@ class _HomePageState extends State<HomePage> {
                                   fontSize: 13 * ffem,
                                   fontWeight: FontWeight.w400,
                                   height: 1.5 * ffem / fem,
-                                  color: Color(0xfff24f04),
+                                  color: const Color(0xfff24f04),
                                 ),
                               ),
                             ),

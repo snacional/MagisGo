@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'verify.dart';
 
 class NewPage extends StatelessWidget {
+  const NewPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     double fem = 1.0; // You may adjust the multiplier as needed
@@ -11,7 +13,7 @@ class NewPage extends StatelessWidget {
       body: Container(
         padding: EdgeInsets.fromLTRB(13 * fem, 73 * fem, 14 * fem, 24 * fem),
         width: double.infinity,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: Color(0xffffffff),
         ),
         child: Column(
@@ -26,18 +28,18 @@ class NewPage extends StatelessWidget {
                       // Navigate back to the previous page
                       Navigator.pop(context);
                     },
-                    child: Icon(Icons.arrow_back, color: Colors.black),
+                    child: const Icon(Icons.arrow_back, color: Colors.black),
                   ),
                 ),
               ],
             ),
-            SizedBox(height: 50),
+            const SizedBox(height: 50),
             Center(
               child: Image.asset(
                 'assets/Edit.png', // Make sure the path is correct
               ),
             ),
-            SizedBox(height: 40),
+            const SizedBox(height: 40),
             Container(
               margin: EdgeInsets.fromLTRB(18 * fem, 0 * fem, 0 * fem, 14 * fem),
               child: Center(
@@ -46,7 +48,7 @@ class NewPage extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 20 * ffem,
                     fontWeight: FontWeight.w700,
-                    color: Color(0xff000000),
+                    color: const Color(0xff000000),
                   ),
                 ),
               ),
@@ -58,11 +60,11 @@ class NewPage extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 12 * ffem,
                   fontWeight: FontWeight.w400,
-                  color: Color(0x7f000000),
+                  color: const Color(0x7f000000),
                 ),
               ),
             ),
-            SizedBox(height: 100),
+            const SizedBox(height: 100),
             TextField(
               decoration: InputDecoration(
                 labelText: 'Password',
@@ -74,7 +76,7 @@ class NewPage extends StatelessWidget {
               ),
               obscureText: true,
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             TextField(
               decoration: InputDecoration(
                 labelText: 'Re-type Password',
@@ -86,7 +88,7 @@ class NewPage extends StatelessWidget {
               ),
               obscureText: true,
             ),
-            SizedBox(height: 25),
+            const SizedBox(height: 25),
             Align(
               alignment: Alignment.center,
               child: ElevatedButton(
@@ -100,10 +102,9 @@ class NewPage extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
-                  ),
-                  primary: Color(0xFFF24F04),
+                  ), backgroundColor: const Color(0xFFF24F04),
                 ),
-                child: Container(
+                child: const SizedBox(
                   width: double.infinity,
                   height: 50,
                   child: Center(

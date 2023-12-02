@@ -6,9 +6,11 @@ import 'profile.dart';
 import 'cart.dart';
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: 'MagisGO',
       home: BottomNav(),
     );
@@ -37,8 +39,8 @@ class _BottomNavState extends State<BottomNav> {
       bottomNavigationBar: BottomNavigationBar(
 showUnselectedLabels: false,
 showSelectedLabels: true,
-       selectedItemColor: Color(0xfff24f04),
-        unselectedItemColor: Color(0xfff24f04),
+       selectedItemColor: const Color(0xfff24f04),
+        unselectedItemColor: const Color(0xfff24f04),
         iconSize: 30,
        
         selectedFontSize: 0,
@@ -51,7 +53,7 @@ showSelectedLabels: true,
         
         items: <BottomNavigationBarItem>[
           
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
             icon: Icon(Icons.home),label: '___',
           ),
           BottomNavigationBarItem(

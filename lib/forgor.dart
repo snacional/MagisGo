@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'login.dart';
 import 'forgor2.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: 'MagisGO',
       home: ForgotPage(),
     );
@@ -15,33 +17,35 @@ class MyApp extends StatelessWidget {
 }
 
 class ForgotPage extends StatelessWidget {
+  const ForgotPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         color: Colors.white, // Set the background color here
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            SizedBox(height: 20), // Add spacing
+            const SizedBox(height: 20), // Add spacing
             TextButton(
               onPressed: () {
                 // Navigate back to login.dart
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => LoginPage()),
+                  MaterialPageRoute(builder: (context) => const LoginPage()),
                 );
               },
-              child: Icon(Icons.arrow_back, color: Colors.black),
+              child: const Icon(Icons.arrow_back, color: Colors.black),
             ),
-            SizedBox(height: 70),
+            const SizedBox(height: 70),
             Center(
               child: Image.asset('assets/Padlock.png'),
               // Center the image
             ),
-            SizedBox(height: 50),
-            Center(
+            const SizedBox(height: 50),
+            const Center(
               child: Text(
                 'FORGET',
                 style: TextStyle(
@@ -52,7 +56,7 @@ class ForgotPage extends StatelessWidget {
               ),
             ),
 
-            Center(
+            const Center(
               child: Text(
                 'PASSWORD',
                 style: TextStyle(
@@ -62,8 +66,8 @@ class ForgotPage extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 40),
-            Center(
+            const SizedBox(height: 40),
+            const Center(
               child: Text(
                 'Provide your account’s Email',
                 style: TextStyle(
@@ -72,8 +76,8 @@ class ForgotPage extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 5),
-            Center(
+            const SizedBox(height: 5),
+            const Center(
               child: Text(
                 'to reset your password',
                 style: TextStyle(
@@ -82,7 +86,7 @@ class ForgotPage extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 100),
+            const SizedBox(height: 100),
             TextField(
               decoration: InputDecoration(
                 labelText: 'Your Email',
@@ -94,14 +98,14 @@ class ForgotPage extends StatelessWidget {
                 fillColor: Colors.white, // Background color of the input field
               ),
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             Align(
               alignment: Alignment.center,
               child: ElevatedButton(
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Forgot2Page()),
+                    MaterialPageRoute(builder: (context) => const Forgot2Page()),
                   );
                   // Handle "Login" button press
                 },
@@ -109,10 +113,9 @@ class ForgotPage extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(
                         10), // Adjust the radius as needed
-                  ),
-                  primary: Color(0xFFF24F04), // Set the background color here
+                  ), backgroundColor: const Color(0xFFF24F04), // Set the background color here
                 ),
-                child: Container(
+                child: const SizedBox(
                   width: double.infinity, // Make the button wide
                   height: 50,
                   child: Center(

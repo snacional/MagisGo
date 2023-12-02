@@ -1,79 +1,14 @@
 import 'package:flutter/material.dart';
+
 import 'start.dart';
 
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'MagisGO',
-      debugShowCheckedModeBanner: false,
-      home: MyLandingPage(),
-    );
-  }
-}
-
-class MyLandingPage extends StatefulWidget {
-  @override
-  _MyLandingPageState createState() => _MyLandingPageState();
-}
-
-class _MyLandingPageState extends State<MyLandingPage>
-    with TickerProviderStateMixin {
-  final PageController _pageController = PageController(initialPage: 0);
-  late AnimationController _animationController;
-  late Animation<Offset> _slideAnimation;
-
-  @override
-  void initState() {
-    super.initState();
-    _animationController = AnimationController(
-      vsync: this,
-      duration: Duration(milliseconds: 800),
-    );
-    _slideAnimation = Tween<Offset>(
-      begin: Offset(0.0, 0.0),
-      end: Offset(1.0, 0.0),
-    ).animate(CurvedAnimation(
-      parent: _animationController,
-      curve: Curves.ease,
-    ));
-  }
-
-  @override
-  void dispose() {
-    _pageController.dispose();
-    _animationController.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: PageView(
-        controller: _pageController,
-        scrollDirection: Axis.horizontal,
-        physics: NeverScrollableScrollPhysics(), // Disable scrolling
-        children: <Widget>[
-          LandingPageContent(
-            pageController: _pageController,
-            animationController: _animationController,
-          ),
-          StartPage(),
-        ],
-      ),
-    );
-  }
-}
+void main() => runApp(const MyApp());
 
 class LandingPageContent extends StatefulWidget {
   final PageController pageController;
   final AnimationController animationController;
 
-  LandingPageContent({
+  const LandingPageContent({
     Key? key,
     required this.pageController,
     required this.animationController,
@@ -83,20 +18,28 @@ class LandingPageContent extends StatefulWidget {
   _LandingPageContentState createState() => _LandingPageContentState();
 }
 
-class _LandingPageContentState extends State<LandingPageContent> {
-  late Animation<Offset> _slideAnimation;
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
 
   @override
-  void initState() {
-    super.initState();
-    _slideAnimation = Tween<Offset>(
-      begin: Offset(0.0, 0.0),
-      end: Offset(1.0, 0.0),
-    ).animate(CurvedAnimation(
-      parent: widget.animationController,
-      curve: Curves.ease,
-    ));
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      title: 'MagisGO',
+      debugShowCheckedModeBanner: false,
+      home: MyLandingPage(),
+    );
   }
+}
+
+class MyLandingPage extends StatefulWidget {
+  const MyLandingPage({super.key});
+
+  @override
+  _MyLandingPageState createState() => _MyLandingPageState();
+}
+
+class _LandingPageContentState extends State<LandingPageContent> {
+  late Animation<Offset> _slideAnimation;
 
   @override
   Widget build(BuildContext context) {
@@ -107,7 +50,7 @@ class _LandingPageContentState extends State<LandingPageContent> {
           widget.animationController.addStatusListener((status) {
             if (status == AnimationStatus.completed) {
               widget.pageController.nextPage(
-                duration: Duration(milliseconds: 1),
+                duration: const Duration(milliseconds: 1),
                 curve: Curves.easeInOut,
               );
             }
@@ -115,7 +58,7 @@ class _LandingPageContentState extends State<LandingPageContent> {
         }
       },
       child: Container(
-        color: Color(0xFFF24F04),
+        color: const Color(0xFFF24F04),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -159,5 +102,65 @@ class _LandingPageContentState extends State<LandingPageContent> {
         ),
       ),
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _slideAnimation = Tween<Offset>(
+      begin: const Offset(0.0, 0.0),
+      end: const Offset(1.0, 0.0),
+    ).animate(CurvedAnimation(
+      parent: widget.animationController,
+      curve: Curves.ease,
+    ));
+  }
+}
+
+class _MyLandingPageState extends State<MyLandingPage>
+    with TickerProviderStateMixin {
+  final PageController _pageController = PageController(initialPage: 0);
+  late AnimationController _animationController;
+  late Animation<Offset> _slideAnimation;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: PageView(
+        controller: _pageController,
+        scrollDirection: Axis.horizontal,
+        physics: const NeverScrollableScrollPhysics(), // Disable scrolling
+        children: <Widget>[
+          LandingPageContent(
+            pageController: _pageController,
+            animationController: _animationController,
+          ),
+          const StartPage(),
+        ],
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    _animationController.dispose();
+    super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 800),
+    );
+    _slideAnimation = Tween<Offset>(
+      begin: const Offset(0.0, 0.0),
+      end: const Offset(1.0, 0.0),
+    ).animate(CurvedAnimation(
+      parent: _animationController,
+      curve: Curves.ease,
+    ));
   }
 }

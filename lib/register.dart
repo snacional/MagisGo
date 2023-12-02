@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'login.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: 'MagisGO',
       home: RegisterPage(),
     );
@@ -14,17 +16,19 @@ class MyApp extends StatelessWidget {
 }
 
 class RegisterPage extends StatelessWidget {
+  const RegisterPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         color: Colors.white, // Set the background color here
 
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            SizedBox(height: 20), // Add spacing
+            const SizedBox(height: 20), // Add spacing
             Row(
               children: [
                 Align(
@@ -34,28 +38,28 @@ class RegisterPage extends StatelessWidget {
                       // Navigate back to the previous page
                       Navigator.pop(context);
                     },
-                    child: Icon(Icons.arrow_back, color: Colors.black),
+                    child: const Icon(Icons.arrow_back, color: Colors.black),
                   ),
                 )
               ],
             ),
-            SizedBox(height: 20), // Add spacing
-            Text(
+            const SizedBox(height: 20), // Add spacing
+            const Text(
               'Sign Up',
               style: TextStyle(
                 fontSize: 28,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 5), // Add spacing
-            Text(
+            const SizedBox(height: 5), // Add spacing
+            const Text(
               'Create your account',
               style: TextStyle(
                 fontSize: 16,
                 color: Colors.grey,
               ),
             ),
-            SizedBox(height: 20), // Add spacing
+            const SizedBox(height: 20), // Add spacing
             TextField(
               decoration: InputDecoration(
                 labelText: 'Name',
@@ -68,7 +72,7 @@ class RegisterPage extends StatelessWidget {
               ),
             ),
 
-            SizedBox(height: 20), // Add spacing
+            const SizedBox(height: 20), // Add spacing
             TextField(
               decoration: InputDecoration(
                 labelText: 'Email',
@@ -81,7 +85,7 @@ class RegisterPage extends StatelessWidget {
               ),
             ),
 
-            SizedBox(height: 20), // Add spacing
+            const SizedBox(height: 20), // Add spacing
             TextField(
               decoration: InputDecoration(
                 labelText: 'Password',
@@ -95,7 +99,7 @@ class RegisterPage extends StatelessWidget {
               obscureText: true, // To hide password input
             ),
 
-            SizedBox(height: 20), // Add spacing
+            const SizedBox(height: 20), // Add spacing
             TextField(
               decoration: InputDecoration(
                 labelText: 'Confirm Password',
@@ -109,7 +113,7 @@ class RegisterPage extends StatelessWidget {
               obscureText: true, // To hide password input
             ),
 
-            SizedBox(height: 20), // Add spacing
+            const SizedBox(height: 20), // Add spacing
             TextField(
               decoration: InputDecoration(
                 labelText: 'Mobile Number',
@@ -121,7 +125,7 @@ class RegisterPage extends StatelessWidget {
                 fillColor: Colors.white, // Background color of the input field
               ),
             ),
-            SizedBox(height: 50), // Add spacing
+            const SizedBox(height: 50), // Add spacing
             Align(
               alignment: Alignment.center,
               child: ElevatedButton(
@@ -132,10 +136,9 @@ class RegisterPage extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(
                         13), // Adjust the radius as needed
-                  ),
-                  primary: Color(0xFFF24F04), // Set the background color here
+                  ), backgroundColor: const Color(0xFFF24F04), // Set the background color here
                 ),
-                child: Container(
+                child: const SizedBox(
                   width: double.infinity,
                   height: 40, // Make the button wide
                   child: Center(
@@ -150,36 +153,36 @@ class RegisterPage extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             Center(
               child: Row(
                 mainAxisAlignment:
                     MainAxisAlignment.center, // Center align horizontally
                 children: <Widget>[
-                  Text(
+                  const Text(
                     "Already have an account?",
                     style: TextStyle(
                       color: Color(0x85000000),
                     ),
                   ),
                   TextButton(
-                    child: Text("Sign In"),
                     style: TextButton.styleFrom(
-                      primary: Color(0x85f24f04),
+                      foregroundColor: const Color(0x85f24f04),
                     ),
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => LoginPage()),
+                        MaterialPageRoute(builder: (context) => const LoginPage()),
                       );
                       // Handle "Sign up" button press
                     },
+                    child: const Text("Sign In"),
                   ),
                 ],
               ),
             ),
-            SizedBox(height: 90),
-            Center(
+            const SizedBox(height: 90),
+            const Center(
               child: Row(
                 mainAxisAlignment:
                     MainAxisAlignment.center, // Center align horizontally
@@ -195,13 +198,13 @@ class RegisterPage extends StatelessWidget {
             ),
             Center(
               child: TextButton(
-                child: Text("Terms and Data Policy"),
                 style: TextButton.styleFrom(
-                  primary: Color(0x85f24f04),
+                  foregroundColor: const Color(0x85f24f04),
                 ),
                 onPressed: () {
                   // Handle "Sign up" button press
                 },
+                child: const Text("Terms and Data Policy"),
               ),
             ),
           ],

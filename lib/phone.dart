@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'forgor2.dart';
 import 'new.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: 'Forgot Password Email OTP',
       home: PhonePage(),
     );
@@ -15,6 +17,8 @@ class MyApp extends StatelessWidget {
 }
 
 class PhonePage extends StatelessWidget {
+  const PhonePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     double fem = 1.0; // You may adjust the multiplier as needed
@@ -24,7 +28,7 @@ class PhonePage extends StatelessWidget {
       body: Container(
         padding: EdgeInsets.fromLTRB(13 * fem, 73 * fem, 14 * fem, 63 * fem),
         width: double.infinity,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: Color(0xffffffff),
         ),
         child: Column(
@@ -39,13 +43,13 @@ class PhonePage extends StatelessWidget {
                   // Navigate back to login.dart
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Forgot2Page()),
+                    MaterialPageRoute(builder: (context) => const Forgot2Page()),
                   );
                 },
-                child: Icon(Icons.arrow_back, color: Colors.black),
+                child: const Icon(Icons.arrow_back, color: Colors.black),
               ),
             ),
-            Container(
+            SizedBox(
               width: double.infinity,
               height: 645 * fem,
               child: Stack(
@@ -58,16 +62,16 @@ class PhonePage extends StatelessWidget {
                           8 * fem, 2 * fem, 8 * fem, 43 * fem),
                       width: 320 * fem,
                       height: 265 * fem,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         color: Color(0xffffffff),
                       ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Container(
+                          SizedBox(
                             width: double.infinity,
                             height: 110 * fem,
-                            child: Container(
+                            child: SizedBox(
                               width: double.infinity,
                               height: double.infinity,
                               child: Stack(
@@ -75,7 +79,7 @@ class PhonePage extends StatelessWidget {
                                   Positioned(
                                     left: 101 * fem,
                                     top: 68 * fem,
-                                    child: Container(
+                                    child: SizedBox(
                                       width: 103 * fem,
                                       height: 42 * fem,
                                       child: Row(
@@ -87,7 +91,7 @@ class PhonePage extends StatelessWidget {
                                             style: TextStyle(
                                               fontSize: 18 * ffem,
                                               fontWeight: FontWeight.w600,
-                                              color: Color(0xff000000),
+                                              color: const Color(0xff000000),
                                             ),
                                           ),
                                           Text(
@@ -95,7 +99,7 @@ class PhonePage extends StatelessWidget {
                                             style: TextStyle(
                                               fontSize: 28 * ffem,
                                               fontWeight: FontWeight.w600,
-                                              color: Color(0xff000000),
+                                              color: const Color(0xff000000),
                                             ),
                                           ),
                                         ],
@@ -128,7 +132,7 @@ class PhonePage extends StatelessWidget {
                                 style: TextStyle(
                                   fontSize: 20 * ffem,
                                   fontWeight: FontWeight.w700,
-                                  color: Color(0xff000000),
+                                  color: const Color(0xff000000),
                                 ),
                               ),
                             ),
@@ -141,7 +145,7 @@ class PhonePage extends StatelessWidget {
                                 style: TextStyle(
                                   fontSize: 14 * ffem,
                                   fontWeight: FontWeight.w400,
-                                  color: Color(0x7f000000),
+                                  color: const Color(0x7f000000),
                                 ),
                               ),
                             ),
@@ -158,7 +162,7 @@ class PhonePage extends StatelessWidget {
                           10 * fem, 35 * fem, 7 * fem, 99 * fem),
                       width: 363 * fem,
                       height: 391 * fem,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         color: Color(0xffffffff),
                       ),
                       child: Column(
@@ -179,7 +183,7 @@ class PhonePage extends StatelessWidget {
                                   height: double.infinity,
                                   decoration: BoxDecoration(
                                     border:
-                                        Border.all(color: Color(0xfff24f04)),
+                                        Border.all(color: const Color(0xfff24f04)),
                                     borderRadius:
                                         BorderRadius.circular(8 * fem),
                                   ),
@@ -190,7 +194,7 @@ class PhonePage extends StatelessWidget {
                                       style: TextStyle(
                                         fontSize: 20 * ffem,
                                         fontWeight: FontWeight.w500,
-                                        color: Color(0xff000000),
+                                        color: const Color(0xff000000),
                                       ),
                                     ),
                                   ),
@@ -202,7 +206,7 @@ class PhonePage extends StatelessWidget {
                                   height: double.infinity,
                                   decoration: BoxDecoration(
                                     border:
-                                        Border.all(color: Color(0xfff24f04)),
+                                        Border.all(color: const Color(0xfff24f04)),
                                     borderRadius:
                                         BorderRadius.circular(8 * fem),
                                   ),
@@ -213,7 +217,7 @@ class PhonePage extends StatelessWidget {
                                       style: TextStyle(
                                         fontSize: 20 * ffem,
                                         fontWeight: FontWeight.w500,
-                                        color: Color(0xff000000),
+                                        color: const Color(0xff000000),
                                       ),
                                     ),
                                   ),
@@ -225,7 +229,7 @@ class PhonePage extends StatelessWidget {
                                   height: double.infinity,
                                   decoration: BoxDecoration(
                                     border:
-                                        Border.all(color: Color(0xfff24f04)),
+                                        Border.all(color: const Color(0xfff24f04)),
                                     borderRadius:
                                         BorderRadius.circular(8 * fem),
                                   ),
@@ -236,7 +240,7 @@ class PhonePage extends StatelessWidget {
                                       style: TextStyle(
                                         fontSize: 20 * ffem,
                                         fontWeight: FontWeight.w500,
-                                        color: Color(0xff000000),
+                                        color: const Color(0xff000000),
                                       ),
                                     ),
                                   ),
@@ -248,7 +252,7 @@ class PhonePage extends StatelessWidget {
                                   height: double.infinity,
                                   decoration: BoxDecoration(
                                     border:
-                                        Border.all(color: Color(0xfff24f04)),
+                                        Border.all(color: const Color(0xfff24f04)),
                                     borderRadius:
                                         BorderRadius.circular(8 * fem),
                                   ),
@@ -259,7 +263,7 @@ class PhonePage extends StatelessWidget {
                                       style: TextStyle(
                                         fontSize: 20 * ffem,
                                         fontWeight: FontWeight.w500,
-                                        color: Color(0xff000000),
+                                        color: const Color(0xff000000),
                                       ),
                                     ),
                                   ),
@@ -271,7 +275,7 @@ class PhonePage extends StatelessWidget {
                                   height: double.infinity,
                                   decoration: BoxDecoration(
                                     border:
-                                        Border.all(color: Color(0xfff24f04)),
+                                        Border.all(color: const Color(0xfff24f04)),
                                     borderRadius:
                                         BorderRadius.circular(8 * fem),
                                   ),
@@ -282,7 +286,7 @@ class PhonePage extends StatelessWidget {
                                       style: TextStyle(
                                         fontSize: 20 * ffem,
                                         fontWeight: FontWeight.w500,
-                                        color: Color(0xff000000),
+                                        color: const Color(0xff000000),
                                       ),
                                     ),
                                   ),
@@ -294,8 +298,8 @@ class PhonePage extends StatelessWidget {
                                     borderRadius:
                                         BorderRadius.circular(8 * fem),
                                     border:
-                                        Border.all(color: Color(0x19000000)),
-                                    color: Color(0x33d9d9d9),
+                                        Border.all(color: const Color(0x19000000)),
+                                    color: const Color(0x33d9d9d9),
                                   ),
                                 ),
                               ],
@@ -310,18 +314,18 @@ class PhonePage extends StatelessWidget {
                                 style: TextStyle(
                                   fontSize: 14 * ffem,
                                   fontWeight: FontWeight.w400,
-                                  color: Color(0xff80807f),
+                                  color: const Color(0xff80807f),
                                 ),
                                 children: [
-                                  TextSpan(text: 'Didn’t receive code? '),
+                                  const TextSpan(text: 'Didn’t receive code? '),
                                   TextSpan(
                                     text: 'Resend',
                                     style: TextStyle(
                                       fontSize: 14 * ffem,
                                       fontWeight: FontWeight.w600,
                                       decoration: TextDecoration.underline,
-                                      color: Color(0xfff24f04),
-                                      decorationColor: Color(0xfff24f04),
+                                      color: const Color(0xfff24f04),
+                                      decorationColor: const Color(0xfff24f04),
                                     ),
                                   ),
                                 ],
@@ -343,11 +347,10 @@ class PhonePage extends StatelessWidget {
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(
                                       13), // Adjust the radius as needed
-                                ),
-                                primary: Color(
+                                ), backgroundColor: const Color(
                                     0xFFF24F04), // Set the background color here
                               ),
-                              child: Container(
+                              child: const SizedBox(
                                 width: double.infinity,
                                 height: 40, // Make the button wide
                                 child: Center(

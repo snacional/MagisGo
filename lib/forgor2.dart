@@ -3,12 +3,14 @@ import 'gmail.dart';
 import 'forgor.dart';
 import 'phone.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: 'Forgot Password Page',
       home: Forgot2Page(),
     );
@@ -16,6 +18,8 @@ class MyApp extends StatelessWidget {
 }
 
 class Forgot2Page extends StatelessWidget {
+  const Forgot2Page({super.key});
+
   @override
   Widget build(BuildContext context) {
     double fem = 1.0; // You may adjust the multiplier as needed
@@ -25,7 +29,7 @@ class Forgot2Page extends StatelessWidget {
       body: Container(
         padding: EdgeInsets.fromLTRB(21 * fem, 73 * fem, 18 * fem, 48 * fem),
         width: double.infinity,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: Color(0xffffffff),
         ),
         child: Column(
@@ -43,10 +47,10 @@ class Forgot2Page extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => ForgotPage()),
                   );
                 },
-                child: Icon(Icons.arrow_back, color: Colors.black),
+                child: const Icon(Icons.arrow_back, color: Colors.black),
               ),
             ),
-            Container(
+            SizedBox(
               width: double.infinity,
               height: 666 * fem,
               child: Center(
@@ -65,7 +69,7 @@ class Forgot2Page extends StatelessWidget {
                         ),
                         width: 320 * fem,
                         height: 252 * fem,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           color: Color(0xffffffff),
                         ),
                         child: Column(
@@ -89,7 +93,7 @@ class Forgot2Page extends StatelessWidget {
                                 style: TextStyle(
                                   fontSize: 20 * ffem,
                                   fontWeight: FontWeight.w700,
-                                  color: Color(0xff000000),
+                                  color: const Color(0xff000000),
                                 ),
                               ),
                             ),
@@ -101,7 +105,7 @@ class Forgot2Page extends StatelessWidget {
                                 style: TextStyle(
                                   fontSize: 12 * ffem,
                                   fontWeight: FontWeight.w400,
-                                  color: Color(0x7f000000),
+                                  color: const Color(0x7f000000),
                                 ),
                               ),
                             ),
@@ -131,7 +135,7 @@ class Forgot2Page extends StatelessWidget {
                                   14 * fem, 22 * fem, 14 * fem, 33 * fem),
                               width: 351 * fem,
                               height: 220 * fem,
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 color: Color(0xffffffff),
                               ),
                               child: Column(
@@ -145,7 +149,7 @@ class Forgot2Page extends StatelessWidget {
                                     width: double.infinity,
                                     height: 123 * fem,
                                     decoration: BoxDecoration(
-                                      color: Color(0x20D9D9D9),
+                                      color: const Color(0x20D9D9D9),
                                       borderRadius:
                                           BorderRadius.circular(13 * fem),
                                     ),
@@ -180,11 +184,11 @@ class Forgot2Page extends StatelessWidget {
                                                   style: TextStyle(
                                                     fontSize: 12 * ffem,
                                                     fontWeight: FontWeight.w400,
-                                                    color: Color(0x7f000000),
+                                                    color: const Color(0x7f000000),
                                                   ),
                                                 ),
                                               ),
-                                              Container(
+                                              SizedBox(
                                                 width: double.infinity,
                                                 child: Text(
                                                   '+69**********',
@@ -192,7 +196,7 @@ class Forgot2Page extends StatelessWidget {
                                                   style: TextStyle(
                                                     fontSize: 20 * ffem,
                                                     fontWeight: FontWeight.w600,
-                                                    color: Color(0xff000000),
+                                                    color: const Color(0xff000000),
                                                   ),
                                                 ),
                                               ),
@@ -211,7 +215,7 @@ class Forgot2Page extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => GmailPage()),
+                                    builder: (context) => const GmailPage()),
                               );
                               // Handle the onTap action for "Email" here
                               // You can navigate to a new page or perform any other action.
@@ -221,21 +225,21 @@ class Forgot2Page extends StatelessWidget {
                                   14 * fem, 22 * fem, 14 * fem, 33 * fem),
                               width: 351 * fem,
                               height: 200 * fem,
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 color: Color(0xffffffff),
                               ),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Container(
-                                    margin: EdgeInsets.fromLTRB(
+                                    margin: const EdgeInsets.fromLTRB(
                                         0, 0, 0, 0), // Remove the bottom margin
                                     padding: EdgeInsets.fromLTRB(
                                         0, 17 * fem, 67 * fem, 16 * fem),
                                     width: double.infinity,
                                     height: 123 * fem,
                                     decoration: BoxDecoration(
-                                      color: Color(0x20D9D9D9),
+                                      color: const Color(0x20D9D9D9),
                                       borderRadius:
                                           BorderRadius.circular(13 * fem),
                                     ),
@@ -270,11 +274,11 @@ class Forgot2Page extends StatelessWidget {
                                                   style: TextStyle(
                                                     fontSize: 12 * ffem,
                                                     fontWeight: FontWeight.w400,
-                                                    color: Color(0x7f000000),
+                                                    color: const Color(0x7f000000),
                                                   ),
                                                 ),
                                               ),
-                                              Container(
+                                              SizedBox(
                                                 width: double.infinity,
                                                 child: Text(
                                                   '********@*****.com',
@@ -282,7 +286,7 @@ class Forgot2Page extends StatelessWidget {
                                                   style: TextStyle(
                                                     fontSize: 15 * ffem,
                                                     fontWeight: FontWeight.w600,
-                                                    color: Color(0xff000000),
+                                                    color: const Color(0xff000000),
                                                   ),
                                                 ),
                                               ),

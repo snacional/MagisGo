@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: 'MagisGO',
       home: StartPage(),
     );
@@ -17,6 +17,8 @@ class MyApp extends StatelessWidget {
 }
 
 class StartPage extends StatelessWidget {
+  const StartPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,7 +70,7 @@ class StartPage extends StatelessWidget {
                   // Text color with 50% opacity
                 ),
               ),
-              Center(
+              const Center(
                   child: Text('.',
                       style: TextStyle(
                           fontSize: 45,
@@ -82,18 +84,16 @@ class StartPage extends StatelessWidget {
                       // Handle "Get Started" button press
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => RegisterPage()),
+                        MaterialPageRoute(builder: (context) => const RegisterPage()),
                       );
                     },
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(
                             13), // Adjust the radius as needed
-                      ),
-                      primary:
-                          Color(0xFFF24F04), // Set the background color here
+                      ), backgroundColor: const Color(0xFFF24F04), // Set the background color here
                     ),
-                    child: Container(
+                    child: const SizedBox(
                         width: double.infinity,
                         height: 50,
                         child: Center(
@@ -111,7 +111,7 @@ class StartPage extends StatelessWidget {
                       // Handle "Sign In" button press
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => LoginPage()),
+                        MaterialPageRoute(builder: (context) => const LoginPage()),
                       );
                     },
                     style: ElevatedButton.styleFrom(
@@ -120,9 +120,9 @@ class StartPage extends StatelessWidget {
                             13), // Adjust the radius as needed
                       ),
                       backgroundColor:
-                          Color(0xFFFD9D9D9), // Set the background color here
+                          const Color(0xfffd9d9d9), // Set the background color here
                     ),
-                    child: Container(
+                    child: const SizedBox(
                       width: double.infinity,
                       height: 50,
                       child: Center(
