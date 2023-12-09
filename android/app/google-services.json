@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "739115768105",
+    "project_id": "magisgo",
+    "storage_bucket": "magisgo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:739115768105:android:5b1014ca8bffbb23923f38",
+        "android_client_info": {
+          "package_name": "com.example.helloworld"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZOq2HJShfGNWj1lEdhajZJddimGsjrt4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
