@@ -33,16 +33,32 @@ class _BottomNavState extends State<BottomNav> {
     const FavoritePage(),
     const ProfilePage(),
   ];
+
+  List<String> iconPaths = [
+    'assets/home.png',
+    'assets/shop.png',
+    'assets/plus.png',
+    'assets/fav.png',
+    'assets/Group.png',
+  ];
+
+  List<String> selectedIconPaths = [
+    'assets/home_selected.png',
+    'assets/shop_selected.png',
+    'assets/plus.png',
+    'assets/fav_selected.png',
+    'assets/Group_selected.png',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
-showUnselectedLabels: false,
-showSelectedLabels: true,
-       selectedItemColor: const Color(0xfff24f04),
+        showUnselectedLabels: false,
+        showSelectedLabels: true,
+        selectedItemColor: const Color(0xfff24f04),
         unselectedItemColor: const Color(0xfff24f04),
         iconSize: 30,
-       
         selectedFontSize: 0,
         unselectedFontSize: 0,
         onTap: (index) {
@@ -50,27 +66,59 @@ showSelectedLabels: true,
             currentpage = index;
           });
         },
-        
         items: <BottomNavigationBarItem>[
-          
-          const BottomNavigationBarItem(
-            icon: Icon(Icons.home),label: '___',
+          BottomNavigationBarItem(
+            icon: Image.asset(
+              currentpage == 0 ? selectedIconPaths[0] : iconPaths[0],
+              width: 44,
+              height: 44,
+            ),
+            label: '___',
           ),
           BottomNavigationBarItem(
-            icon: Image.asset('assets/shop.png', width: 24, height: 24),
-            label: '___', // Replace 'assets/search.png' with your image path
+            icon: Image.asset(
+              currentpage == 1 ? selectedIconPaths[1] : iconPaths[1],
+              width: 44,
+              height: 44,
+            ),
+            label: '___',
           ),
           BottomNavigationBarItem(
-            icon: Image.asset('assets/plus.png', width: 24, height: 24),
-            label: 'cart', // Replace 'assets/favorite.png' with your image path
+            icon: Container(
+              width: 44,
+              height: 44,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(
+                  color: const Color(0xfff24f04),
+                  width: 2.0,
+                ),
+              ),
+              child: Center(
+                child: Image.asset(
+                  currentpage == 2 ? selectedIconPaths[2] : iconPaths[2],
+                  width: 44,
+                  height: 44,
+                ),
+              ),
+            ),
+            label: 'cart',
           ),
           BottomNavigationBarItem(
-            icon: Image.asset('assets/fav.png', width: 24, height: 24),
-            label: '___', // Replace 'assets/cart.png' with your image path
+            icon: Image.asset(
+              currentpage == 3 ? selectedIconPaths[3] : iconPaths[3],
+              width: 44,
+              height: 44,
+            ),
+            label: '___',
           ),
           BottomNavigationBarItem(
-            icon: Image.asset('assets/Group.png', width: 24, height: 24),
-            label: '___', // Replace 'assets/profile.png' with your image path
+            icon: Image.asset(
+              currentpage == 4 ? selectedIconPaths[4] : iconPaths[4],
+              width: 44,
+              height: 44,
+            ),
+            label: '___',
           ),
         ],
       ),

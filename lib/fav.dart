@@ -23,15 +23,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
       child: Row(
         children: [
-          IconButton(
-            icon: const Icon(Icons.arrow_back),
-            onPressed: onBack,
-          ),
-          const SizedBox(width: 16.0),
           const Text(
             'Favorites',
             style: TextStyle(
-              fontSize: 20.0,
+              fontSize: 25.0,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -62,27 +57,9 @@ class FavoritePage extends StatelessWidget {
             const FoodItem(
               foodImage: 'assets/meals.png',
               foodName: 'Chicken Burger',
-              rating: 4.5,
+              rating: 4.95,
               price: '\$12.99',
-            ),
-            const FoodItem(
-              foodImage: 'assets/meals.png',
-              foodName: 'Chicken Burger',
-              rating: 4.5,
-              price: '\$12.99',
-            ),
-            const FoodItem(
-              foodImage: 'assets/meals.png',
-              foodName: 'Chicken Burger',
-              rating: 4.5,
-              price: '\$12.99',
-            ),
-            const FoodItem(
-              foodImage: 'assets/meals.png',
-              foodName: 'Chicken Burger',
-              rating: 4.5,
-              price: '\$12.99',
-            ),
+            )
             // Add more FoodItem widgets as needed
           ],
         ),
@@ -96,31 +73,34 @@ class FoodItem extends StatelessWidget {
   final String foodName;
   final double rating;
   final String price;
-  const FoodItem({super.key, 
+
+  const FoodItem({
+    Key? key,
     required this.foodImage,
     required this.foodName,
     required this.rating,
     required this.price,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(bottom: 25.0),
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey), // Add border here
-        borderRadius: BorderRadius.circular(8.0),
+        border: Border.all(color: Colors.grey),
+        borderRadius: BorderRadius.circular(20.0),
       ),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Left side: Food Image
           Container(
-            width: 120.0,
-            height: 120.0,
+            width: 160.0, // Adjust the width as needed
+            height: 150,
             decoration: BoxDecoration(
               borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(8.0),
-                bottomLeft: Radius.circular(8.0),
+                topLeft: Radius.circular(20.0),
+                bottomLeft: Radius.circular(20.0),
               ),
               image: DecorationImage(
                 image: AssetImage(foodImage),
@@ -135,51 +115,72 @@ class FoodItem extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Food Name and Favorite Icon
+                  Row(
+                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+children: [
+ Text(
+                    foodName,
+                    style: const TextStyle(
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.bold,
+                      
+                    ),
+                  ),
+                  const SizedBox(height: 4.0),
+                  IconButton(
+                        onPressed: () {
+                          // Handle favorite button click
+                        },
+                        icon: const Icon(
+                          Icons.favorite,
+                          color: Colors.pink,
+                        ),
+                      ),
+],
+                  ),
+                  // Food Name
+                 SizedBox(height: 60,),
+                  // Star, Rating, and Price
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        foodName,
-                        style: const TextStyle(
-                          fontSize: 16.0,
-                          fontWeight: FontWeight.bold,
-                        ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              const Icon(
+                                Icons.star,
+                                color: Colors.yellow,
+                                size: 14.0,
+                              ),
+                              const SizedBox(width: 4.0),
+                              Text(
+                                rating.toString(),
+                                style: const TextStyle(
+                                  fontSize: 14.0,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                            ],
+                          ),
+                         
+                        ],
                       ),
-                      // Favorite Icon
-                      const Icon(
-                        Icons.favorite,
-                        color: Colors.pink,
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 20.0),
-                  // Canteen Name, Star Icon, Rating, and Price
-                  Row(
-                    children: [
-                      const Icon(
-                        Icons.star,
-                        color: Colors.yellow,
-                      ),
-                      const SizedBox(width: 4.0),
-                      Text(
-                        rating.toString(),
-                        style: const TextStyle(
-                          fontSize: 14.0,
-                        ),
-                      ),
-                      const Spacer(),
-                      // Star Icon and Rating
-                      const SizedBox(height: 20.0),
-                      const SizedBox(width: 8.0),
-                      // Price
-                      Text(
-                        price,
-                        style: const TextStyle(
-                          fontSize: 16.0,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
+                      // Favorite Button
+                      Column(
+                        children: [
+                           // Price
+                          Text(
+                            price,
+                            style: const TextStyle(
+                              fontSize: 16.0,
+                              fontWeight: FontWeight.w600,
+                              color: Color(0xfff24f04)
+                            ),
+                          ),
+                        ],
+                      )
                     ],
                   ),
                 ],
@@ -191,6 +192,7 @@ class FoodItem extends StatelessWidget {
     );
   }
 }
+
 
 void main() {
   runApp(const MaterialApp(

@@ -27,7 +27,7 @@ class Forgot2Page extends StatelessWidget {
 
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.fromLTRB(21 * fem, 73 * fem, 18 * fem, 48 * fem),
+        padding: EdgeInsets.fromLTRB(20 * fem, 73 * fem, 20 * fem, 48 * fem),
         width: double.infinity,
         decoration: const BoxDecoration(
           color: Color(0xffffffff),
@@ -76,8 +76,7 @@ class Forgot2Page extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Container(
-                              margin:
-                                  EdgeInsets.fromLTRB(1 * fem, 0, 0, 30 * fem),
+                              margin: EdgeInsets.fromLTRB(20, 0, 0, 30 * fem),
                               width: 90 * fem,
                               height: 90 * fem,
                               child: Image.asset(
@@ -86,7 +85,7 @@ class Forgot2Page extends StatelessWidget {
                               ),
                             ),
                             Container(
-                              margin: EdgeInsets.fromLTRB(0, 0, 0, 13 * fem),
+                              margin: EdgeInsets.fromLTRB(20, 0, 0, 13 * fem),
                               child: Text(
                                 'Make A Selection',
                                 textAlign: TextAlign.center,
@@ -98,6 +97,7 @@ class Forgot2Page extends StatelessWidget {
                               ),
                             ),
                             Container(
+                              margin: EdgeInsets.fromLTRB(20, 0, 0, 0),
                               constraints: BoxConstraints(maxWidth: 214 * fem),
                               child: Text(
                                 'Which contact detail should we use to reset your password?',
@@ -184,7 +184,8 @@ class Forgot2Page extends StatelessWidget {
                                                   style: TextStyle(
                                                     fontSize: 12 * ffem,
                                                     fontWeight: FontWeight.w400,
-                                                    color: const Color(0x7f000000),
+                                                    color:
+                                                        const Color(0x7f000000),
                                                   ),
                                                 ),
                                               ),
@@ -196,7 +197,8 @@ class Forgot2Page extends StatelessWidget {
                                                   style: TextStyle(
                                                     fontSize: 20 * ffem,
                                                     fontWeight: FontWeight.w600,
-                                                    color: const Color(0xff000000),
+                                                    color:
+                                                        const Color(0xff000000),
                                                   ),
                                                 ),
                                               ),
@@ -274,7 +276,8 @@ class Forgot2Page extends StatelessWidget {
                                                   style: TextStyle(
                                                     fontSize: 12 * ffem,
                                                     fontWeight: FontWeight.w400,
-                                                    color: const Color(0x7f000000),
+                                                    color:
+                                                        const Color(0x7f000000),
                                                   ),
                                                 ),
                                               ),
@@ -286,7 +289,8 @@ class Forgot2Page extends StatelessWidget {
                                                   style: TextStyle(
                                                     fontSize: 15 * ffem,
                                                     fontWeight: FontWeight.w600,
-                                                    color: const Color(0xff000000),
+                                                    color:
+                                                        const Color(0xff000000),
                                                   ),
                                                 ),
                                               ),

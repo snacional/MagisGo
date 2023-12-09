@@ -11,7 +11,7 @@ class NewPage extends StatelessWidget {
 
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.fromLTRB(13 * fem, 73 * fem, 14 * fem, 24 * fem),
+        padding: EdgeInsets.fromLTRB(20 * fem, 73 * fem, 20 * fem, 24 * fem),
         width: double.infinity,
         decoration: const BoxDecoration(
           color: Color(0xffffffff),
@@ -41,7 +41,7 @@ class NewPage extends StatelessWidget {
             ),
             const SizedBox(height: 40),
             Container(
-              margin: EdgeInsets.fromLTRB(18 * fem, 0 * fem, 0 * fem, 14 * fem),
+              margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 14 * fem),
               child: Center(
                 child: Text(
                   'New Password',

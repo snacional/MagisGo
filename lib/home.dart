@@ -29,7 +29,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
+        body: SingleChildScrollView(
             padding: const EdgeInsets.only(left: 20, top: 20, right: 20),
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -72,8 +72,6 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   Container(
-                    margin:
-                        EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 0 * fem),
                     width: double.infinity,
                     decoration: const BoxDecoration(
                       color: Color(0x4cd9d9d9),
@@ -128,7 +126,9 @@ class _HomePageState extends State<HomePage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const SizedBox(height: 10,),
+                        const SizedBox(
+                          height: 10,
+                        ),
                         Container(
                           margin: EdgeInsets.fromLTRB(
                               0 * fem, 0 * fem, 0 * fem, 4 * fem),
@@ -145,7 +145,9 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                         ),
-                         const SizedBox(height: 10,),
+                        const SizedBox(
+                          height: 10,
+                        ),
                         Container(
                           margin: EdgeInsets.fromLTRB(
                               0 * fem, 0 * fem, 0 * fem, 40 * fem),
@@ -156,278 +158,137 @@ class _HomePageState extends State<HomePage> {
                             borderRadius: BorderRadius.circular(20 * fem),
                           ),
                           child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              SizedBox(
-                                width: double.infinity,
-                                height: 101.37 * fem,
-                                child: Image.asset(
-                                  'assets/bam.png',
+                               Container(
+            width: double.infinity,
+            height: 100, // Adjust the height as needed
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              image: DecorationImage(
+                image: AssetImage('meals.png'), // Replace with your actual image
+                fit: BoxFit.cover,
+              ),
+            ),
+            child: Align(
+              alignment: Alignment.topRight,
+              child: Container(
+                padding: const EdgeInsets.all(4),
+                margin: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.white,
+                ),
+                child: Icon(
+                  Icons.bookmark,
+                  color: Color(0xfff24f04),
+                  size: 18,
+                ),
+              ),
+            ),
+          ),
+                              Container(
+                                margin: const EdgeInsets.only(
+                                    left: 25, bottom: 8.1),
+                                child: Text(
+                                  'Bam-Bams',
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 22,
+                                  ),
                                 ),
                               ),
                               Container(
-                                padding: EdgeInsets.fromLTRB(
-                                    20 * fem, 5.48 * fem, 17 * fem, 9 * fem),
-                                width: double.infinity,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                margin: const EdgeInsets.only(
+                                    left: 25, bottom: 13.1),
+                                child: Row(
                                   children: [
+                                    Row(
+                                      children: [
+                                        Icon(
+                                          Icons.star,
+                                          color: Colors.yellow,
+                                          size: 12,
+                                        ),
+                                        const SizedBox(width: 5),
+                                        Text(
+                                          "4.95", // Assuming rating is a String
+                                          style: const TextStyle(
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 12,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(width: 25),
                                     Container(
-                                      margin: EdgeInsets.fromLTRB(0 * fem,
-                                          0 * fem, 0 * fem, 13.1 * fem),
-                                      width: 124 * fem,
-                                      height: 45.05 * fem,
-                                      child: Stack(
-                                        children: [
-                                          Positioned(
-                                            left: 56 * fem,
-                                            top: 31.0500488281 * fem,
-                                            child: Container(
-                                              width: 66 * fem,
-                                              height: 14 * fem,
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(
-                                                        20 * fem),
-                                              ),
-                                              child: Row(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Container(
-                                                    margin: EdgeInsets.fromLTRB(
-                                                        0 * fem,
-                                                        0 * fem,
-                                                        3.81 * fem,
-                                                        0 * fem),
-                                                    width: 12.19 * fem,
-                                                    height: 11.13 * fem,
-                                                    child: Image.asset(
-                                                      'assets/time.png',
-                                                      width: 12.19 * fem,
-                                                      height: 11.13 * fem,
-                                                    ),
-                                                  ),
-                                                  Text(
-                                                    '15 - 20 min',
-                                                    textAlign: TextAlign.center,
-                                                    style: TextStyle(
-                                                      fontSize: 9 * ffem,
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                      height: 1.5 * ffem / fem,
-                                                      color: const Color(0xff000000),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                          Positioned(
-                                            left: 0 * fem,
-                                            top: 0 * fem,
-                                            child: Container(
-                                              width: 124 * fem,
-                                              height: 45.05 * fem,
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(
-                                                        20 * fem),
-                                              ),
-                                              child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Container(
-                                                    margin: EdgeInsets.fromLTRB(
-                                                        0 * fem,
-                                                        0 * fem,
-                                                        0 * fem,
-                                                        0.14 * fem),
-                                                    width: double.infinity,
-                                                    child: Text(
-                                                      'Bam-bam’s',
-                                                      textAlign:
-                                                          TextAlign.center,
-                                                      style: TextStyle(
-                                                        fontSize: 20 * ffem,
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                        height:
-                                                            1.5 * ffem / fem,
-                                                        color:
-                                                            const Color(0xff000000),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  Container(
-                                                    width: double.infinity,
-                                                    margin: EdgeInsets.fromLTRB(
-                                                        7.50 * fem,
-                                                        0 * fem,
-                                                        0 * fem,
-                                                        0 * fem),
-                                                    height: 14 * fem,
-                                                    child: Row(
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        SizedBox(
-                                                          width: 15 * fem,
-                                                          height: 13.7 * fem,
-                                                          child: ClipRRect(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        20 *
-                                                                            fem),
-                                                            child: Image.asset(
-                                                              'assets/Star.png',
-                                                              fit: BoxFit
-                                                                  .contain,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        Container(
-                                                          margin: EdgeInsets
-                                                              .fromLTRB(
-                                                                  0 * fem,
-                                                                  0.91 * fem,
-                                                                  0 * fem,
-                                                                  0 * fem),
-                                                          child: Text(
-                                                            '4.98',
-                                                            textAlign: TextAlign
-                                                                .center,
-                                                            style: TextStyle(
-                                                              fontSize:
-                                                                  9 * ffem,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w600,
-                                                              height: 1.5 *
-                                                                  ffem /
-                                                                  fem,
-                                                              color: const Color(
-                                                                  0xff000000),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                        ],
+                                      width: 12.19,
+                                      height: 11.13,
+                                      child: Image.asset(
+                                        'assets/time.png',
+                                        width: 12.19,
+                                        height: 12.13,
                                       ),
                                     ),
-                                    SizedBox(
-                                      width: double.infinity,
-                                      height: 14 * fem,
-                                      child: Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          Container(
-                                            width: 55 * fem,
-                                            height: double.infinity,
-                                            decoration: BoxDecoration(
-                                              color: const Color(0x7fd9d9d9),
-                                              borderRadius:
-                                                  BorderRadius.circular(
-                                                      20 * fem),
-                                            ),
-                                            child: Center(
-                                              child: Text(
-                                                'Burger',
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                  fontSize: 9 * ffem,
-                                                  fontWeight: FontWeight.w600,
-                                                  height: 1.5 * ffem / fem,
-                                                  color: const Color(0x7f000000),
-                                                ),
-                                              ),
-                                            ),
+                                    const SizedBox(width: 3.81), // Spacer
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: const [
+                                        Text(
+                                          '15 - 20 min',
+                                          style: TextStyle(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w600,
+                                            height: 1.5,
                                           ),
-                                          SizedBox(width: 27 * fem),
-                                          Container(
-                                            width: 55 * fem,
-                                            height: double.infinity,
-                                            decoration: BoxDecoration(
-                                              color: const Color(0x7fd9d9d9),
-                                              borderRadius:
-                                                  BorderRadius.circular(
-                                                      20 * fem),
-                                            ),
-                                            child: Center(
-                                              child: Text(
-                                                'Chicken',
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                  fontSize: 9 * ffem,
-                                                  fontWeight: FontWeight.w600,
-                                                  height: 1.5 * ffem / fem,
-                                                  color: const Color(0x7f000000),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                          SizedBox(width: 27 * fem),
-                                          Container(
-                                            width: 55 * fem,
-                                            height: double.infinity,
-                                            decoration: BoxDecoration(
-                                              color: const Color(0x7fd9d9d9),
-                                              borderRadius:
-                                                  BorderRadius.circular(
-                                                      20 * fem),
-                                            ),
-                                            child: Center(
-                                              child: Text(
-                                                'Fries',
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                  fontSize: 9 * ffem,
-                                                  fontWeight: FontWeight.w600,
-                                                  height: 1.5 * ffem / fem,
-                                                  color: const Color(0x7f000000),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                          SizedBox(width: 27 * fem),
-                                          Container(
-                                            width: 55 * fem,
-                                            height: double.infinity,
-                                            decoration: BoxDecoration(
-                                              color: const Color(0x7fd9d9d9),
-                                              borderRadius:
-                                                  BorderRadius.circular(
-                                                      20 * fem),
-                                            ),
-                                            child: Center(
-                                              child: Text(
-                                                'Sundae',
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                  fontSize: 9 * ffem,
-                                                  fontWeight: FontWeight.w600,
-                                                  height: 1.5 * ffem / fem,
-                                                  color: const Color(0x7f000000),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
+                                        ),
+                                      ],
                                     ),
                                   ],
                                 ),
                               ),
+                              Container(
+                                margin:
+                                    const EdgeInsets.only(left: 27, top: 10),
+                                height: 14,
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    for (final item in [
+                                      'Burger',
+                                      'Chicken',
+                                      'Fries',
+                                      'Sundae'
+                                    ])
+                                      Container(
+                                        width: 55,
+                                        height: double.infinity,
+                                        margin:
+                                            const EdgeInsets.only(right: 35),
+                                        decoration: BoxDecoration(
+                                          color: const Color(0x7fd9d9d9),
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                        ),
+                                        child: Center(
+                                          child: Text(
+                                            item,
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w600,
+                                              height: 1.5,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
+                                height: 20,
+                              )
                             ],
                           ),
                         ),
@@ -635,114 +496,70 @@ class _HomePageState extends State<HomePage> {
                             ]))
                       ]))),
                   SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(children: [
-                        Column(
-                          children: [
-                            Container(
-                              child: Image.asset('assets/meals.png'),
-                            ),
-                            Container(
-                              child: Text(
-                                'BurgerFries Style',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontFamily: 'Poppins',
-                                  fontSize: 13 * ffem,
-                                  fontWeight: FontWeight.w400,
-                                  height: 1.5 * ffem / fem,
-                                  color: const Color(0xff000000),
-                                ),
-                              ),
-                            ),
-                            Container(
-                              child: Text(
-                                '₱ 150.00',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontFamily: 'Poppins',
-                                  fontSize: 13 * ffem,
-                                  fontWeight: FontWeight.w400,
-                                  height: 1.5 * ffem / fem,
-                                  color: const Color(0xfff24f04),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          width: 30,
-                        ),
-                        Column(
-                          children: [
-                            Container(
-                              child: Image.asset('assets/beverages.png'),
-                            ),
-                            Container(
-                              child: Text(
-                                'Coke Pesi Halo Halo',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontFamily: 'Poppins',
-                                  fontSize: 13 * ffem,
-                                  fontWeight: FontWeight.w400,
-                                  height: 1.5 * ffem / fem,
-                                  color: const Color(0xff000000),
-                                ),
-                              ),
-                            ),
-                            Container(
-                              child: Text(
-                                '₱ 300.00',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontFamily: 'Poppins',
-                                  fontSize: 13 * ffem,
-                                  fontWeight: FontWeight.w400,
-                                  height: 1.5 * ffem / fem,
-                                  color: const Color(0xfff24f04),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          width: 30,
-                        ),
-                        Column(
-                          children: [
-                            Container(
-                              child: Image.asset('assets/desserts.png'),
-                            ),
-                            Container(
-                              child: Text(
-                                'Ice Cream with',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontFamily: 'Poppins',
-                                  fontSize: 13 * ffem,
-                                  fontWeight: FontWeight.w400,
-                                  height: 1.5 * ffem / fem,
-                                  color: const Color(0xff000000),
-                                ),
-                              ),
-                            ),
-                            Container(
-                              child: Text(
-                                '₱ 70.00',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontFamily: 'Poppins',
-                                  fontSize: 13 * ffem,
-                                  fontWeight: FontWeight.w400,
-                                  height: 1.5 * ffem / fem,
-                                  color: const Color(0xfff24f04),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ]))
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: [
+                        MenuItem(
+                            imageAsset: 'assets/meals.png',
+                            title: 'BurgerFries Style',
+                            price: '₱ 150.00'),
+                        MenuItem(
+                            imageAsset: 'assets/beverages.png',
+                            title: 'Coke Pesi Halo Halo',
+                            price: '₱ 300.00'),
+                        MenuItem(
+                            imageAsset: 'assets/desserts.png',
+                            title: 'Ice Cream with Fruits',
+                            price: '₱ 70.00'),
+                      ],
+                    ),
+                  )
                 ])));
+  }
+}
+
+class MenuItem extends StatelessWidget {
+  final String imageAsset;
+  final String title;
+  final String price;
+
+  const MenuItem({
+    required this.imageAsset,
+    required this.title,
+    required this.price,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(right: 30),
+      child: Column(
+        children: [
+          Image.asset(imageAsset),
+          Text(
+            title,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontFamily: 'Poppins',
+              fontSize: 13,
+              fontWeight: FontWeight.w400,
+              height: 1.5,
+              color: const Color(0xff000000),
+            ),
+          ),
+          Text(
+            price,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontFamily: 'Poppins',
+              fontSize: 13,
+              fontWeight: FontWeight.w400,
+              height: 1.5,
+              color: const Color(0xfff24f04),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'start.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +17,16 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
+class ProfilePage extends StatefulWidget {
+  const ProfilePage({Key? key});
+
+  @override
+  _ProfilePageState createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+  bool isBookmarkSelected = true;
+  bool isNotificationEnabled = true; // Add this variable
 
   @override
   Widget build(BuildContext context) {
@@ -32,14 +41,6 @@ class ProfilePage extends StatelessWidget {
             Container(
               child: Row(
                 children: [
-                  IconButton(
-                    icon: const Icon(Icons.arrow_back),
-                    iconSize: 20,
-                    onPressed: () {
-                      // Handle back button press
-                      Navigator.pop(context);
-                    },
-                  ),
                   const SizedBox(width: 12),
                   const Text(
                     'Profile',
@@ -61,8 +62,8 @@ class ProfilePage extends StatelessWidget {
                     width: 150,
                     height: 150,
                     decoration: BoxDecoration(
-                      borderRadius:
-                          BorderRadius.circular(75), // half of width and height
+                      borderRadius: BorderRadius.circular(
+                          125), // half of width and height
                       image: const DecorationImage(
                         image: AssetImage(
                             'assets/x.jpg'), // Replace with a relevant image
@@ -93,7 +94,7 @@ class ProfilePage extends StatelessWidget {
                       const Text(
                         'Edit Profile',
                         style: TextStyle(
-                          fontWeight: FontWeight.w600,
+                          fontWeight: FontWeight.w700,
                         ),
                       ),
                       const SizedBox(width: 5),
@@ -109,30 +110,40 @@ class ProfilePage extends StatelessWidget {
                 ],
               ),
             ),
-            // Bookmark and Settings
+            // Bookmark and Settings Toggle Buttons
             Container(
-              padding: const EdgeInsets.only(bottom: 20),
+              padding: const EdgeInsets.only(bottom: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   ElevatedButton(
                     onPressed: () {
-                      // Handle Bookmark
+                      setState(() {
+                        isBookmarkSelected = true;
+                      });
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xfff24f04),
+                      backgroundColor: isBookmarkSelected
+                          ? const Color(0xfff24f04)
+                          : Colors.white,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(50),
+                        side: BorderSide(
+                          color: const Color(0xfff24f04),
+                        ),
                       ),
                       fixedSize: const Size(135, 45),
                     ),
-                    child: const Column(
+                    child: Column(
                       children: [
                         SizedBox(height: 8),
                         Text(
                           'Bookmark',
                           style: TextStyle(
                             fontSize: 20,
+                            color: isBookmarkSelected
+                                ? Colors.white
+                                : Colors.black,
                           ),
                         ),
                       ],
@@ -141,25 +152,32 @@ class ProfilePage extends StatelessWidget {
                   const SizedBox(width: 20),
                   ElevatedButton(
                     onPressed: () {
-                      // Handle Settings
+                      setState(() {
+                        isBookmarkSelected = false;
+                      });
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
+                      backgroundColor: isBookmarkSelected
+                          ? Colors.white
+                          : const Color(0xfff24f04),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(50),
-                        side: const BorderSide(
-                            color: Color(0xfff24f04)), // Border color
+                        side: BorderSide(
+                          color: const Color(0xfff24f04),
+                        ),
                       ),
                       fixedSize: const Size(135, 45),
                     ),
-                    child: const Column(
+                    child: Column(
                       children: [
                         SizedBox(height: 8),
                         Text(
                           'Settings',
                           style: TextStyle(
                             fontSize: 20,
-                            color: Colors.black, // Text color
+                            color: isBookmarkSelected
+                                ? Colors.black
+                                : Colors.white,
                           ),
                         ),
                       ],
@@ -168,79 +186,248 @@ class ProfilePage extends StatelessWidget {
                 ],
               ),
             ),
-            // Scrollable Shop Items
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  Container(
-                    child: const Column(
-                      children: [
-                        ShopItem(),
-                        ShopItem(),
-                        ShopItem(),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    child: const Column(
-                      children: [
-                        ShopItem(),
-                        ShopItem(),
-                        ShopItem(),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            const SizedBox(height: 20),
+            // Scrollable Shop Items or Profile Settings
+            isBookmarkSelected ? _buildShopItems() : _buildProfileSettings(),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildShopItems() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Container(
+          child: const Column(
+            children: [
+              ShopItem(
+                restaurantName: 'Bam-Bams',
+                rating: 4.96,
+                estimatedTime: '5-7 mins',
+                imageAsset: "meals.png",
+              ),
+              ShopItem(
+                restaurantName: 'Bam-Bams',
+                rating: 4.96,
+                estimatedTime: '5-7 mins',
+                imageAsset: "meals.png",
+              ),
+              ShopItem(
+                restaurantName: 'Bam-Bams',
+                rating: 4.96,
+                estimatedTime: '5-7 mins',
+                imageAsset: "meals.png",
+              ),
+            ],
+          ),
+        ),
+        Container(
+          child: const Column(
+            children: [
+              ShopItem(
+                restaurantName: 'Bam-Bams',
+                rating: 4.96,
+                estimatedTime: '5-7 mins',
+                imageAsset: "meals.png",
+              ),
+              ShopItem(
+                restaurantName: 'Bam-Bams',
+                rating: 4.96,
+                estimatedTime: '5-7 mins',
+                imageAsset: "meals.png",
+              ),
+              ShopItem(
+                restaurantName: 'Bam-Bams',
+                rating: 4.96,
+                estimatedTime: '5-7 mins',
+                imageAsset: "meals.png",
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildProfileSettings() {
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 20),
+      child: Column(
+        children: [
+          const Divider(
+            height: 1,
+            thickness: 1,
+            color: Colors.grey,
+          ),
+          const SizedBox(height: 20),
+          const Text(
+            'Profile Settings',
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 20),
+          Row(
+            children: [
+              const Text(
+                'Allow Notifications',
+                style: TextStyle(fontSize: 16, color: Color(0xfff24f04)),
+              ),
+              const Spacer(),
+              Switch(
+                value: isNotificationEnabled,
+                onChanged: (bool value) {
+                  setState(() {
+                    isNotificationEnabled = value;
+                  });
+                  // Handle switch, e.g., save the state to preferences
+                },
+                activeColor: const Color(0xfff24f04),
+              ),
+            ],
+          ),
+          const SizedBox(height: 32.0),
+          ElevatedButton(
+            onPressed: () {
+              // Handle Logout
+              _logout(context);
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: const Color(0xfff24f04),
+              minimumSize: const Size(double.infinity, 45),
+            ),
+            child: const Text('Logout'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _logout(BuildContext context) {
+    // Add logic for handling logout
+    // For demonstration purposes, let's navigate back to the login page
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => StartPage(),
       ),
     );
   }
 }
 
 class ShopItem extends StatelessWidget {
-  const ShopItem({super.key});
+  const ShopItem({
+    Key? key,
+    required this.restaurantName,
+    required this.rating,
+    required this.estimatedTime,
+    required this.imageAsset,
+  }) : super(key: key);
+
+  final String restaurantName;
+  final double rating;
+  final String estimatedTime;
+  final String imageAsset;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.all(10),
-      padding: const EdgeInsets.all(10),
+      margin: const EdgeInsets.all(20),
       width: 150,
       decoration: BoxDecoration(
         border: Border.all(color: Colors.grey),
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(20),
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          // Restaurant Image with Bookmark Button
           Container(
-            width: 150,
-            height: 100,
+            width: double.infinity,
+            height: 100, // Adjust the height as needed
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              image: const DecorationImage(
-                image:
-                    AssetImage("meals.png"), // Replace with your actual image
-                fit: BoxFit.fill,
+              borderRadius: BorderRadius.circular(20),
+              image: DecorationImage(
+                image: AssetImage(imageAsset), // Replace with your actual image
+                fit: BoxFit.cover,
+              ),
+            ),
+            child: Align(
+              alignment: Alignment.topRight,
+              child: Container(
+                padding: const EdgeInsets.all(4),
+                margin: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.white,
+                ),
+                child: Icon(
+                  Icons.bookmark,
+                  color: Color(0xfff24f04),
+                  size: 18,
+                ),
               ),
             ),
           ),
+          // Restaurant Name
           const SizedBox(height: 10),
-          const Text('Bam', style: TextStyle(fontWeight: FontWeight.bold)),
-          const SizedBox(height: 5),
-          const Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(Icons.bookmark,
-              color: const Color(0xfff24f04),),
-              SizedBox(width: 5),
-              Text('Bookmark'),
-            ],
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: Text(
+              restaurantName,
+              style: const TextStyle(
+                fontWeight: FontWeight.w700,
+              ),
+            ),
           ),
+          // Ratings and Estimated Time
+          const SizedBox(height: 10),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    Icon(
+                      Icons.star,
+                      color: Colors.yellow,
+                      size: 10,
+                    ),
+                    const SizedBox(width: 5),
+                    Text(
+                      rating.toString(), // Assuming rating is a String
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 10,
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    const Icon(
+                      Icons.access_time,
+                      color: Color(0xfff24f04),
+                      size: 10,
+                    ),
+                    const SizedBox(width: 5),
+                    Text(
+                      estimatedTime,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 10,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height: 20),
         ],
       ),
     );
