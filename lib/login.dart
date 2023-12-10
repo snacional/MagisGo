@@ -12,8 +12,9 @@ import 'package:helloworld/Authenthication/toast.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Fluttertoast.showToast(msg: "Fluttertoast initialized");
-  
- 
+   await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 }
 
 class LoginPage extends StatefulWidget {
@@ -332,7 +333,7 @@ bool _isSigning = false;
                     context,
                     MaterialPageRoute(builder: (context) => const BottomNav()),);
   } else {
-     showToast(message:"Error Wrong Credentials");
+     showToast(message: "Error Wrong Credentials");
   }
 }
 }
