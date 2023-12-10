@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "739115768105",
-    "project_id": "magisgo",
-    "storage_bucket": "magisgo.appspot.com"
+    "project_number": "1022826562358",
+    "project_id": "magisgo-a91be",
+    "storage_bucket": "magisgo-a91be.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:739115768105:android:5b1014ca8bffbb23923f38",
+        "mobilesdk_app_id": "1:1022826562358:android:eb5d93adfb76193a2a2997",
         "android_client_info": {
           "package_name": "com.example.helloworld"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBZOq2HJShfGNWj1lEdhajZJddimGsjrt4"
+          "current_key": "AIzaSyD6QKyum2EVAlnQzk7TG7YYd3-o7LH9XNw"
         }
       ],
       "services": {

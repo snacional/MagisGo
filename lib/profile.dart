@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'start.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 void main() {
   runApp(const MyApp());
@@ -293,6 +294,7 @@ class _ProfilePageState extends State<ProfilePage> {
           const SizedBox(height: 32.0),
           ElevatedButton(
             onPressed: () {
+              
               // Handle Logout
               _logout(context);
             },
@@ -310,6 +312,7 @@ class _ProfilePageState extends State<ProfilePage> {
   void _logout(BuildContext context) {
     // Add logic for handling logout
     // For demonstration purposes, let's navigate back to the login page
+    FirebaseAuth.instance.signOut();
     Navigator.push(
       context,
       MaterialPageRoute(

@@ -2,24 +2,40 @@ import 'package:flutter/material.dart';
 import 'package:helloworld/forgor.dart';
 import 'register.dart';
 import 'bot.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+import 'package:helloworld/Authenthication/Authent.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
-void main() => runApp(const MyApp());
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: 'MagisGO',
-      home: LoginPage(),
-    );
-  }
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  
 }
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
 
+  @override
+  _RegisterPageState createState() => _RegisterPageState();
+}
+
+class _RegisterPageState extends State<LoginPage> {
+
+final Authentication _auth = Authentication();
+
+
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,6 +82,7 @@ class LoginPage extends StatelessWidget {
             ),
             const SizedBox(height: 43),
             TextField(
+              controller: _emailController,
               decoration: InputDecoration(
                 labelText: 'Email',
                 border: OutlineInputBorder(
@@ -77,6 +94,7 @@ class LoginPage extends StatelessWidget {
             ),
             const SizedBox(height: 30),
             TextField(
+              controller: _passwordController,
               decoration: InputDecoration(
                 labelText: 'Password',
                 border: OutlineInputBorder(
@@ -109,11 +127,8 @@ class LoginPage extends StatelessWidget {
               alignment: Alignment.center,
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const BottomNav(),
-                      ));
+                  _Login();
+                 
                 },
                 style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(
@@ -287,4 +302,25 @@ class LoginPage extends StatelessWidget {
       ),
     );
   }
+  void _Login() async {
+  String email = _emailController.text;
+  String pass = _passwordController.text;
+
+  // Basic validation
+  if (email.isEmpty || pass.isEmpty) {
+    print("Please fill in all fields");
+    return;
+  }
+
+  User? user = await _auth.signIn(email, pass);
+
+  if (user != null) {
+    print("User successfully Login");
+    Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const BottomNav()),);
+  } else {
+    print("Error Wrong Credentials");
+  }
+}
 }
