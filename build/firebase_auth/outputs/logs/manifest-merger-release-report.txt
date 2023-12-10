@@ -25,6 +25,12 @@ uses-sdk
 INJECTED from C:\Users\cells\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_auth-4.15.2\android\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\cells\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_auth-4.15.2\android\src\main\AndroidManifest.xml
 INJECTED from C:\Users\cells\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_auth-4.15.2\android\src\main\AndroidManifest.xml
+INJECTED from C:\Users\cells\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_auth-4.15.2\android\src\main\AndroidManifest.xml
+INJECTED from C:\Users\cells\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_auth-4.15.2\android\src\main\AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from C:\Users\cells\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_auth-4.15.2\android\src\main\AndroidManifest.xml
+		ADDED from C:\Users\cells\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_auth-4.15.2\android\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\cells\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_auth-4.15.2\android\src\main\AndroidManifest.xml
 	android:minSdkVersion
 		INJECTED from C:\Users\cells\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_auth-4.15.2\android\src\main\AndroidManifest.xml
 		ADDED from C:\Users\cells\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_auth-4.15.2\android\src\main\AndroidManifest.xml

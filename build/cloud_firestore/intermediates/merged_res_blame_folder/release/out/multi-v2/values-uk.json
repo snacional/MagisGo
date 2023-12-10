@@ -1,27 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\cells\\OneDrive\\Documents\\GitHub\\MagisGo\\build\\cloud_firestore\\intermediates\\merged_res\\release\\values-uk\\values-uk.xml",
+            "outputFile": "io.flutter.plugins.firebase.firestore.cloud_firestore-merged_res-13:/values-uk/values-uk.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\cells\\.gradle\\caches\\transforms-3\\9c832c7339572264df702f902fd920cc\\transformed\\jetified-play-services-base-18.0.1\\res\\values-uk\\values.xml",
-                    "from": {
-                        "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
-                        "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
-                        "startOffsets": "193,297,456,579,685,835,960,1071,1172,1336,1438,1596,1717,1860,1998,2064,2121",
-                        "endColumns": "103,158,122,105,149,124,110,100,163,101,157,120,142,137,65,56,83",
-                        "endOffsets": "296,455,578,684,834,959,1070,1171,1335,1437,1595,1716,1859,1997,2063,2120,2204"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,9,11,12,13,14,15,16,17,18,19",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,163,326,453,563,717,846,961,1212,1380,1486,1648,1773,1920,2062,2132,2193",
-                        "endColumns": "107,162,126,109,153,128,114,104,167,105,161,124,146,141,69,60,87",
-                        "endOffsets": "158,321,448,558,712,841,956,1061,1375,1481,1643,1768,1915,2057,2127,2188,2276"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\cells\\.gradle\\caches\\transforms-3\\9894b0a91cd589b287aecd0a766e18e6\\transformed\\jetified-play-services-basement-18.1.0\\res\\values-uk\\values.xml",
+                    "source": "C:\\Users\\cells\\.gradle\\caches\\transforms-3\\c9122ac713ac2c13d0a07293abbdacba\\transformed\\jetified-play-services-basement-18.1.0\\res\\values-uk\\values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
@@ -38,7 +21,24 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\cells\\.gradle\\caches\\transforms-3\\2113905c51a8b20efa963a44f98f628d\\transformed\\core-1.6.0\\res\\values-uk\\values-uk.xml",
+                    "source": "C:\\Users\\cells\\.gradle\\caches\\transforms-3\\84d325d21fcc5aa21b370a4ff4ed9d08\\transformed\\jetified-play-services-base-18.0.1\\res\\values-uk\\values.xml",
+                    "from": {
+                        "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
+                        "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
+                        "startOffsets": "193,297,456,579,685,835,960,1071,1172,1336,1438,1596,1717,1860,1998,2064,2121",
+                        "endColumns": "103,158,122,105,149,124,110,100,163,101,157,120,142,137,65,56,83",
+                        "endOffsets": "296,455,578,684,834,959,1070,1171,1335,1437,1595,1716,1859,1997,2063,2120,2204"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,11,12,13,14,15,16,17,18,19",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,163,326,453,563,717,846,961,1212,1380,1486,1648,1773,1920,2062,2132,2193",
+                        "endColumns": "107,162,126,109,153,128,114,104,167,105,161,124,146,141,69,60,87",
+                        "endOffsets": "158,321,448,558,712,841,956,1061,1375,1481,1643,1768,1915,2057,2127,2188,2276"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\cells\\.gradle\\caches\\transforms-3\\0ebd5a30748dad10eb15842469ed0b27\\transformed\\core-1.6.0\\res\\values-uk\\values-uk.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -57,27 +57,10 @@
             ]
         },
         {
-            "outputFile": "C:\\Users\\cells\\OneDrive\\Documents\\GitHub\\MagisGo\\build\\cloud_firestore\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-uk\\values-uk.xml",
+            "outputFile": "io.flutter.plugins.firebase.firestore.cloud_firestore-mergeReleaseResources-11:/values-uk/values-uk.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\cells\\.gradle\\caches\\transforms-3\\9c832c7339572264df702f902fd920cc\\transformed\\jetified-play-services-base-18.0.1\\res\\values-uk\\values.xml",
-                    "from": {
-                        "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
-                        "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
-                        "startOffsets": "193,297,456,579,685,835,960,1071,1172,1336,1438,1596,1717,1860,1998,2064,2121",
-                        "endColumns": "103,158,122,105,149,124,110,100,163,101,157,120,142,137,65,56,83",
-                        "endOffsets": "296,455,578,684,834,959,1070,1171,1335,1437,1595,1716,1859,1997,2063,2120,2204"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,9,11,12,13,14,15,16,17,18,19",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,163,326,453,563,717,846,961,1212,1380,1486,1648,1773,1920,2062,2132,2193",
-                        "endColumns": "107,162,126,109,153,128,114,104,167,105,161,124,146,141,69,60,87",
-                        "endOffsets": "158,321,448,558,712,841,956,1061,1375,1481,1643,1768,1915,2057,2127,2188,2276"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\cells\\.gradle\\caches\\transforms-3\\9894b0a91cd589b287aecd0a766e18e6\\transformed\\jetified-play-services-basement-18.1.0\\res\\values-uk\\values.xml",
+                    "source": "C:\\Users\\cells\\.gradle\\caches\\transforms-3\\c9122ac713ac2c13d0a07293abbdacba\\transformed\\jetified-play-services-basement-18.1.0\\res\\values-uk\\values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
@@ -94,7 +77,24 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\cells\\.gradle\\caches\\transforms-3\\2113905c51a8b20efa963a44f98f628d\\transformed\\core-1.6.0\\res\\values-uk\\values-uk.xml",
+                    "source": "C:\\Users\\cells\\.gradle\\caches\\transforms-3\\84d325d21fcc5aa21b370a4ff4ed9d08\\transformed\\jetified-play-services-base-18.0.1\\res\\values-uk\\values.xml",
+                    "from": {
+                        "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
+                        "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
+                        "startOffsets": "193,297,456,579,685,835,960,1071,1172,1336,1438,1596,1717,1860,1998,2064,2121",
+                        "endColumns": "103,158,122,105,149,124,110,100,163,101,157,120,142,137,65,56,83",
+                        "endOffsets": "296,455,578,684,834,959,1070,1171,1335,1437,1595,1716,1859,1997,2063,2120,2204"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,11,12,13,14,15,16,17,18,19",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,163,326,453,563,717,846,961,1212,1380,1486,1648,1773,1920,2062,2132,2193",
+                        "endColumns": "107,162,126,109,153,128,114,104,167,105,161,124,146,141,69,60,87",
+                        "endOffsets": "158,321,448,558,712,841,956,1061,1375,1481,1643,1768,1915,2057,2127,2188,2276"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\cells\\.gradle\\caches\\transforms-3\\0ebd5a30748dad10eb15842469ed0b27\\transformed\\core-1.6.0\\res\\values-uk\\values-uk.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

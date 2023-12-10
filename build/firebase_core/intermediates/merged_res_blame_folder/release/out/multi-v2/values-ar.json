@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\cells\\OneDrive\\Documents\\GitHub\\MagisGo\\build\\firebase_core\\intermediates\\merged_res\\release\\values-ar\\values-ar.xml",
+            "outputFile": "io.flutter.plugins.firebase.core.firebase_core-merged_res-12:/values-ar/values-ar.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\cells\\.gradle\\caches\\transforms-3\\9894b0a91cd589b287aecd0a766e18e6\\transformed\\jetified-play-services-basement-18.1.0\\res\\values-ar\\values.xml",
+                    "source": "C:\\Users\\cells\\.gradle\\caches\\transforms-3\\c9122ac713ac2c13d0a07293abbdacba\\transformed\\jetified-play-services-basement-18.1.0\\res\\values-ar\\values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
@@ -21,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\cells\\.gradle\\caches\\transforms-3\\2113905c51a8b20efa963a44f98f628d\\transformed\\core-1.6.0\\res\\values-ar\\values-ar.xml",
+                    "source": "C:\\Users\\cells\\.gradle\\caches\\transforms-3\\0ebd5a30748dad10eb15842469ed0b27\\transformed\\core-1.6.0\\res\\values-ar\\values-ar.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -40,10 +40,10 @@
             ]
         },
         {
-            "outputFile": "C:\\Users\\cells\\OneDrive\\Documents\\GitHub\\MagisGo\\build\\firebase_core\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-ar\\values-ar.xml",
+            "outputFile": "io.flutter.plugins.firebase.core.firebase_core-mergeReleaseResources-10:/values-ar/values-ar.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\cells\\.gradle\\caches\\transforms-3\\9894b0a91cd589b287aecd0a766e18e6\\transformed\\jetified-play-services-basement-18.1.0\\res\\values-ar\\values.xml",
+                    "source": "C:\\Users\\cells\\.gradle\\caches\\transforms-3\\c9122ac713ac2c13d0a07293abbdacba\\transformed\\jetified-play-services-basement-18.1.0\\res\\values-ar\\values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
@@ -60,7 +60,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\cells\\.gradle\\caches\\transforms-3\\2113905c51a8b20efa963a44f98f628d\\transformed\\core-1.6.0\\res\\values-ar\\values-ar.xml",
+                    "source": "C:\\Users\\cells\\.gradle\\caches\\transforms-3\\0ebd5a30748dad10eb15842469ed0b27\\transformed\\core-1.6.0\\res\\values-ar\\values-ar.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

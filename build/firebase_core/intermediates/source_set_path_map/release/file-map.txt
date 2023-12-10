@@ -1,0 +1,14 @@
+io.flutter.plugins.firebase.core.firebase_core-core-1.6.0-0 C:\Users\cells\.gradle\caches\transforms-3\0ebd5a30748dad10eb15842469ed0b27\transformed\core-1.6.0\res
+io.flutter.plugins.firebase.core.firebase_core-jetified-window-java-1.0.0-beta04-1 C:\Users\cells\.gradle\caches\transforms-3\47c74aa65180b047bc4af59535240d22\transformed\jetified-window-java-1.0.0-beta04\res
+io.flutter.plugins.firebase.core.firebase_core-jetified-window-1.0.0-beta04-2 C:\Users\cells\.gradle\caches\transforms-3\6ce6e741a97baba0db720b497a4827fa\transformed\jetified-window-1.0.0-beta04\res
+io.flutter.plugins.firebase.core.firebase_core-jetified-firebase-common-20.4.2-3 C:\Users\cells\.gradle\caches\transforms-3\9e249aac0363103b0452f025f63c19a5\transformed\jetified-firebase-common-20.4.2\res
+io.flutter.plugins.firebase.core.firebase_core-jetified-annotation-experimental-1.1.0-4 C:\Users\cells\.gradle\caches\transforms-3\b1149391ccf21b88892791078171c097\transformed\jetified-annotation-experimental-1.1.0\res
+io.flutter.plugins.firebase.core.firebase_core-jetified-play-services-basement-18.1.0-5 C:\Users\cells\.gradle\caches\transforms-3\c9122ac713ac2c13d0a07293abbdacba\transformed\jetified-play-services-basement-18.1.0\res
+io.flutter.plugins.firebase.core.firebase_core-main-6 C:\Users\cells\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_core-2.24.2\android\src\main\res
+io.flutter.plugins.firebase.core.firebase_core-release-7 C:\Users\cells\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_core-2.24.2\android\src\release\res
+io.flutter.plugins.firebase.core.firebase_core-pngs-8 C:\Users\cells\OneDrive\Documents\GitHub\MagisGo\build\firebase_core\generated\res\pngs\release
+io.flutter.plugins.firebase.core.firebase_core-resValues-9 C:\Users\cells\OneDrive\Documents\GitHub\MagisGo\build\firebase_core\generated\res\resValues\release
+io.flutter.plugins.firebase.core.firebase_core-rs-10 C:\Users\cells\OneDrive\Documents\GitHub\MagisGo\build\firebase_core\generated\res\rs\release
+io.flutter.plugins.firebase.core.firebase_core-mergeReleaseResources-11 C:\Users\cells\OneDrive\Documents\GitHub\MagisGo\build\firebase_core\intermediates\incremental\release\mergeReleaseResources\merged.dir
+io.flutter.plugins.firebase.core.firebase_core-mergeReleaseResources-12 C:\Users\cells\OneDrive\Documents\GitHub\MagisGo\build\firebase_core\intermediates\incremental\release\mergeReleaseResources\stripped.dir
+io.flutter.plugins.firebase.core.firebase_core-merged_res-13 C:\Users\cells\OneDrive\Documents\GitHub\MagisGo\build\firebase_core\intermediates\merged_res\release

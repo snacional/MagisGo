@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\cells\\OneDrive\\Documents\\GitHub\\MagisGo\\build\\cloud_firestore\\intermediates\\merged_res\\release\\values-en-rIN\\values-en-rIN.xml",
+            "outputFile": "io.flutter.plugins.firebase.firestore.cloud_firestore-mergeReleaseResources-11:/values-en-rIN/values-en-rIN.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\cells\\.gradle\\caches\\transforms-3\\2113905c51a8b20efa963a44f98f628d\\transformed\\core-1.6.0\\res\\values-en-rIN\\values-en-rIN.xml",
+                    "source": "C:\\Users\\cells\\.gradle\\caches\\transforms-3\\0ebd5a30748dad10eb15842469ed0b27\\transformed\\core-1.6.0\\res\\values-en-rIN\\values-en-rIN.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -16,10 +16,10 @@
             ]
         },
         {
-            "outputFile": "C:\\Users\\cells\\OneDrive\\Documents\\GitHub\\MagisGo\\build\\cloud_firestore\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-en-rIN\\values-en-rIN.xml",
+            "outputFile": "io.flutter.plugins.firebase.firestore.cloud_firestore-merged_res-13:/values-en-rIN/values-en-rIN.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\cells\\.gradle\\caches\\transforms-3\\2113905c51a8b20efa963a44f98f628d\\transformed\\core-1.6.0\\res\\values-en-rIN\\values-en-rIN.xml",
+                    "source": "C:\\Users\\cells\\.gradle\\caches\\transforms-3\\0ebd5a30748dad10eb15842469ed0b27\\transformed\\core-1.6.0\\res\\values-en-rIN\\values-en-rIN.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

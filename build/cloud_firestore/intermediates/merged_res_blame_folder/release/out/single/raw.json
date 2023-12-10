@@ -1,6 +1,6 @@
 [
     {
-        "merged": "C:\\Users\\cells\\OneDrive\\Documents\\GitHub\\MagisGo\\build\\cloud_firestore\\intermediates\\merged_res\\release\\raw\\firebase_common_keep.xml",
-        "source": "C:\\Users\\cells\\.gradle\\caches\\transforms-3\\27337982f5ef804b2d72bf35c53bece6\\transformed\\jetified-firebase-common-20.4.2\\res\\raw\\firebase_common_keep.xml"
+        "merged": "io.flutter.plugins.firebase.firestore.cloud_firestore-merged_res-13:/raw/firebase_common_keep.xml",
+        "source": "io.flutter.plugins.firebase.firestore.cloud_firestore-jetified-firebase-common-20.4.2-4:/raw/firebase_common_keep.xml"
     }
 ]
