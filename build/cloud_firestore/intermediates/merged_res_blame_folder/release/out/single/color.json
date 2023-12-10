@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "C:\\Users\\cells\\OneDrive\\Documents\\GitHub\\MagisGo\\build\\cloud_firestore\\intermediates\\merged_res\\release\\color\\common_google_signin_btn_tint.xml",
+        "source": "C:\\Users\\cells\\.gradle\\caches\\transforms-3\\9c832c7339572264df702f902fd920cc\\transformed\\jetified-play-services-base-18.0.1\\res\\color\\common_google_signin_btn_tint.xml"
+    },
+    {
+        "merged": "C:\\Users\\cells\\OneDrive\\Documents\\GitHub\\MagisGo\\build\\cloud_firestore\\intermediates\\merged_res\\release\\color\\common_google_signin_btn_text_dark.xml",
+        "source": "C:\\Users\\cells\\.gradle\\caches\\transforms-3\\9c832c7339572264df702f902fd920cc\\transformed\\jetified-play-services-base-18.0.1\\res\\color\\common_google_signin_btn_text_dark.xml"
+    },
+    {
+        "merged": "C:\\Users\\cells\\OneDrive\\Documents\\GitHub\\MagisGo\\build\\cloud_firestore\\intermediates\\merged_res\\release\\color\\common_google_signin_btn_text_light.xml",
+        "source": "C:\\Users\\cells\\.gradle\\caches\\transforms-3\\9c832c7339572264df702f902fd920cc\\transformed\\jetified-play-services-base-18.0.1\\res\\color\\common_google_signin_btn_text_light.xml"
+    }
+]

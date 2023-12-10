@@ -71,6 +71,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                     ),
                   ),
+                  
                   const SizedBox(height: 10),
                   const Text(
                     'John Doe',
@@ -140,7 +141,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         Text(
                           'Bookmark',
                           style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 18,
                             color: isBookmarkSelected
                                 ? Colors.white
                                 : Colors.black,
@@ -174,7 +175,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         Text(
                           'Settings',
                           style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 18,
                             color: isBookmarkSelected
                                 ? Colors.black
                                 : Colors.white,
@@ -433,3 +434,5 @@ class ShopItem extends StatelessWidget {
     );
   }
 }
+
+

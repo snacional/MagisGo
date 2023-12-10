@@ -23,9 +23,9 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
-        color: Colors.white,
+      
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[

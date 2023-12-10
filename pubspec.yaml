@@ -10,12 +10,20 @@ dependencies:
   flutter:
     sdk: flutter
 
-    cloud_firestore: ^4.13.5
+  firebase_core: ^2.24.2
+  cloud_firestore: ^4.13.5
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.2
+  flutter_launcher_icons: ^0.13.1
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/main.png"
+  adaptive icon foreground: "assets/main.png"
 
 flutter:
   uses-material-design: true

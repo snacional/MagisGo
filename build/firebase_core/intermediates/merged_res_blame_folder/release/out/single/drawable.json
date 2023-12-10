@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "C:\\Users\\cells\\OneDrive\\Documents\\GitHub\\MagisGo\\build\\firebase_core\\intermediates\\merged_res\\release\\drawable\\notification_icon_background.xml",
+        "source": "C:\\Users\\cells\\.gradle\\caches\\transforms-3\\2113905c51a8b20efa963a44f98f628d\\transformed\\core-1.6.0\\res\\drawable\\notification_icon_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\cells\\OneDrive\\Documents\\GitHub\\MagisGo\\build\\firebase_core\\intermediates\\merged_res\\release\\drawable\\notification_bg_low.xml",
+        "source": "C:\\Users\\cells\\.gradle\\caches\\transforms-3\\2113905c51a8b20efa963a44f98f628d\\transformed\\core-1.6.0\\res\\drawable\\notification_bg_low.xml"
+    },
+    {
+        "merged": "C:\\Users\\cells\\OneDrive\\Documents\\GitHub\\MagisGo\\build\\firebase_core\\intermediates\\merged_res\\release\\drawable\\notification_bg.xml",
+        "source": "C:\\Users\\cells\\.gradle\\caches\\transforms-3\\2113905c51a8b20efa963a44f98f628d\\transformed\\core-1.6.0\\res\\drawable\\notification_bg.xml"
+    },
+    {
+        "merged": "C:\\Users\\cells\\OneDrive\\Documents\\GitHub\\MagisGo\\build\\firebase_core\\intermediates\\merged_res\\release\\drawable\\notification_tile_bg.xml",
+        "source": "C:\\Users\\cells\\.gradle\\caches\\transforms-3\\2113905c51a8b20efa963a44f98f628d\\transformed\\core-1.6.0\\res\\drawable\\notification_tile_bg.xml"
+    }
+]
