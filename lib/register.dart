@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:helloworld/Authenthication/Authent.dart';
+import 'package:helloworld/Authenthication/toast.dart';
 import 'login.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -273,12 +274,12 @@ bool _isSigningUp = false;
 });
 
   if (user != null) {
-    print("User successfully registered");
+    showToast(message: "User successfully registered");
     Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const BottomNav()),);
   } else {
-    print("Error occurred during registration");
+    showToast(message: "Error occurred during registration");
   }
 }
 
