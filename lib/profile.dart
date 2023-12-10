@@ -302,7 +302,7 @@ class _ProfilePageState extends State<ProfilePage> {
               backgroundColor: const Color(0xfff24f04),
               minimumSize: const Size(double.infinity, 45),
             ),
-            child: const Text('Logout'),
+            child: const Text('Logout', style: TextStyle(color: Colors.white)),
           ),
         ],
       ),

@@ -88,6 +88,7 @@ class VerifyPage extends StatelessWidget {
                       'Back to Login',
                       style: TextStyle(
                         fontSize: 18,
+                        color: Colors.white,
                       ),
                     ),
                   ),

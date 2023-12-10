@@ -22,6 +22,7 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  bool _isSigningUp = false;
 
 final Authentication _auth = Authentication();
 
@@ -169,14 +170,15 @@ final Authentication _auth = Authentication();
                   ),
                   backgroundColor: const Color(0xFFF24F04),
                 ),
-                child: const SizedBox(
+                child:  SizedBox(
                   width: double.infinity,
                   height: 40,
                   child: Center(
-                    child: Text(
+                    child:  _isSigningUp ? CircularProgressIndicator(color: Colors.white,):Text(
                       'Register',
                       style: TextStyle(
                         fontSize: 18,
+                        color: Colors.white,
                       ),
                     ),
                   ),
@@ -242,6 +244,11 @@ final Authentication _auth = Authentication();
   }
 
 void _signUp() async {
+
+setState((){
+bool _isSigningUp = true;
+});
+
   String name = _nameController.text;
   String email = _emailController.text;
   String pass = _passwordController.text;
@@ -260,6 +267,10 @@ void _signUp() async {
   }
 
   User? user = await _auth.signUp(email, pass);
+
+setState((){
+bool _isSigningUp = false;
+});
 
   if (user != null) {
     print("User successfully registered");

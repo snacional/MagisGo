@@ -167,6 +167,7 @@ class GmailPage extends StatelessWidget {
                     'Verify',
                     style: TextStyle(
                       fontSize: 18,
+                      color: Colors.white,
                     ),
                   ),
                 ),

@@ -109,9 +109,10 @@ class NewPage extends StatelessWidget {
                   height: 50,
                   child: Center(
                     child: Text(
-                      'Login',
+                      'Submit',
                       style: TextStyle(
                         fontSize: 18,
+                        color: Colors.white,
                       ),
                     ),
                   ),

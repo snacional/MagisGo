@@ -26,7 +26,7 @@ class _RegisterPageState extends State<LoginPage> {
 
 final Authentication _auth = Authentication();
 
-
+bool _isSigning = false;
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
 
@@ -135,14 +135,15 @@ final Authentication _auth = Authentication();
                     borderRadius: BorderRadius.circular(10),
                   ), backgroundColor: const Color(0xFFF24F04),
                 ),
-                child: const SizedBox(
+                child:  SizedBox(
                   width: double.infinity,
                   height: 50,
                   child: Center(
-                    child: Text(
+                    child: _isSigning ? CircularProgressIndicator(color: Colors.white,): Text(
                       'Login',
                       style: TextStyle(
                         fontSize: 18,
+                        color: Colors.white,
                       ),
                     ),
                   ),
@@ -303,6 +304,11 @@ final Authentication _auth = Authentication();
     );
   }
   void _Login() async {
+
+    setState((){
+    _isSigning = true;
+    });
+    
   String email = _emailController.text;
   String pass = _passwordController.text;
 
@@ -313,6 +319,11 @@ final Authentication _auth = Authentication();
   }
 
   User? user = await _auth.signIn(email, pass);
+
+  setState((){
+    _isSigning = false;
+    });
+    
 
   if (user != null) {
     print("User successfully Login");

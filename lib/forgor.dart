@@ -123,7 +123,8 @@ class ForgotPage extends StatelessWidget {
                       'Next',
                       style: TextStyle(
                         fontSize:
-                            18, // Increase the font size for the "Login" button
+                            18, 
+                            color: Colors.white,// Increase the font size for the "Login" button
                       ),
                     ),
                   ),
