@@ -6,13 +6,14 @@ import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:helloworld/Authenthication/Authent.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:helloworld/Authenthication/toast.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  Fluttertoast.showToast(msg: "Fluttertoast initialized");
   
+ 
 }
 
 class LoginPage extends StatefulWidget {
@@ -326,12 +327,12 @@ bool _isSigning = false;
     
 
   if (user != null) {
-    print("User successfully Login");
+    showToast(message:"User successfully Login");
     Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const BottomNav()),);
   } else {
-    print("Error Wrong Credentials");
+     showToast(message:"Error Wrong Credentials");
   }
 }
 }

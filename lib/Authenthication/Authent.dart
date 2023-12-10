@@ -26,10 +26,10 @@ class Authentication {
     }
      on FirebaseAuthException catch (e) {
      if(e.code == 'user-not-found' || e.code == 'wrong-password') {
-      showToast(message: 'This email address is already in use');
+      showToast(message: 'Invalid email or password');
      }
      else {
-      showToast(message: 'An error has occured: ${e.code}');
+      showToast(message: 'An error occured: ${e.code}');
      }
     }
     return null;
