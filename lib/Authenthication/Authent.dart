@@ -1,5 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:helloworld/Authenthication/toast.dart';
+
 class Authentication {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   Future <User?> signUp(String email, String password) async{

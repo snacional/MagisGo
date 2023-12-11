@@ -24,6 +24,21 @@ class GmailPage extends StatelessWidget {
     double fem = 1.0; // You may adjust the multiplier as needed
     double ffem = 1.0; // You may adjust the multiplier as needed
 
+    List<TextEditingController> controllers = List.generate(6, (index) => TextEditingController());
+
+    List<FocusNode> focusNodes = List.generate(6, (index) => FocusNode());
+
+    void _onChanged(int index, String value) {
+      if (value.isNotEmpty) {
+        if (index < controllers.length - 1) {
+          // Move focus to the next box
+          FocusScope.of(context).requestFocus(focusNodes[index + 1]);
+        } else {
+          // Last box, perform verification or submit action
+        }
+      }
+    }
+
     return Scaffold(
       body: Container(
         padding: EdgeInsets.fromLTRB(20 * fem, 70, 20, 20),
@@ -92,6 +107,9 @@ class GmailPage extends StatelessWidget {
                   ),
                   child: Center(
                     child: TextFormField(
+                      controller: controllers[index],
+                      focusNode: focusNodes[index],
+                      onChanged: (value) => _onChanged(index, value),
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 20 * ffem,

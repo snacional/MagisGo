@@ -2,3 +2,4 @@
 *build/app/intermediates/*
 *build/flutter_assets/assets/*
 *assets/firebase-tools-instant-win.exe*
+node_modules

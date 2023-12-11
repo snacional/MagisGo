@@ -12,7 +12,9 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Fluttertoast.showToast(msg: "Fluttertoast initialized");
  
-  
+   await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 }
 
 class RegisterPage extends StatefulWidget {
@@ -274,12 +276,12 @@ bool _isSigningUp = false;
 });
 
   if (user != null) {
-    showToast(message: "User successfully registered");
+    print( "User successfully registered");
     Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const BottomNav()),);
   } else {
-    showToast(message: "Error occurred during registration");
+    print( "Error occurred during registration");
   }
 }
 

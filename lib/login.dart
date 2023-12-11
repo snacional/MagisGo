@@ -12,7 +12,7 @@ import 'package:helloworld/Authenthication/toast.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Fluttertoast.showToast(msg: "Fluttertoast initialized");
-   await Firebase.initializeApp(
+  await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
 }
@@ -25,10 +25,9 @@ class LoginPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<LoginPage> {
+  final Authentication _auth = Authentication();
 
-final Authentication _auth = Authentication();
-
-bool _isSigning = false;
+  bool _isSigning = false;
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
 
@@ -38,12 +37,12 @@ bool _isSigning = false;
     _passwordController.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
-      
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -129,25 +128,27 @@ bool _isSigning = false;
               alignment: Alignment.center,
               child: ElevatedButton(
                 onPressed: () {
-                  _Login();
-                 
+                  _login();
                 },
                 style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
-                  ), backgroundColor: const Color(0xFFF24F04),
+                  ),
+                  backgroundColor: const Color(0xFFF24F04),
                 ),
-                child:  SizedBox(
+                child: SizedBox(
                   width: double.infinity,
                   height: 50,
                   child: Center(
-                    child: _isSigning ? CircularProgressIndicator(color: Colors.white,): Text(
-                      'Login',
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.white,
-                      ),
-                    ),
+                    child: _isSigning
+                        ? CircularProgressIndicator(color: Colors.white)
+                        : Text(
+                            'Login',
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.white,
+                            ),
+                          ),
                   ),
                 ),
               ),
@@ -161,7 +162,8 @@ bool _isSigning = false;
                   children: <Widget>[
                     const Text("Don't have an account?"),
                     TextButton(
-                      style: TextButton.styleFrom(foregroundColor: const Color(0x85F24F04)),
+                      style:
+                          TextButton.styleFrom(foregroundColor: const Color(0x85F24F04)),
                       onPressed: () {
                         Navigator.push(
                           context,
@@ -305,35 +307,57 @@ bool _isSigning = false;
       ),
     );
   }
-  void _Login() async {
 
-    setState((){
-    _isSigning = true;
+  void _login() async {
+    setState(() {
+      _isSigning = true;
     });
-    
-  String email = _emailController.text;
-  String pass = _passwordController.text;
 
-  // Basic validation
-  if (email.isEmpty || pass.isEmpty) {
-    print("Please fill in all fields");
-    return;
+    String email = _emailController.text;
+    String pass = _passwordController.text;
+
+    // Basic validation
+    if (email.isEmpty || pass.isEmpty) {
+      Fluttertoast.showToast(
+        msg: "Please fill in all fields",
+        backgroundColor: const Color(0xFFF24F04),
+        textColor: Colors.white,
+      );
+      setState(() {
+        _isSigning = false;
+      });
+      return;
+    }
+
+    try {
+      User? user = await _auth.signIn(email, pass);
+
+      setState(() {
+        _isSigning = false;
+      });
+
+      if (user != null) {
+        print("User successfully Login");
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const BottomNav()),
+        );
+      } else {
+        Fluttertoast.showToast(
+          msg: "Wrong credentials. Please try again.",
+          backgroundColor: const Color(0xFFF24F04),
+          textColor: Colors.white,
+        );
+      }
+    } catch (e) {
+      Fluttertoast.showToast(
+        msg: "An error occurred. Please try again.",
+        backgroundColor: const Color(0xFFF24F04),
+        textColor: Colors.white,
+      );
+      setState(() {
+        _isSigning = false;
+      });
+    }
   }
-
-  User? user = await _auth.signIn(email, pass);
-
-  setState((){
-    _isSigning = false;
-    });
-    
-
-  if (user != null) {
-    showToast(message:"User successfully Login");
-    Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const BottomNav()),);
-  } else {
-     showToast(message: "Error Wrong Credentials");
-  }
-}
 }

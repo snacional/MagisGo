@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      title: 'Forgot Password Email OTP',
+      title: 'Forgot Password Phone OTP',
       home: PhonePage(),
     );
   }
@@ -23,6 +23,9 @@ class PhonePage extends StatelessWidget {
   Widget build(BuildContext context) {
     double fem = 1.0; // You may adjust the multiplier as needed
     double ffem = 1.0; // You may adjust the multiplier as needed
+
+    // Create FocusNodes for each TextFormField
+    List<FocusNode> focusNodes = List.generate(6, (index) => FocusNode());
 
     return Scaffold(
       body: Container(
@@ -113,6 +116,16 @@ class PhonePage extends StatelessWidget {
                         }
                         return null;
                       },
+                      // Set the focus to the next TextFormField when a number is entered
+                      onChanged: (value) {
+                        if (value.isNotEmpty) {
+                          if (index < focusNodes.length - 1) {
+                            FocusScope.of(context).requestFocus(focusNodes[index + 1]);
+                          }
+                        }
+                      },
+                      // Attach a FocusNode to the TextFormField
+                      focusNode: focusNodes[index],
                     ),
                   ),
                 );
