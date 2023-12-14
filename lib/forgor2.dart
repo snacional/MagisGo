@@ -3,28 +3,15 @@ import 'package:flutter/material.dart';
 import 'forgor.dart';
 import 'gmail.dart';
 import 'phone.dart';
-
-void main() => runApp(const MyApp());
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: 'Forgot Password Page',
-      home: Forgot2Page(),
-    );
-  }
-}
-
 class Forgot2Page extends StatelessWidget {
-  const Forgot2Page({super.key});
+  final String selectedEmail;
+
+  const Forgot2Page({Key? key, required this.selectedEmail}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    double fem = 1.0; // You may adjust the multiplier as needed
-    double ffem = 1.0; // You may adjust the multiplier as needed
+    double fem = 1.0;
+    double ffem = 1.0;
 
     return Scaffold(
       body: Container(
@@ -42,10 +29,11 @@ class Forgot2Page extends StatelessWidget {
               height: 20 * fem,
               child: TextButton(
                 onPressed: () {
-                  // Navigate back to login.dart
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const ForgotPage()),
+                    MaterialPageRoute(
+                      builder: (context) => const ForgotPage(),
+                    ),
                   );
                 },
                 child: const Icon(Icons.arrow_back, color: Colors.black),
@@ -55,7 +43,6 @@ class Forgot2Page extends StatelessWidget {
               width: double.infinity,
               height: 666 * fem,
               child: Center(
-                // Center the Stack
                 child: Stack(
                   children: [
                     Positioned(
@@ -118,18 +105,16 @@ class Forgot2Page extends StatelessWidget {
                       left: 20 * fem,
                       top: 240 * fem,
                       child: Column(
-                        mainAxisSize: MainAxisSize
-                            .min, // Make the Column size as small as possible
+                        mainAxisSize: MainAxisSize.min,
                         children: [
                           GestureDetector(
                             onTap: () {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => const PhonePage()),
+                                  builder: (context) => const PhonePage(),
+                                ),
                               );
-                              // Handle the onTap action for "Phone" here
-                              // You can navigate to a new page or perform any other action.
                             },
                             child: Container(
                               padding: EdgeInsets.fromLTRB(
@@ -218,10 +203,11 @@ class Forgot2Page extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => const GmailPage()),
+                                  builder: (context) => GmailPage(
+                                    selectedEmail: selectedEmail,
+                                  ),
+                                ),
                               );
-                              // Handle the onTap action for "Email" here
-                              // You can navigate to a new page or perform any other action.
                             },
                             child: Container(
                               padding: EdgeInsets.fromLTRB(
@@ -236,7 +222,7 @@ class Forgot2Page extends StatelessWidget {
                                 children: [
                                   Container(
                                     margin: const EdgeInsets.fromLTRB(
-                                        0, 0, 0, 0), // Remove the bottom margin
+                                        0, 0, 0, 0),
                                     padding: EdgeInsets.fromLTRB(
                                         0, 17 * fem, 67 * fem, 16 * fem),
                                     width: double.infinity,
@@ -285,7 +271,7 @@ class Forgot2Page extends StatelessWidget {
                                               SizedBox(
                                                 width: double.infinity,
                                                 child: Text(
-                                                  '********@*****.com',
+                                                  selectedEmail,
                                                   textAlign: TextAlign.center,
                                                   style: TextStyle(
                                                     fontSize: 15 * ffem,

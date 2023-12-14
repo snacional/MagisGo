@@ -6,26 +6,29 @@ import 'new.dart';
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key});
 
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: 'Forgot Password Email OTP',
-      home: GmailPage(),
+      home: GmailPage(selectedEmail: 'H**********a@gmail.com'),
     );
   }
 }
 
 class GmailPage extends StatelessWidget {
-  const GmailPage({super.key});
+  final String selectedEmail;
+
+  const GmailPage({Key? key, required this.selectedEmail}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    double fem = 1.0; // You may adjust the multiplier as needed
-    double ffem = 1.0; // You may adjust the multiplier as needed
+    double fem = 1.0;
+    double ffem = 1.0;
 
-    List<TextEditingController> controllers = List.generate(6, (index) => TextEditingController());
+    List<TextEditingController> controllers =
+        List.generate(6, (index) => TextEditingController());
 
     List<FocusNode> focusNodes = List.generate(6, (index) => FocusNode());
 
@@ -36,6 +39,7 @@ class GmailPage extends StatelessWidget {
           FocusScope.of(context).requestFocus(focusNodes[index + 1]);
         } else {
           // Last box, perform verification or submit action
+          // You can handle OTP verification logic here
         }
       }
     }
@@ -76,7 +80,7 @@ class GmailPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 12),
-            const Text(
+            Text(
               'Enter the One Time Password sent to',
               style: TextStyle(
                 fontSize: 12,
@@ -85,8 +89,8 @@ class GmailPage extends StatelessWidget {
               ),
               textAlign: TextAlign.center,
             ),
-            const Text(
-              'H**********a@gmail.com',
+            Text(
+              selectedEmail,
               style: TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.w400,
@@ -167,6 +171,7 @@ class GmailPage extends StatelessWidget {
             const SizedBox(height: 100),
             ElevatedButton(
               onPressed: () {
+                // TODO: Perform OTP verification logic
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => const NewPage()),

@@ -1,20 +1,15 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:helloworld/Authenthication/Authent.dart';
 import 'package:helloworld/forgor.dart';
 
 import 'bot.dart';
-import 'firebase_options.dart';
 import 'register.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+
   Fluttertoast.showToast(msg: "Fluttertoast initialized");
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
 }
 
 class LoginPage extends StatefulWidget {

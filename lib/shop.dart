@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class ShopPage extends StatefulWidget {
@@ -5,6 +6,29 @@ class ShopPage extends StatefulWidget {
 
   @override
   _ShopPageState createState() => _ShopPageState();
+}
+
+class ShopModel {
+  final String name;
+  final double rating;
+  final String estimate;
+  final String image;
+
+  ShopModel({
+    required this.name,
+    required this.rating,
+    required this.estimate,
+    required this.image,
+  });
+
+  factory ShopModel.fromMap(Map<String, dynamic> map) {
+    return ShopModel(
+      name: map['Name'] ?? '',
+      rating: (map['Rating'] ?? 0.0).toDouble(),
+      estimate: map['Estimate'] ?? '',
+      image: map['Image'] ?? '',
+    );
+  }
 }
 
 class _ShopPageState extends State<ShopPage> {
@@ -29,11 +53,11 @@ class _ShopPageState extends State<ShopPage> {
                     child: Align(
                       alignment: Alignment.centerRight,
                       child: SizedBox(
-                        height: 35, // Adjust the height as needed
-                        width: 35, // Adjust the width as needed
+                        height: 25,
+                        width: 25,
                         child: Image.asset(
                           'assets/Noti.png',
-                          fit: BoxFit.cover, // Adjust the fit property as needed
+                          fit: BoxFit.cover,
                         ),
                       ),
                     ),
@@ -103,30 +127,46 @@ class _ShopPageState extends State<ShopPage> {
                 ),
               ),
             ),
-            Column(children: [
-              ShopButton(
-                restaurantName: "Bam-Bams",
-                rating: 4.95,
-                estimatedTime: '5-15mins',
-                imageAsset: 'meals.png',
-              ),
-              ShopButton(
-                restaurantName: "Bam-Bams",
-                rating: 4.95,
-                estimatedTime: '5-15mins',
-                imageAsset: 'meals.png',
-              ),
-              ShopButton(
-                restaurantName: "Bam-Bams",
-                rating: 4.95,
-                estimatedTime: '5-15mins',
-                imageAsset: 'meals.png',
-              ),
-            ]),
+            FutureBuilder<List<ShopModel>>(
+              future: fetchShopData(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  // Show a loading indicator while waiting for data
+                  return Center(child: CircularProgressIndicator());
+                } else if (snapshot.hasError) {
+                  // Handle errors more gracefully (show a Snackbar or another user-friendly message)
+                  return Center(child: Text('Error loading data.'));
+                } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                  return Center(child: Text('No data available.'));
+                } else {
+                  final shops = snapshot.data!;
+                  return Column(
+                    children: shops.map((shop) {
+                      return ShopButton(
+                        restaurantName: shop.name,
+                        rating: shop.rating,
+                        estimatedTime: shop.estimate,
+                        imageAsset: shop.image,
+                      );
+                    }).toList(),
+                  );
+                }
+              },
+            ),
           ],
         ),
       ),
     );
+  }
+
+  Future<List<ShopModel>> fetchShopData() async {
+    try {
+      final snapshot = await FirebaseFirestore.instance.collection('Restaurant').get();
+      return snapshot.docs.map((document) => ShopModel.fromMap(document.data() as Map<String, dynamic>)).toList();
+    } catch (e) {
+      print('Error fetching data: $e');
+      throw 'Something went wrong. Please try again';
+    }
   }
 }
 
@@ -168,7 +208,7 @@ class ShopButton extends StatelessWidget {
               children: [
                 Container(
                   width: double.infinity,
-                  height: 100, // Adjust the height as needed
+                  height: 100,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                     image: DecorationImage(
@@ -233,7 +273,7 @@ class ShopButton extends StatelessWidget {
                       height: 12.13,
                     ),
                   ),
-                  const SizedBox(width: 3.81), // Spacer
+                  const SizedBox(width: 3.81),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: const [
