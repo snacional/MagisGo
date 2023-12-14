@@ -30,6 +30,66 @@ class _ProfilePageState extends State<ProfilePage> {
   bool isBookmarkSelected = true;
   bool isNotificationEnabled = true; // Add this variable
 
+class ShopModel {
+  final String restaurantName;
+  final double rating;
+  final String estimatedTime;
+  final String imageAsset;
+
+  ShopModel({
+    required this.restaurantName,
+    required this.rating,
+    required this.estimatedTime,
+    required this.imageAsset,
+  });
+
+  factory ShopModel.fromMap(Map<String, dynamic> map) {
+    return ShopModel(
+      restaurantName: map['Name'] ?? '',
+      rating: (map['Rating'] ?? 0.0).toDouble(),
+      estimatedTime: map['Estimate'] ?? '',
+      imageAsset: map['Image'] ?? '',
+    );
+  }
+}
+ Widget _buildShopItems() {
+    return FutureBuilder<List<ShopModel>>(
+      future: fetchShopData(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return CircularProgressIndicator();
+        } else if (snapshot.hasError) {
+          return Text('Error: ${snapshot.error}');
+        } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+          return Text('No shop data available.');
+        } else {
+          final shopItems = snapshot.data!;
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              for (final shop in shopItems)
+                ShopItem(
+                  restaurantName: shop.restaurantName,
+                  rating: shop.rating,
+                  estimatedTime: shop.estimatedTime,
+                  imageAsset: shop.imageAsset,
+                ),
+            ],
+          );
+        }
+      },
+    );
+  }
+
+  Future<List<ShopModel>> fetchShopData() async {
+    try {
+      final snapshot = await FirebaseFirestore.instance.collection('Shops').get();
+      return snapshot.docs.map((document) => ShopModel.fromMap(document.data() as Map<String, dynamic>)).toList();
+    } catch (e) {
+      print('Error fetching data: $e');
+      throw 'Something went wrong. Please try again';
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
