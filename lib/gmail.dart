@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'new.dart';
 import 'package:flutter/services.dart';
+
+import 'new.dart';
 
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
 }
 
 class GmailPage extends StatelessWidget {
-  const GmailPage({Key? key});
+  const GmailPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +29,7 @@ class GmailPage extends StatelessWidget {
 
     List<FocusNode> focusNodes = List.generate(6, (index) => FocusNode());
 
-    void _onChanged(int index, String value) {
+    void onChanged(int index, String value) {
       if (value.isNotEmpty) {
         if (index < controllers.length - 1) {
           // Move focus to the next box
@@ -60,12 +61,12 @@ class GmailPage extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             Image.asset(
               'assets/MagisGo.png',
               fit: BoxFit.cover,
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             Text(
               'OTP',
               style: TextStyle(
@@ -74,7 +75,7 @@ class GmailPage extends StatelessWidget {
                 color: const Color(0xff000000),
               ),
             ),
-            SizedBox(height: 12),
+            const SizedBox(height: 12),
             const Text(
               'Enter the One Time Password sent to',
               style: TextStyle(
@@ -93,7 +94,7 @@ class GmailPage extends StatelessWidget {
               ),
               textAlign: TextAlign.center,
             ),
-            SizedBox(height: 70),
+            const SizedBox(height: 70),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: List.generate(6, (index) {
@@ -109,7 +110,7 @@ class GmailPage extends StatelessWidget {
                     child: TextFormField(
                       controller: controllers[index],
                       focusNode: focusNodes[index],
-                      onChanged: (value) => _onChanged(index, value),
+                      onChanged: (value) => onChanged(index, value),
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 20 * ffem,
@@ -136,16 +137,16 @@ class GmailPage extends StatelessWidget {
                 );
               }),
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
+                const Text(
                   'Did not receive the code?',
                   style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
-                      color: Color(0xfff80807F)),
+                      color: Color(0xfff80807f)),
                 ),
                 TextButton(
                   onPressed: () {
@@ -163,12 +164,12 @@ class GmailPage extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 100),
+            const SizedBox(height: 100),
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => NewPage()),
+                  MaterialPageRoute(builder: (context) => const NewPage()),
                 );
               },
               style: ElevatedButton.styleFrom(

@@ -95,7 +95,7 @@ class NewPage extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => VerifyPage()),
+                    MaterialPageRoute(builder: (context) => const VerifyPage()),
                   );
                   // Handle "Login" button press
                 },

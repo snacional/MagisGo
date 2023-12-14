@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="gcm_defaultSenderId" translatable="false">1022826562358</string>
-    <string name="google_api_key" translatable="false">AIzaSyD6QKyum2EVAlnQzk7TG7YYd3-o7LH9XNw</string>
-    <string name="google_app_id" translatable="false">1:1022826562358:android:eb5d93adfb76193a2a2997</string>
-    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyD6QKyum2EVAlnQzk7TG7YYd3-o7LH9XNw</string>
-    <string name="google_storage_bucket" translatable="false">magisgo-a91be.appspot.com</string>
-    <string name="project_id" translatable="false">magisgo-a91be</string>
-</resources>

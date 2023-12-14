@@ -1,13 +1,13 @@
-import 'package:flutter/material.dart';
-import 'package:helloworld/forgor.dart';
-import 'register.dart';
-import 'bot.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
-import 'package:helloworld/Authenthication/Authent.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:helloworld/Authenthication/toast.dart';
+import 'package:helloworld/Authenthication/Authent.dart';
+import 'package:helloworld/forgor.dart';
+
+import 'bot.dart';
+import 'firebase_options.dart';
+import 'register.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,18 +18,18 @@ void main() async {
 }
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+  const LoginPage({super.key});
 
   @override
-  _RegisterPageState createState() => _RegisterPageState();
+  _LoginPageState createState() => _LoginPageState();
 }
 
-class _RegisterPageState extends State<LoginPage> {
+class _LoginPageState extends State<LoginPage> {
   final Authentication _auth = Authentication();
 
   bool _isSigning = false;
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   @override
   void dispose() {
@@ -113,7 +113,7 @@ class _RegisterPageState extends State<LoginPage> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => ForgotPage()),
+                      MaterialPageRoute(builder: (context) => const ForgotPage()),
                     );
                   },
                   style: TextButton.styleFrom(
@@ -141,8 +141,8 @@ class _RegisterPageState extends State<LoginPage> {
                   height: 50,
                   child: Center(
                     child: _isSigning
-                        ? CircularProgressIndicator(color: Colors.white)
-                        : Text(
+                        ? const CircularProgressIndicator(color: Colors.white)
+                        : const Text(
                             'Login',
                             style: TextStyle(
                               fontSize: 18,
@@ -168,7 +168,7 @@ class _RegisterPageState extends State<LoginPage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => RegisterPage(),
+                            builder: (context) => const RegisterPage(),
                           ),
                         );
                       },
@@ -338,26 +338,42 @@ class _RegisterPageState extends State<LoginPage> {
 
       if (user != null) {
         print("User successfully Login");
+        _showSuccessMessage("Successfully logged in");
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => const BottomNav()),
         );
       } else {
-        Fluttertoast.showToast(
-          msg: "Wrong credentials. Please try again.",
-          backgroundColor: const Color(0xFFF24F04),
-          textColor: Colors.white,
-        );
+        _showError("Wrong credentials. Please try again.");
       }
+    } on FirebaseAuthException catch (e) {
+      _showError("Error occurred during login: ${e.message}");
+      print("Error occurred during login: ${e.message}");
     } catch (e) {
-      Fluttertoast.showToast(
-        msg: "An error occurred. Please try again.",
-        backgroundColor: const Color(0xFFF24F04),
-        textColor: Colors.white,
-      );
-      setState(() {
-        _isSigning = false;
-      });
+      _showError("An error occurred. Please try again.");
+      print("An error occurred. Please try again. $e");
     }
+  }
+
+  void _showError(String message) {
+    // Display the error message using a SnackBar
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        duration: Duration(seconds: 3),
+        backgroundColor: Colors.red,
+      ),
+    );
+  }
+
+  void _showSuccessMessage(String message) {
+    // Display the success message using a SnackBar
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        duration: Duration(seconds: 3),
+        backgroundColor: Colors.green,
+      ),
+    );
   }
 }

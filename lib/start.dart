@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'register.dart'; // Import your register page
+
 import 'login.dart'; // Import your login page
+import 'register.dart'; // Import your register page
 
 void main() => runApp(const MyApp());
 

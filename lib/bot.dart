@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
 }
 
 class BottomNav extends StatefulWidget {
-  const BottomNav({Key? key}) : super(key: key);
+  const BottomNav({super.key});
 
   @override
   _BottomNavState createState() => _BottomNavState();

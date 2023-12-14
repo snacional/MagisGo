@@ -24,7 +24,7 @@ class _MenuPageState extends State<MenuPage> {
   child: Column(
     crossAxisAlignment: CrossAxisAlignment.center,
     children: [
-      Container(
+      SizedBox(
         width: double.infinity,
         height: 101.37 * fem,
         child: Image.asset(
@@ -39,6 +39,8 @@ class _MenuPageState extends State<MenuPage> {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(

@@ -5,11 +5,11 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: 'MagisGO',
       home: HomePage(),
     );
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
 }
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -39,9 +39,9 @@ class _HomePageState extends State<HomePage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
+                  const Text(
                     'Home',
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontFamily: 'Poppins',
                       fontSize: 20,
                       fontWeight: FontWeight.w600,
@@ -65,9 +65,9 @@ class _HomePageState extends State<HomePage> {
                               searchTerm = value;
                             });
                           },
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             hintText: 'Search for foods/shops',
-                            hintStyle: const TextStyle(
+                            hintStyle: TextStyle(
                               fontFamily: 'Poppins',
                               fontSize: 13,
                               fontWeight: FontWeight.w400,
@@ -91,8 +91,8 @@ class _HomePageState extends State<HomePage> {
               Container(
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  border: Border.all(color: Color(0x7ff24f04)),
-                  color: Color(0xfffcfcfc),
+                  border: Border.all(color: const Color(0x7ff24f04)),
+                  color: const Color(0xfffcfcfc),
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Column(
@@ -103,7 +103,7 @@ class _HomePageState extends State<HomePage> {
                       height: 100,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
-                        image: DecorationImage(
+                        image: const DecorationImage(
                           image: AssetImage('meals.png'),
                           fit: BoxFit.cover,
                         ),
@@ -113,11 +113,11 @@ class _HomePageState extends State<HomePage> {
                         child: Container(
                           padding: const EdgeInsets.all(4),
                           margin: const EdgeInsets.all(8),
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             shape: BoxShape.circle,
                             color: Colors.white,
                           ),
-                          child: Icon(
+                          child: const Icon(
                             Icons.bookmark,
                             color: Color(0xfff24f04),
                             size: 18,
@@ -130,17 +130,17 @@ class _HomePageState extends State<HomePage> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             'Bam-Bams',
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontWeight: FontWeight.w700,
                               fontSize: 22,
                             ),
                           ),
-                          SizedBox(height: 8),
+                          const SizedBox(height: 8),
                           Row(
                             children: [
-                              Row(
+                              const Row(
                                 children: [
                                   Icon(
                                     Icons.star,
@@ -150,23 +150,23 @@ class _HomePageState extends State<HomePage> {
                                   SizedBox(width: 5),
                                   Text(
                                     "4.95",
-                                    style: const TextStyle(
+                                    style: TextStyle(
                                       fontWeight: FontWeight.w600,
                                       fontSize: 12,
                                     ),
                                   ),
                                 ],
                               ),
-                              SizedBox(width: 25),
+                              const SizedBox(width: 25),
                               Image.asset(
                                 'assets/time.png',
                                 width: 12.19,
                                 height: 12.13,
                               ),
-                              SizedBox(width: 3.81),
-                              Column(
+                              const SizedBox(width: 3.81),
+                              const Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: const [
+                                children: [
                                   Text(
                                     '15 - 20 min',
                                     style: TextStyle(
@@ -179,7 +179,7 @@ class _HomePageState extends State<HomePage> {
                               ),
                             ],
                           ),
-                          SizedBox(height: 10),
+                          const SizedBox(height: 10),
                           Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
@@ -189,14 +189,14 @@ class _HomePageState extends State<HomePage> {
                                   height: 35,
                                   margin: const EdgeInsets.only(right: 32),
                                   decoration: BoxDecoration(
-                                    color: Color(0x7fd9d9d9),
+                                    color: const Color(0x7fd9d9d9),
                                     borderRadius: BorderRadius.circular(20),
                                   ),
                                   child: Center(
                                     child: Text(
                                       item,
                                       textAlign: TextAlign.center,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontSize: 12,
                                         fontWeight: FontWeight.w600,
                                         height: 1.5,
@@ -219,7 +219,7 @@ class _HomePageState extends State<HomePage> {
                 height: 97,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
-                  color: Color(0x40f24f04),
+                  color: const Color(0x40f24f04),
                 ),
                 child: Stack(
                   children: [
@@ -235,7 +235,7 @@ class _HomePageState extends State<HomePage> {
                             Container(
                               margin: const EdgeInsets.only(bottom: 3),
                               width: double.infinity,
-                              child: Text(
+                              child: const Text(
                                 'Pick your food ',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
@@ -253,7 +253,7 @@ class _HomePageState extends State<HomePage> {
                               ),
                               child: RichText(
                                 textAlign: TextAlign.center,
-                                text: TextSpan(
+                                text: const TextSpan(
                                   style: TextStyle(
                                     fontSize: 10,
                                     fontWeight: FontWeight.w400,
@@ -320,10 +320,10 @@ class _HomePageState extends State<HomePage> {
                                   width: 56,
                                   height: 13,
                                   decoration: BoxDecoration(
-                                    color: Color(0xFFF24F04),
+                                    color: const Color(0xFFF24F04),
                                     borderRadius: BorderRadius.circular(8.0),
                                   ),
-                                  child: Text(
+                                  child: const Text(
                                     'Order Now',
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
@@ -360,10 +360,10 @@ class _HomePageState extends State<HomePage> {
                                 Container(
                                   margin: const EdgeInsets.only(bottom: 4),
                                   width: double.infinity,
-                                  child: Text(
+                                  child: const Text(
                                     'Popular Menu',
                                     textAlign: TextAlign.left,
-                                    style: const TextStyle(
+                                    style: TextStyle(
                                       fontFamily: 'Poppins',
                                       fontSize: 20,
                                       fontWeight: FontWeight.w600,
@@ -371,7 +371,7 @@ class _HomePageState extends State<HomePage> {
                                     ),
                                   ),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: double.infinity,
                                   child: Text(
                                     'Top of the week',
@@ -394,7 +394,7 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
-              SingleChildScrollView(
+              const SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: [
@@ -429,7 +429,7 @@ class MenuItem extends StatelessWidget {
   final String title;
   final String price;
 
-  const MenuItem({
+  const MenuItem({super.key, 
     required this.imageAsset,
     required this.title,
     required this.price,
@@ -443,7 +443,7 @@ class MenuItem extends StatelessWidget {
       child: Column(
         children: [
           Image.asset(imageAsset, width: 120, height: 80, fit: BoxFit.cover),
-          SizedBox(height: 5),
+          const SizedBox(height: 5),
           Text(
             title,
             textAlign: TextAlign.center,

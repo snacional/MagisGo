@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'gmail.dart';
+
 import 'forgor.dart';
+import 'gmail.dart';
 import 'phone.dart';
 
 void main() => runApp(const MyApp());
@@ -44,7 +45,7 @@ class Forgot2Page extends StatelessWidget {
                   // Navigate back to login.dart
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => ForgotPage()),
+                    MaterialPageRoute(builder: (context) => const ForgotPage()),
                   );
                 },
                 child: const Icon(Icons.arrow_back, color: Colors.black),
@@ -97,7 +98,7 @@ class Forgot2Page extends StatelessWidget {
                               ),
                             ),
                             Container(
-                              margin: EdgeInsets.fromLTRB(20, 0, 0, 0),
+                              margin: const EdgeInsets.fromLTRB(20, 0, 0, 0),
                               constraints: BoxConstraints(maxWidth: 214 * fem),
                               child: Text(
                                 'Which contact detail should we use to reset your password?',
@@ -125,7 +126,7 @@ class Forgot2Page extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => PhonePage()),
+                                    builder: (context) => const PhonePage()),
                               );
                               // Handle the onTap action for "Phone" here
                               // You can navigate to a new page or perform any other action.

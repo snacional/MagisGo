@@ -29,9 +29,11 @@ class _ShopPageState extends State<ShopPage> {
                     child: Align(
                       alignment: Alignment.centerRight,
                       child: SizedBox(
+                        height: 35, // Adjust the height as needed
+                        width: 35, // Adjust the width as needed
                         child: Image.asset(
                           'assets/Noti.png',
-                          fit: BoxFit.cover,
+                          fit: BoxFit.cover, // Adjust the fit property as needed
                         ),
                       ),
                     ),
@@ -103,20 +105,23 @@ class _ShopPageState extends State<ShopPage> {
             ),
             Column(children: [
               ShopButton(
-                  restaurantName: "Bam-Bams",
-                  rating: 4.95,
-                  estimatedTime: '5-15mins',
-                  imageAsset: 'meals.png'),
+                restaurantName: "Bam-Bams",
+                rating: 4.95,
+                estimatedTime: '5-15mins',
+                imageAsset: 'meals.png',
+              ),
               ShopButton(
-                  restaurantName: "Bam-Bams",
-                  rating: 4.95,
-                  estimatedTime: '5-15mins',
-                  imageAsset: 'meals.png'),
+                restaurantName: "Bam-Bams",
+                rating: 4.95,
+                estimatedTime: '5-15mins',
+                imageAsset: 'meals.png',
+              ),
               ShopButton(
-                  restaurantName: "Bam-Bams",
-                  rating: 4.95,
-                  estimatedTime: '5-15mins',
-                  imageAsset: 'meals.png')
+                restaurantName: "Bam-Bams",
+                rating: 4.95,
+                estimatedTime: '5-15mins',
+                imageAsset: 'meals.png',
+              ),
             ]),
           ],
         ),

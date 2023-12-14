@@ -1,13 +1,14 @@
-import 'package:flutter/material.dart';
-import 'start.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+
+import 'start.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key});
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
 }
 
 class ProfilePage extends StatefulWidget {
-  const ProfilePage({Key? key});
+  const ProfilePage({super.key,});
 
   @override
   _ProfilePageState createState() => _ProfilePageState();
@@ -40,10 +41,10 @@ class _ProfilePageState extends State<ProfilePage> {
             // Custom App Bar
             const SizedBox(height: 15),
             Container(
-              child: Row(
+              child: const Row(
                 children: [
-                  const SizedBox(width: 12),
-                  const Text(
+                  SizedBox(width: 12),
+                  Text(
                     'Profile',
                     style: TextStyle(
                       fontSize: 20,
@@ -130,15 +131,15 @@ class _ProfilePageState extends State<ProfilePage> {
                           : Colors.white,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(50),
-                        side: BorderSide(
-                          color: const Color(0xfff24f04),
+                        side: const BorderSide(
+                          color: Color(0xfff24f04),
                         ),
                       ),
                       fixedSize: const Size(135, 45),
                     ),
                     child: Column(
                       children: [
-                        SizedBox(height: 8),
+                        const SizedBox(height: 8),
                         Text(
                           'Bookmark',
                           style: TextStyle(
@@ -164,15 +165,15 @@ class _ProfilePageState extends State<ProfilePage> {
                           : const Color(0xfff24f04),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(50),
-                        side: BorderSide(
-                          color: const Color(0xfff24f04),
+                        side: const BorderSide(
+                          color: Color(0xfff24f04),
                         ),
                       ),
                       fixedSize: const Size(135, 45),
                     ),
                     child: Column(
                       children: [
-                        SizedBox(height: 8),
+                        const SizedBox(height: 8),
                         Text(
                           'Settings',
                           style: TextStyle(
@@ -316,7 +317,7 @@ class _ProfilePageState extends State<ProfilePage> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => StartPage(),
+        builder: (context) => const StartPage(),
       ),
     );
   }
@@ -324,12 +325,12 @@ class _ProfilePageState extends State<ProfilePage> {
 
 class ShopItem extends StatelessWidget {
   const ShopItem({
-    Key? key,
+    super.key,
     required this.restaurantName,
     required this.rating,
     required this.estimatedTime,
     required this.imageAsset,
-  }) : super(key: key);
+  });
 
   final String restaurantName;
   final double rating;
@@ -356,7 +357,7 @@ class ShopItem extends StatelessWidget {
               borderRadius: BorderRadius.circular(20),
               image: DecorationImage(
                 image: AssetImage(imageAsset), // Replace with your actual image
-                fit: BoxFit.cover,
+                fit: BoxFit.cover, // Set BoxFit to cover for adjusting images
               ),
             ),
             child: Align(
@@ -364,11 +365,11 @@ class ShopItem extends StatelessWidget {
               child: Container(
                 padding: const EdgeInsets.all(4),
                 margin: const EdgeInsets.all(8),
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   shape: BoxShape.circle,
                   color: Colors.white,
                 ),
-                child: Icon(
+                child: const Icon(
                   Icons.bookmark,
                   color: Color(0xfff24f04),
                   size: 18,
@@ -396,7 +397,7 @@ class ShopItem extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Icon(
+                    const Icon(
                       Icons.star,
                       color: Colors.yellow,
                       size: 10,
@@ -431,7 +432,7 @@ class ShopItem extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
         ],
       ),
     );

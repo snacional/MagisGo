@@ -8,7 +8,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class LandingPageContent extends StatefulWidget {
@@ -16,17 +16,17 @@ class LandingPageContent extends StatefulWidget {
   final AnimationController animationController;
 
   const LandingPageContent({
-    Key? key,
+    super.key,
     required this.pageController,
     required this.animationController,
-  }) : super(key: key);
+  });
 
   @override
   _LandingPageContentState createState() => _LandingPageContentState();
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
   
 
   @override

@@ -21,9 +21,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
-      child: Row(
+      child: const Row(
         children: [
-          const Text(
+          Text(
             'Favorites',
             style: TextStyle(
               fontSize: 25.0,
@@ -75,12 +75,12 @@ class FoodItem extends StatelessWidget {
   final String price;
 
   const FoodItem({
-    Key? key,
+    super.key,
     required this.foodImage,
     required this.foodName,
     required this.rating,
     required this.price,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -139,7 +139,7 @@ children: [
 ],
                   ),
                   // Food Name
-                 SizedBox(height: 60,),
+                 const SizedBox(height: 60,),
                   // Star, Rating, and Price
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
