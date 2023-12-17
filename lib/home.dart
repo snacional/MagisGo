@@ -1,11 +1,15 @@
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:helloworld/shop_main_page.dart';
 
+import 'shopmodel.dart';
 void main() {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +21,7 @@ class MyApp extends StatelessWidget {
 }
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  const HomePage({Key? key});
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -28,6 +32,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
@@ -48,175 +54,115 @@ class _HomePageState extends State<HomePage> {
                       color: Color(0xff000000),
                     ),
                   ),
-                  Image.asset('assets/Noti.png', width: 20, height: 20, fit: BoxFit.cover),
+                  Image.asset(
+                    'assets/Noti.png',
+                    width: 25,
+                    height: 25,
+                    fit: BoxFit.cover,
+                  ),
                 ],
               ),
               Container(
                 margin: const EdgeInsets.only(top: 10),
+                decoration: BoxDecoration(
+                  color: Color.fromARGB(
+                      30, 217, 217, 217), // Set the background color
+                  borderRadius:
+                      BorderRadius.circular(20), // Set the border radius
+                ),
                 child: Row(
                   children: [
-                    Image.asset('assets/Search.png', width: 20, height: 20, fit: BoxFit.cover),
+                    Container(
+                      margin: const EdgeInsets.fromLTRB(7, 0, 65, 0),
+                      child: Image.asset(
+                        'assets/Search.png',
+                        fit: BoxFit.cover,
+                      ),
+                    ),
                     Expanded(
                       child: Container(
-                        margin: const EdgeInsets.only(left: 10),
                         child: TextField(
                           onChanged: (value) {
                             setState(() {
                               searchTerm = value;
                             });
                           },
-                          decoration: const InputDecoration(
+                          decoration: InputDecoration(
                             hintText: 'Search for foods/shops',
                             hintStyle: TextStyle(
                               fontFamily: 'Poppins',
                               fontSize: 13,
                               fontWeight: FontWeight.w400,
-                              color: Color(0x7f000000),
+                              height: 1.5,
+                              color: const Color(0x7f000000),
                             ),
                             border: InputBorder.none,
                           ),
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontFamily: 'Poppins',
                             fontSize: 13,
                             fontWeight: FontWeight.w400,
-                            color: Color(0xff000000),
+                            height: 1.5,
+                            color: const Color(0xff000000),
                           ),
                         ),
                       ),
                     ),
                   ],
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.fromLTRB(0, 10, 0, 15),
+                child: Text(
+                  'Popular Shops',
+                  style: TextStyle(
+                    fontFamily: 'Poppins',
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
+                    color: Color(0xff000000),
+                  ),
                 ),
               ),
               const SizedBox(height: 10),
-              Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  border: Border.all(color: const Color(0x7ff24f04)),
-                  color: const Color(0xfffcfcfc),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      width: double.infinity,
-                      height: 100,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        image: const DecorationImage(
-                          image: AssetImage('meals.png'),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      child: Align(
-                        alignment: Alignment.topRight,
-                        child: Container(
-                          padding: const EdgeInsets.all(4),
-                          margin: const EdgeInsets.all(8),
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.white,
-                          ),
-                          child: const Icon(
-                            Icons.bookmark,
-                            color: Color(0xfff24f04),
-                            size: 18,
-                          ),
-                        ),
-                      ),
+              StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
+                stream: FirebaseFirestore.instance
+                    .collection('Restaurant')
+                    .snapshots(),
+                builder: (context, snapshot) {
+                  if (!snapshot.hasData) {
+                    return const CircularProgressIndicator();
+                  }
+
+                  List<QueryDocumentSnapshot<Map<String, dynamic>>>
+                      restaurants = snapshot.data!.docs;
+
+                  return CarouselSlider.builder(
+                    itemCount: restaurants.length,
+                    options: CarouselOptions(
+                      height: screenWidth * 0.5,
+                      viewportFraction: 0.8,
+                      initialPage: 0,
+                      enableInfiniteScroll: true,
+                      autoPlay: true,
+                      autoPlayInterval: Duration(seconds: 5),
+                      autoPlayAnimationDuration: Duration(milliseconds: 800),
+                      autoPlayCurve: Curves.fastOutSlowIn,
+                      enlargeCenterPage: true,
+                      scrollDirection: Axis.horizontal,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 10, 10, 20),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text(
-                            'Bam-Bams',
-                            style: TextStyle(
-                              fontWeight: FontWeight.w700,
-                              fontSize: 22,
-                            ),
-                          ),
-                          const SizedBox(height: 8),
-                          Row(
-                            children: [
-                              const Row(
-                                children: [
-                                  Icon(
-                                    Icons.star,
-                                    color: Colors.yellow,
-                                    size: 12,
-                                  ),
-                                  SizedBox(width: 5),
-                                  Text(
-                                    "4.95",
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 12,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(width: 25),
-                              Image.asset(
-                                'assets/time.png',
-                                width: 12.19,
-                                height: 12.13,
-                              ),
-                              const SizedBox(width: 3.81),
-                              const Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    '15 - 20 min',
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w600,
-                                      height: 1.5,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 10),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              for (final item in ['Burger', 'Chicken', 'Fries', 'Sundae'])
-                                Container(
-                                  width: 55,
-                                  height: 35,
-                                  margin: const EdgeInsets.only(right: 32),
-                                  decoration: BoxDecoration(
-                                    color: const Color(0x7fd9d9d9),
-                                    borderRadius: BorderRadius.circular(20),
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      item,
-                                      textAlign: TextAlign.center,
-                                      style: const TextStyle(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w600,
-                                        height: 1.5,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                            ],
-                          ),
-                          const SizedBox(height: 20),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
+                    itemBuilder:
+                        (BuildContext context, int index, int realIndex) {
+                      final restaurantData =
+                          restaurants[index].data() as Map<String, dynamic>;
+
+                      return RestaurantCard(restaurantData: restaurantData);
+                    },
+                  );
+                },
               ),
               Container(
-                margin: const EdgeInsets.only(top: 15),
                 width: double.infinity,
-                height: 97,
+                height: screenWidth * 0.25,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   color: const Color(0x40f24f04),
@@ -394,26 +340,47 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
-              const SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    MenuItem(
-                      imageAsset: 'assets/meals.png',
-                      title: 'BurgerFries Style',
-                      price: '₱ 150.00',
-                    ),
-                    MenuItem(
-                      imageAsset: 'assets/beverages.png',
-                      title: 'Coke Pesi Halo Halo',
-                      price: '₱ 300.00',
-                    ),
-                    MenuItem(
-                      imageAsset: 'assets/desserts.png',
-                      title: 'Ice Cream with Fruits',
-                      price: '₱ 70.00',
-                    ),
-                  ],
+              Center(
+                child: StreamBuilder<QuerySnapshot>(
+                  stream:
+                      FirebaseFirestore.instance.collection('Food').snapshots(),
+                  builder: (context, snapshot) {
+                    if (!snapshot.hasData) {
+                      return const CircularProgressIndicator();
+                    }
+
+                    List<QueryDocumentSnapshot> items = snapshot.data!.docs;
+
+                    return LayoutBuilder(
+                      builder: (context, constraints) {
+                        // Calculate pixel ratio and screen width for responsiveness
+                        double pixelRatio =
+                            MediaQuery.of(context).devicePixelRatio;
+                        double screenWidth = constraints.maxWidth;
+
+                        // Calculate the width and height based on the screen width
+                        double itemWidth =
+                            screenWidth * 0.25; // Adjust the factor as needed
+                        double itemHeight = itemWidth * 0.55;
+
+                        return SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            children: items.map((item) {
+                              return MenuItem(
+                                title: item['Name'],
+                                price: '₱ ${item['Price']}.00',
+                                imageAsset: item['Image'],
+                                itemWidth: itemWidth,
+                                itemHeight: itemHeight,
+                                pixelRatio: pixelRatio,
+                              );
+                            }).toList(),
+                          ),
+                        );
+                      },
+                    );
+                  },
                 ),
               ),
             ],
@@ -428,21 +395,33 @@ class MenuItem extends StatelessWidget {
   final String imageAsset;
   final String title;
   final String price;
+  final double itemWidth;
+  final double itemHeight;
+  final double pixelRatio;
 
-  const MenuItem({super.key, 
+  const MenuItem({
+    Key? key,
     required this.imageAsset,
     required this.title,
     required this.price,
-  });
+    required this.itemWidth,
+    required this.itemHeight,
+    required this.pixelRatio,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(right: 10),
-      width: 120,
+      margin: const EdgeInsets.only(right: 25),
+      width: itemWidth,
       child: Column(
         children: [
-          Image.asset(imageAsset, width: 120, height: 80, fit: BoxFit.cover),
+          Image.asset(
+            imageAsset,
+            width: itemWidth,
+            height: itemHeight * pixelRatio,
+            fit: BoxFit.cover,
+          ),
           const SizedBox(height: 5),
           Text(
             title,
@@ -467,6 +446,62 @@ class MenuItem extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class RestaurantCard extends StatelessWidget {
+  final Map<String, dynamic> restaurantData;
+
+  const RestaurantCard({Key? key, required this.restaurantData}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        // Navigate to ShopMainPage with the selected restaurant data
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ShopMainPage(
+              shop: ShopModel(
+                name: restaurantData['Name'],
+                rating: restaurantData['Rating'], // Pass the rating value
+                estimate: restaurantData['Estimate'], // Pass the estimate value
+                image: restaurantData['Image'],
+              ), rating: null, estimate: null, image: null,
+            ),
+          ),
+        );
+      },
+      child: Container(
+        width: double.infinity, // Ensure the container takes the full width
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              height: 120, // Set a fixed height for the image container
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                image: DecorationImage(
+                  image: NetworkImage(restaurantData['Image']),
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.only(left: 25),
+              child: Text(
+                restaurantData['Name'],
+                style: const TextStyle(
+                  fontWeight: FontWeight.w700,
+                  fontSize: 22,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

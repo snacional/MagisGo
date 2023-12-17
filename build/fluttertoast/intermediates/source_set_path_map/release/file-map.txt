@@ -1,0 +1,12 @@
+io.github.ponnamkarthik.toast.fluttertoast-jetified-window-java-1.0.0-beta04-0 C:\Users\cells\.gradle\caches\transforms-3\1544d86c1dca7feb26d35bfb73983794\transformed\jetified-window-java-1.0.0-beta04\res
+io.github.ponnamkarthik.toast.fluttertoast-jetified-annotation-experimental-1.1.0-1 C:\Users\cells\.gradle\caches\transforms-3\236b40e703446f66511b1312b6365435\transformed\jetified-annotation-experimental-1.1.0\res
+io.github.ponnamkarthik.toast.fluttertoast-jetified-window-1.0.0-beta04-2 C:\Users\cells\.gradle\caches\transforms-3\6b18a8ecb075d471e279cb78e40a5634\transformed\jetified-window-1.0.0-beta04\res
+io.github.ponnamkarthik.toast.fluttertoast-core-1.6.0-3 C:\Users\cells\.gradle\caches\transforms-3\a500feecae90ceabe1a8aa49341eb89d\transformed\core-1.6.0\res
+io.github.ponnamkarthik.toast.fluttertoast-main-4 C:\Users\cells\AppData\Local\Pub\Cache\hosted\pub.dev\fluttertoast-8.2.4\android\src\main\res
+io.github.ponnamkarthik.toast.fluttertoast-release-5 C:\Users\cells\AppData\Local\Pub\Cache\hosted\pub.dev\fluttertoast-8.2.4\android\src\release\res
+io.github.ponnamkarthik.toast.fluttertoast-pngs-6 C:\Users\cells\OneDrive\Documents\GitHub\MagisGo\build\fluttertoast\generated\res\pngs\release
+io.github.ponnamkarthik.toast.fluttertoast-resValues-7 C:\Users\cells\OneDrive\Documents\GitHub\MagisGo\build\fluttertoast\generated\res\resValues\release
+io.github.ponnamkarthik.toast.fluttertoast-rs-8 C:\Users\cells\OneDrive\Documents\GitHub\MagisGo\build\fluttertoast\generated\res\rs\release
+io.github.ponnamkarthik.toast.fluttertoast-mergeReleaseResources-9 C:\Users\cells\OneDrive\Documents\GitHub\MagisGo\build\fluttertoast\intermediates\incremental\release\mergeReleaseResources\merged.dir
+io.github.ponnamkarthik.toast.fluttertoast-mergeReleaseResources-10 C:\Users\cells\OneDrive\Documents\GitHub\MagisGo\build\fluttertoast\intermediates\incremental\release\mergeReleaseResources\stripped.dir
+io.github.ponnamkarthik.toast.fluttertoast-merged_res-11 C:\Users\cells\OneDrive\Documents\GitHub\MagisGo\build\fluttertoast\intermediates\merged_res\release

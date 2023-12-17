@@ -1,5 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
+import 'shop_main_page.dart';
+import 'shopmodel.dart';
 
 class ShopPage extends StatefulWidget {
   const ShopPage({Key? key}) : super(key: key);
@@ -8,28 +12,8 @@ class ShopPage extends StatefulWidget {
   _ShopPageState createState() => _ShopPageState();
 }
 
-class ShopModel {
-  final String name;
-  final double rating;
-  final String estimate;
-  final String image;
 
-  ShopModel({
-    required this.name,
-    required this.rating,
-    required this.estimate,
-    required this.image,
-  });
-
-  factory ShopModel.fromMap(Map<String, dynamic> map) {
-    return ShopModel(
-      name: map['Name'] ?? '',
-      rating: (map['Rating'] ?? 0.0).toDouble(),
-      estimate: map['Estimate'] ?? '',
-      image: map['Image'] ?? '',
-    );
-  }
-}
+ 
 
 class _ShopPageState extends State<ShopPage> {
   String searchTerm = '';
@@ -127,28 +111,43 @@ class _ShopPageState extends State<ShopPage> {
                 ),
               ),
             ),
-            FutureBuilder<List<ShopModel>>(
-              future: fetchShopData(),
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  // Show a loading indicator while waiting for data
-                  return Center(child: CircularProgressIndicator());
-                } else if (snapshot.hasError) {
-                  // Handle errors more gracefully (show a Snackbar or another user-friendly message)
-                  return Center(child: Text('Error loading data.'));
-                } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                  return Center(child: Text('No data available.'));
-                } else {
-                  final shops = snapshot.data!;
-                  return Column(
-                    children: shops.map((shop) {
-                      return ShopButton(
-                        restaurantName: shop.name,
-                        rating: shop.rating,
-                        estimatedTime: shop.estimate,
-                        imageAsset: shop.image,
-                      );
-                    }).toList(),
+           FutureBuilder<List<ShopModel>>(
+  future: fetchShopData(),
+  builder: (context, snapshot) {
+    if (snapshot.connectionState == ConnectionState.waiting) {
+      // Show a loading indicator while waiting for data
+      return Center(child: CircularProgressIndicator());
+    } else if (snapshot.hasError) {
+      // Handle errors more gracefully (show a Snackbar or another user-friendly message)
+      return Center(child: Text('Error loading data.'));
+    } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+      return Center(child: Text('No data available.'));
+    } else {
+      // Filter shops based on the search term
+      final List<ShopModel> filteredShops = snapshot.data!
+          .where((shop) =>
+              shop.name.toLowerCase().contains(searchTerm.toLowerCase()))
+          .toList();
+
+      if (filteredShops.isEmpty) {
+        return Center(child: Text('No matching shops found.'));
+      }
+
+      return Column(
+        children: filteredShops.map((shop) {
+          return ShopButton(
+            shop: shop, // Pass the ShopModel instance
+            onTap: () {
+              // Pass the selected restaurant information to ShopMainPage
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ShopMainPage(shop: shop, rating: null, estimate: null, image: null,),
+                ),
+              );
+            },
+          );
+        }).toList(),
                   );
                 }
               },
@@ -161,36 +160,66 @@ class _ShopPageState extends State<ShopPage> {
 
   Future<List<ShopModel>> fetchShopData() async {
     try {
-      final snapshot = await FirebaseFirestore.instance.collection('Restaurant').get();
-      return snapshot.docs.map((document) => ShopModel.fromMap(document.data() as Map<String, dynamic>)).toList();
+      final snapshot =
+          await FirebaseFirestore.instance.collection('Restaurant').get();
+      return snapshot.docs
+          .map((document) =>
+              ShopModel.fromMap(document.data() as Map<String, dynamic>))
+          .toList();
     } catch (e) {
       print('Error fetching data: $e');
       throw 'Something went wrong. Please try again';
     }
   }
+
+ 
 }
 
-class ShopButton extends StatelessWidget {
-  final String restaurantName;
-  final double rating;
-  final String estimatedTime;
-  final String imageAsset;
+class ShopButton extends StatefulWidget {
+  final VoidCallback onTap;
+  final ShopModel shop;
 
   const ShopButton({
-    required this.restaurantName,
-    required this.rating,
-    required this.estimatedTime,
-    required this.imageAsset,
+    required this.onTap,
+    required this.shop,
   });
 
   @override
+  _ShopButtonState createState() => _ShopButtonState();
+}
+
+class _ShopButtonState extends State<ShopButton> {
+  bool isBookmarked = false;
+  bool isClickable = true; // New variable to track clickability
+
+  @override
   Widget build(BuildContext context) {
+    final double pixelRatio = WidgetsBinding.instance!.window.devicePixelRatio;
     const borderColor = Color(0x7ff24f04);
     const bgColor = Color(0xfffcfcfc);
 
     return GestureDetector(
       onTap: () {
-        // Add your onTap logic here
+        // Check if the button is clickable
+        if (isClickable) {
+          // Toggle the bookmarked state
+          setState(() {
+            isBookmarked = !isBookmarked;
+            isClickable = false; // Disable the button after the first click
+          });
+
+          // Perform the action based on the bookmarked state
+          if (isBookmarked) {
+            // Remove the shop from bookmarks
+            removeFromBookmarks(widget.shop.name);
+          } else {
+            // Add the shop to bookmarks
+            addToBookmarks(widget.shop.name);
+          }
+
+          // Navigate to the MenuPage
+          widget.onTap();
+        }
       },
       child: Container(
         margin: const EdgeInsets.only(bottom: 40),
@@ -206,14 +235,25 @@ class ShopButton extends StatelessWidget {
             Stack(
               alignment: Alignment.topRight,
               children: [
-                Container(
-                  width: double.infinity,
-                  height: 100,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    image: DecorationImage(
-                      image: AssetImage(imageAsset),
-                      fit: BoxFit.cover,
+                GestureDetector(
+                  onTap: () {
+                    // Direct to the MenuPage when tapping on the image
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                       builder: (context) => ShopMainPage(shop: widget.shop, rating: null, estimate: null, image: null,),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    width: double.infinity,
+                    height: 60 * pixelRatio, // Adjusted image height
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      image: DecorationImage(
+                        image: AssetImage(widget.shop.image),
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                 ),
@@ -225,9 +265,11 @@ class ShopButton extends StatelessWidget {
                     color: Colors.white,
                   ),
                   child: Icon(
-                    Icons.bookmark,
+                    isBookmarked
+                        ? Icons.bookmark
+                        : Icons.bookmark_border,
                     color: Color(0xfff24f04),
-                    size: 18,
+                    size: 10 * pixelRatio, // Adjusted icon size/ Adjusted icon size
                   ),
                 ),
               ],
@@ -235,7 +277,7 @@ class ShopButton extends StatelessWidget {
             Container(
               margin: const EdgeInsets.only(left: 25, bottom: 8.1),
               child: Text(
-                restaurantName,
+                widget.shop.name,
                 style: const TextStyle(
                   fontWeight: FontWeight.w700,
                   fontSize: 22,
@@ -255,7 +297,7 @@ class ShopButton extends StatelessWidget {
                       ),
                       const SizedBox(width: 5),
                       Text(
-                        rating.toString(),
+                        widget.shop.rating.toString(),
                         style: const TextStyle(
                           fontWeight: FontWeight.w600,
                           fontSize: 12,
@@ -276,9 +318,9 @@ class ShopButton extends StatelessWidget {
                   const SizedBox(width: 3.81),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
+                    children: [
                       Text(
-                        '15 - 20 min',
+                         widget.shop.estimate ?? 'Default Estimate',
                         style: TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w600,
@@ -320,13 +362,69 @@ class ShopButton extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(
-              height: 20,
-            )
+            const SizedBox(height: 20),
           ],
         ),
       ),
     );
+  }
+
+  void addToBookmarks(String restaurantName) {
+    // Add logic to add the shop to the user's bookmarks
+    updateUserBookmarks(restaurantName, true);
+  }
+
+  void removeFromBookmarks(String restaurantName) {
+    // Add logic to remove the shop from the user's bookmarks
+    updateUserBookmarks(restaurantName, false);
+  }
+
+  void updateUserBookmarks(String restaurantName, bool addToBookmarks) async {
+    try {
+      // Fetch the user information from the 'User' collection
+      User? user = FirebaseAuth.instance.currentUser;
+
+      if (user != null) {
+        final String userId = user.uid;
+
+        // Get the current bookmarks of the user
+        final DocumentSnapshot<Map<String, dynamic>> userSnapshot =
+            await FirebaseFirestore.instance.collection('User').doc(userId).get();
+
+        // Extract the current bookmarks list or initialize it if not present
+        List<String> bookmarks =
+            List<String>.from(userSnapshot.data()?['bookmarks'] ?? []);
+
+        // Check if the shop is already bookmarked
+        if (addToBookmarks && !bookmarks.contains(restaurantName)) {
+          // Add the restaurant to bookmarks
+          bookmarks.add(restaurantName);
+        } else if (!addToBookmarks && bookmarks.contains(restaurantName)) {
+          // Remove the restaurant from bookmarks
+          bookmarks.remove(restaurantName);
+        }
+
+        // Update the user's bookmarks in Firestore
+        await FirebaseFirestore.instance.collection('User').doc(userId).update({
+          'bookmarks': bookmarks,
+        });
+
+        // Optionally, show a confirmation message or handle success
+      } else {
+        // Handle the case where the user is not authenticated
+        print('User is not authenticated.');
+      }
+    } catch (e) {
+      print('Error updating bookmarks: $e');
+      // Handle errors, e.g., show an error message
+    }
+
+    // Enable the button after a delay to allow for the next click
+    Future.delayed(const Duration(seconds: 1), () {
+      setState(() {
+        isClickable = true;
+      });
+    });
   }
 }
 

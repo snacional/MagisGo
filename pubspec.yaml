@@ -9,13 +9,14 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
-  firebase_core: ^2.24.2
-  cloud_firestore: ^4.13.5
-  firebase_auth: ^4.15.2
-  firebase_storage: ^11.5.5
-  fluttertoast: ^8.2.4
-  get: ^4.6.6
+  firebase_core: ^2.22.0
+  cloud_firestore: ^4.13.6
+  firebase_storage: ^11.5.6
+  fluttertoast: ^8.0.0
+  get: ^4.5.0
+  firebase_auth: ^4.2.5
+  image_picker: ^1.0.5
+  carousel_slider: ^4.0.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

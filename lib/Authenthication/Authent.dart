@@ -34,4 +34,6 @@ class Authentication {
     }
     return null;
 }
+
+  signInWithEmailAndPassword({required String email, required String password}) {}
 }

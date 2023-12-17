@@ -1,0 +1,16 @@
+io.flutter.plugins.firebase.storage.firebase_storage-jetified-play-services-basement-18.1.0-0 C:\Users\cells\.gradle\caches\transforms-3\041b2292f57e3bd4b68fa5dd5d671c09\transformed\jetified-play-services-basement-18.1.0\res
+io.flutter.plugins.firebase.storage.firebase_storage-jetified-window-java-1.0.0-beta04-1 C:\Users\cells\.gradle\caches\transforms-3\1544d86c1dca7feb26d35bfb73983794\transformed\jetified-window-java-1.0.0-beta04\res
+io.flutter.plugins.firebase.storage.firebase_storage-jetified-annotation-experimental-1.1.0-2 C:\Users\cells\.gradle\caches\transforms-3\236b40e703446f66511b1312b6365435\transformed\jetified-annotation-experimental-1.1.0\res
+io.flutter.plugins.firebase.storage.firebase_storage-jetified-firebase-common-20.4.2-3 C:\Users\cells\.gradle\caches\transforms-3\557b7e8018e1e111b22a3b6f4247a289\transformed\jetified-firebase-common-20.4.2\res
+io.flutter.plugins.firebase.storage.firebase_storage-jetified-window-1.0.0-beta04-4 C:\Users\cells\.gradle\caches\transforms-3\6b18a8ecb075d471e279cb78e40a5634\transformed\jetified-window-1.0.0-beta04\res
+io.flutter.plugins.firebase.storage.firebase_storage-core-1.6.0-5 C:\Users\cells\.gradle\caches\transforms-3\a500feecae90ceabe1a8aa49341eb89d\transformed\core-1.6.0\res
+io.flutter.plugins.firebase.storage.firebase_storage-jetified-play-services-base-18.0.1-6 C:\Users\cells\.gradle\caches\transforms-3\f33fdd7f05d9da32acca4f02d1291d99\transformed\jetified-play-services-base-18.0.1\res
+io.flutter.plugins.firebase.storage.firebase_storage-main-7 C:\Users\cells\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_storage-11.5.6\android\src\main\res
+io.flutter.plugins.firebase.storage.firebase_storage-release-8 C:\Users\cells\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_storage-11.5.6\android\src\release\res
+io.flutter.plugins.firebase.storage.firebase_storage-packaged_res-9 C:\Users\cells\OneDrive\Documents\GitHub\MagisGo\build\firebase_core\intermediates\packaged_res\release
+io.flutter.plugins.firebase.storage.firebase_storage-pngs-10 C:\Users\cells\OneDrive\Documents\GitHub\MagisGo\build\firebase_storage\generated\res\pngs\release
+io.flutter.plugins.firebase.storage.firebase_storage-resValues-11 C:\Users\cells\OneDrive\Documents\GitHub\MagisGo\build\firebase_storage\generated\res\resValues\release
+io.flutter.plugins.firebase.storage.firebase_storage-rs-12 C:\Users\cells\OneDrive\Documents\GitHub\MagisGo\build\firebase_storage\generated\res\rs\release
+io.flutter.plugins.firebase.storage.firebase_storage-mergeReleaseResources-13 C:\Users\cells\OneDrive\Documents\GitHub\MagisGo\build\firebase_storage\intermediates\incremental\release\mergeReleaseResources\merged.dir
+io.flutter.plugins.firebase.storage.firebase_storage-mergeReleaseResources-14 C:\Users\cells\OneDrive\Documents\GitHub\MagisGo\build\firebase_storage\intermediates\incremental\release\mergeReleaseResources\stripped.dir
+io.flutter.plugins.firebase.storage.firebase_storage-merged_res-15 C:\Users\cells\OneDrive\Documents\GitHub\MagisGo\build\firebase_storage\intermediates\merged_res\release

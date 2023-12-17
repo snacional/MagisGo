@@ -1,15 +1,22 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:helloworld/Authenthication/Authent.dart';
 import 'package:helloworld/forgor.dart';
 
+import 'Seller/bot2.dart';
 import 'bot.dart';
+import 'firebase_options.dart';
 import 'register.dart';
 
 void main() async {
-
+  WidgetsFlutterBinding.ensureInitialized();
   Fluttertoast.showToast(msg: "Fluttertoast initialized");
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 }
 
 class LoginPage extends StatefulWidget {
@@ -303,52 +310,73 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  void _login() async {
+ void _login() async {
+  setState(() {
+    _isSigning = true;
+  });
+
+  String email = _emailController.text;
+  String pass = _passwordController.text;
+
+  // Basic validation
+  if (email.isEmpty || pass.isEmpty) {
+    Fluttertoast.showToast(
+      msg: "Please fill in all fields",
+      backgroundColor: const Color(0xFFF24F04),
+      textColor: Colors.white,
+    );
     setState(() {
-      _isSigning = true;
+      _isSigning = false;
+    });
+    return;
+  }
+
+  try {
+    User? user = await _auth.signIn(email, pass);
+
+    setState(() {
+      _isSigning = false;
     });
 
-    String email = _emailController.text;
-    String pass = _passwordController.text;
+    if (user != null) {
+      print("User successfully Login");
+      _showSuccessMessage("Successfully logged in");
 
-    // Basic validation
-    if (email.isEmpty || pass.isEmpty) {
-      Fluttertoast.showToast(
-        msg: "Please fill in all fields",
-        backgroundColor: const Color(0xFFF24F04),
-        textColor: Colors.white,
-      );
-      setState(() {
-        _isSigning = false;
-      });
-      return;
-    }
+      // Get user data from Firestore to check user type
+      DocumentSnapshot<Map<String, dynamic>> userDoc =
+          await FirebaseFirestore.instance.collection('User').doc(user.uid).get();
 
-    try {
-      User? user = await _auth.signIn(email, pass);
-
-      setState(() {
-        _isSigning = false;
-      });
-
-      if (user != null) {
-        print("User successfully Login");
-        _showSuccessMessage("Successfully logged in");
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => const BottomNav()),
-        );
+      if (userDoc.exists) {
+        String userType = userDoc.data()!['Type'];
+        if (userType == 'Seller') {
+          // If the user type is "Seller," navigate to bot2.dart
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const BottomNav2()),
+          );
+        } else {
+          // Otherwise, navigate to bot.dart
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const BottomNav()),
+          );
+        }
       } else {
-        _showError("Wrong credentials. Please try again.");
+        // Handle the case where user data is not found
+        print("User data not found");
       }
-    } on FirebaseAuthException catch (e) {
-      _showError("Error occurred during login: ${e.message}");
-      print("Error occurred during login: ${e.message}");
-    } catch (e) {
-      _showError("An error occurred. Please try again.");
-      print("An error occurred. Please try again. $e");
+    } else {
+      _showError("Wrong credentials. Please try again.");
     }
+  } on FirebaseAuthException catch (e) {
+    _showError("Error occurred during login: ${e.message}");
+    print("Error occurred during login: ${e.message}");
+  } catch (e) {
+    _showError("An error occurred. Please try again.");
+    print("An error occurred. Please try again. $e");
   }
+}
+
 
   void _showError(String message) {
     // Display the error message using a SnackBar

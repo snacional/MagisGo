@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
-import 'home.dart';
-import 'shop.dart';
-import 'fav.dart';
-import 'profile.dart';
+
 import 'cart.dart';
+import 'fav.dart';
+import 'home.dart';
+import 'profile.dart';
+import 'shop.dart';
+
+
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: 'MagisGO',
       home: BottomNav(),
     );
@@ -18,7 +21,7 @@ class MyApp extends StatelessWidget {
 }
 
 class BottomNav extends StatefulWidget {
-  const BottomNav({super.key});
+  const BottomNav({Key? key}) : super(key: key);
 
   @override
   _BottomNavState createState() => _BottomNavState();
@@ -26,10 +29,11 @@ class BottomNav extends StatefulWidget {
 
 class _BottomNavState extends State<BottomNav> {
   int currentpage = 0;
+
   List pages = [
     const HomePage(),
     const ShopPage(),
-    const CartPage(),
+     CartPage(), // Pass a valid CartPageArguments
     const FavoritePage(),
     const ProfilePage(),
   ];

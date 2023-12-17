@@ -1,14 +1,18 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
+import 'dart:io';
 
-import 'start.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/material.dart';
+import 'package:helloworld/start.dart';
+import 'package:image_picker/image_picker.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +24,7 @@ class MyApp extends StatelessWidget {
 }
 
 class ProfilePage extends StatefulWidget {
-  const ProfilePage({super.key,});
+  const ProfilePage({Key? key});
 
   @override
   _ProfilePageState createState() => _ProfilePageState();
@@ -28,68 +32,115 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   bool isBookmarkSelected = true;
-  bool isNotificationEnabled = true; // Add this variable
+  bool isNotificationEnabled = true;
+  String _userName = '';
+ File? _imageFile;
 
-class ShopModel {
-  final String restaurantName;
-  final double rating;
-  final String estimatedTime;
-  final String imageAsset;
+Future<void> _uploadImage(String userId) async {
+  try {
+    // Determine the file extension based on the selected image file
+    String fileExtension = _imageFile!.path.split('.').last.toLowerCase();
+    
+    // Use the determined file extension in the file name
+    String fileName = 'profile_$userId.$fileExtension';
 
-  ShopModel({
-    required this.restaurantName,
-    required this.rating,
-    required this.estimatedTime,
-    required this.imageAsset,
-  });
+    Reference firebaseStorageRef = FirebaseStorage.instance.ref().child(fileName);
 
-  factory ShopModel.fromMap(Map<String, dynamic> map) {
-    return ShopModel(
-      restaurantName: map['Name'] ?? '',
-      rating: (map['Rating'] ?? 0.0).toDouble(),
-      estimatedTime: map['Estimate'] ?? '',
-      imageAsset: map['Image'] ?? '',
-    );
+    UploadTask uploadTask = firebaseStorageRef.putFile(_imageFile!);
+    await uploadTask.whenComplete(() => null);
+
+    // No need for the imageUrl variable if it's not used immediately
+    // String imageUrl = await firebaseStorageRef.getDownloadURL();
+  } catch (e) {
+    print('Error uploading image: $e');
   }
 }
- Widget _buildShopItems() {
-    return FutureBuilder<List<ShopModel>>(
-      future: fetchShopData(),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return CircularProgressIndicator();
-        } else if (snapshot.hasError) {
-          return Text('Error: ${snapshot.error}');
-        } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-          return Text('No shop data available.');
-        } else {
-          final shopItems = snapshot.data!;
-          return Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              for (final shop in shopItems)
-                ShopItem(
-                  restaurantName: shop.restaurantName,
-                  rating: shop.rating,
-                  estimatedTime: shop.estimatedTime,
-                  imageAsset: shop.imageAsset,
-                ),
-            ],
-          );
-        }
+
+
+ Widget _buildProfileImage() {
+    double imageSize = MediaQuery.of(context).size.width * 0.3;
+
+    return GestureDetector(
+      onTap: () {
+        _getImage();
       },
+      child: Container(
+        width: imageSize,
+        height: imageSize,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(imageSize / 2),
+        ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(imageSize / 2),
+          child: _imageFile != null
+              ? Image.file(
+                  _imageFile!,
+                  fit: BoxFit.cover,
+                )
+              : _buildDefaultImage(),
+        ),
+      ),
+    );
+  }
+  Widget _buildDefaultImage() {
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        Image.asset(
+          'assets/x.jpg',
+          fit: BoxFit.cover,
+          width: 150,
+          height: 150,
+        ),
+      
+      ],
     );
   }
 
-  Future<List<ShopModel>> fetchShopData() async {
+ Future<void> _getImage() async {
+    final picker = ImagePicker();
     try {
-      final snapshot = await FirebaseFirestore.instance.collection('Shops').get();
-      return snapshot.docs.map((document) => ShopModel.fromMap(document.data() as Map<String, dynamic>)).toList();
+      final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+
+      setState(() {
+        if (pickedFile != null) {
+          _imageFile = File(pickedFile.path);
+          _uploadImage(FirebaseAuth.instance.currentUser!.uid);
+        } else {
+          print('No image selected.');
+        }
+      });
     } catch (e) {
-      print('Error fetching data: $e');
-      throw 'Something went wrong. Please try again';
+      print('Error picking image: $e');
     }
   }
+
+  @override
+  void initState() {
+    super.initState();
+    _loadUserData();
+  }
+
+  Future<void> _loadUserData() async {
+    try {
+      User? user = FirebaseAuth.instance.currentUser;
+
+      if (user != null) {
+        // Fetch user information from Firestore based on UID
+        DocumentSnapshot<Map<String, dynamic>> userDoc =
+            await FirebaseFirestore.instance.collection('User').doc(user.uid).get();
+
+        if (userDoc.exists) {
+          setState(() {
+            _userName = userDoc['Name'] ?? '';
+          });
+        }
+      }
+    } catch (e) {
+      print('Error loading user data: $e');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -101,10 +152,10 @@ class ShopModel {
             // Custom App Bar
             const SizedBox(height: 15),
             Container(
-              child: const Row(
+              child: Row(
                 children: [
-                  SizedBox(width: 12),
-                  Text(
+                  const SizedBox(width: 12),
+                  const Text(
                     'Profile',
                     style: TextStyle(
                       fontSize: 20,
@@ -114,40 +165,23 @@ class ShopModel {
                 ],
               ),
             ),
-            // Profile Image and User Info
             const SizedBox(height: 15),
             Container(
               margin: const EdgeInsets.symmetric(vertical: 20),
               child: Column(
                 children: [
-                  Container(
-                    width: 150,
-                    height: 150,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(
-                          125), // half of width and height
-                      image: const DecorationImage(
-                        image: AssetImage(
-                            'assets/x.jpg'), // Replace with a relevant image
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                  
+                 _buildProfileImage(),
                   const SizedBox(height: 10),
-                  const Text(
-                    'John Doe',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: 5),
-                  const Text(
-                    '123 Main Street, Cityville, USA',
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: Colors.grey,
+                  GestureDetector(
+                    onTap: () {
+                      _showEditNameDialog(context);
+                    },
+                    child: Text(
+                      _userName,
+                      style: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                   const SizedBox(height: 10),
@@ -164,7 +198,7 @@ class ShopModel {
                       IconButton(
                         icon: const Icon(Icons.edit),
                         onPressed: () {
-                          // Handle Edit Profile
+                          _showEditNameDialog(context);
                         },
                         color: const Color(0xfff24f04),
                       ),
@@ -191,19 +225,19 @@ class ShopModel {
                           : Colors.white,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(50),
-                        side: const BorderSide(
-                          color: Color(0xfff24f04),
+                        side: BorderSide(
+                          color: const Color(0xfff24f04),
                         ),
                       ),
                       fixedSize: const Size(135, 45),
                     ),
                     child: Column(
                       children: [
-                        const SizedBox(height: 8),
+                        SizedBox(height: 8),
                         Text(
                           'Bookmark',
                           style: TextStyle(
-                            fontSize: 18,
+                            fontSize: 17,
                             color: isBookmarkSelected
                                 ? Colors.white
                                 : Colors.black,
@@ -225,15 +259,15 @@ class ShopModel {
                           : const Color(0xfff24f04),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(50),
-                        side: const BorderSide(
-                          color: Color(0xfff24f04),
+                        side: BorderSide(
+                          color: const Color(0xfff24f04),
                         ),
                       ),
                       fixedSize: const Size(135, 45),
                     ),
                     child: Column(
                       children: [
-                        const SizedBox(height: 8),
+                        SizedBox(height: 8),
                         Text(
                           'Settings',
                           style: TextStyle(
@@ -258,61 +292,115 @@ class ShopModel {
     );
   }
 
-  Widget _buildShopItems() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Container(
-          child: const Column(
-            children: [
-              ShopItem(
-                restaurantName: 'Bam-Bams',
-                rating: 4.96,
-                estimatedTime: '5-7 mins',
-                imageAsset: "meals.png",
-              ),
-              ShopItem(
-                restaurantName: 'Bam-Bams',
-                rating: 4.96,
-                estimatedTime: '5-7 mins',
-                imageAsset: "meals.png",
-              ),
-              ShopItem(
-                restaurantName: 'Bam-Bams',
-                rating: 4.96,
-                estimatedTime: '5-7 mins',
-                imageAsset: "meals.png",
-              ),
-            ],
-          ),
-        ),
-        Container(
-          child: const Column(
-            children: [
-              ShopItem(
-                restaurantName: 'Bam-Bams',
-                rating: 4.96,
-                estimatedTime: '5-7 mins',
-                imageAsset: "meals.png",
-              ),
-              ShopItem(
-                restaurantName: 'Bam-Bams',
-                rating: 4.96,
-                estimatedTime: '5-7 mins',
-                imageAsset: "meals.png",
-              ),
-              ShopItem(
-                restaurantName: 'Bam-Bams',
-                rating: 4.96,
-                estimatedTime: '5-7 mins',
-                imageAsset: "meals.png",
-              ),
-            ],
-          ),
-        ),
-      ],
+Widget _buildShopItems() {
+  return StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+    stream: FirebaseFirestore.instance
+        .collection('User')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .snapshots(),
+    builder: (context, userSnapshot) {
+      if (userSnapshot.hasError) {
+        return Text('Error: ${userSnapshot.error}');
+      }
+
+      if (userSnapshot.connectionState == ConnectionState.waiting) {
+        return CircularProgressIndicator();
+      }
+
+      List<String> bookmarkedRestaurantNames = [];
+      if (userSnapshot.hasData) {
+        bookmarkedRestaurantNames = (userSnapshot.data!['bookmarks'] as List<dynamic>)
+            .cast<String>(); // Assuming 'bookmarks' is a list of restaurant names
+      }
+
+      return StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
+        stream: FirebaseFirestore.instance.collection('Restaurant').snapshots(),
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            return Text('Error: ${snapshot.error}');
+          }
+
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return CircularProgressIndicator();
+          }
+
+          List<QueryDocumentSnapshot<Map<String, dynamic>>> restaurants =
+              snapshot.data!.docs;
+
+          // Filter restaurants based on bookmarkedRestaurantNames
+          List<QueryDocumentSnapshot<Map<String, dynamic>>> bookmarkedRestaurants =
+              restaurants.where((restaurant) {
+            return bookmarkedRestaurantNames.contains(restaurant['Name']);
+          }).toList();
+
+          return SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: GridView.builder(
+  shrinkWrap: true,
+  physics: ScrollPhysics(),
+  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+    crossAxisCount: 2, // Number of columns
+    crossAxisSpacing: 8.0,
+    mainAxisSpacing: 8.0,
+  ),
+  itemCount: bookmarkedRestaurants.length,
+  itemBuilder: (context, index) {
+    var restaurant = bookmarkedRestaurants[index];
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.transparent), // Set color to transparent
+        borderRadius: BorderRadius.circular(10.0), // Adjust as needed
+      ),
+      child: ShopItem(
+        restaurantName: restaurant['Name'],
+        rating: restaurant['Rating'].toDouble(),
+        estimatedTime: restaurant['Estimate'],
+        imageAsset: restaurant['Image'],
+        width: 150, // Adjust the width as needed
+        isBookmarked: true,
+        onBookmarkToggle: (isBookmarked) {
+          _toggleBookmark(restaurant['Name'], isBookmarked);
+        },
+      ),
     );
+  },
+)
+
+          );
+        },
+      );
+    },
+  );
+}
+
+
+void _toggleBookmark(String restaurantName, bool isBookmarked) async {
+  try {
+    User? user = FirebaseAuth.instance.currentUser;
+
+    if (user != null) {
+      // Get the user document from Firestore
+      DocumentReference<Map<String, dynamic>> userDocRef =
+          FirebaseFirestore.instance.collection('User').doc(user.uid);
+
+      // Update the bookmarks list based on the bookmark status
+      if (isBookmarked) {
+        // If bookmarked, add the restaurant name to the list
+        userDocRef.update({
+          'bookmarks': FieldValue.arrayUnion([restaurantName]),
+        });
+      } else {
+        // If unbookmarked, remove the restaurant name from the list
+        userDocRef.update({
+          'bookmarks': FieldValue.arrayRemove([restaurantName]),
+        });
+      }
+    }
+  } catch (e) {
+    print('Error toggling bookmark: $e');
   }
+}
+
 
   Widget _buildProfileSettings() {
     return Container(
@@ -355,7 +443,6 @@ class ShopModel {
           const SizedBox(height: 32.0),
           ElevatedButton(
             onPressed: () {
-              
               // Handle Logout
               _logout(context);
             },
@@ -368,11 +455,11 @@ class ShopModel {
         ],
       ),
     );
+    
   }
 
+  
   void _logout(BuildContext context) {
-    // Add logic for handling logout
-    // For demonstration purposes, let's navigate back to the login page
     FirebaseAuth.instance.signOut();
     Navigator.push(
       context,
@@ -381,27 +468,87 @@ class ShopModel {
       ),
     );
   }
+
+  void _showEditNameDialog(BuildContext context) {
+    TextEditingController _nameController = TextEditingController();
+
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Edit Name'),
+        content: TextField(
+          controller: _nameController,
+          decoration: const InputDecoration(labelText: 'New Name'),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () {
+              String newName = _nameController.text.trim();
+              if (newName.isNotEmpty) {
+                _updateUserName(newName);
+                Navigator.of(context).pop();
+              }
+            },
+            child: const Text('Save'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _updateUserName(String newName) async {
+    try {
+      User? user = FirebaseAuth.instance.currentUser;
+
+      if (user != null) {
+        // Update the user's name in Firestore
+        await FirebaseFirestore.instance
+            .collection('User')
+            .doc(user.uid)
+            .update({'Name': newName});
+
+        // Update the local state
+        setState(() {
+          _userName = newName;
+        });
+      }
+    } catch (e) {
+      print('Error updating user name: $e');
+    }
+  }
 }
 
 class ShopItem extends StatelessWidget {
   const ShopItem({
-    super.key,
+    Key? key,
     required this.restaurantName,
     required this.rating,
     required this.estimatedTime,
     required this.imageAsset,
-  });
+    required this.width,
+    required this.isBookmarked,
+    required this.onBookmarkToggle,
+  }) : super(key: key);
 
   final String restaurantName;
   final double rating;
   final String estimatedTime;
   final String imageAsset;
+  final double width;
+  final bool isBookmarked;
+  final Function(bool) onBookmarkToggle;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.all(20),
-      width: 150,
+      margin: const EdgeInsets.fromLTRB(12,12,12,0), // Adjusted margin
+      width: width,
       decoration: BoxDecoration(
         border: Border.all(color: Colors.grey),
         borderRadius: BorderRadius.circular(20),
@@ -412,35 +559,42 @@ class ShopItem extends StatelessWidget {
           // Restaurant Image with Bookmark Button
           Container(
             width: double.infinity,
-            height: 100, // Adjust the height as needed
+            height: width * 0.67, // Maintain the aspect ratio
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
               image: DecorationImage(
-                image: AssetImage(imageAsset), // Replace with your actual image
-                fit: BoxFit.cover, // Set BoxFit to cover for adjusting images
+                image: AssetImage(imageAsset),
+                fit: BoxFit.cover,
               ),
             ),
             child: Align(
               alignment: Alignment.topRight,
               child: Container(
-                padding: const EdgeInsets.all(4),
-                margin: const EdgeInsets.all(8),
-                decoration: const BoxDecoration(
+                padding: const EdgeInsets.all(3), // Adjusted padding
+                margin: const EdgeInsets.all(3),
+                decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: Colors.white,
                 ),
-                child: const Icon(
-                  Icons.bookmark,
-                  color: Color(0xfff24f04),
-                  size: 18,
+                child: IconButton(
+                  icon: Icon(
+                    isBookmarked
+                        ? Icons.bookmark
+                        : Icons.bookmark_outline,
+                    color: Color(0xfff24f04),
+                    size: 20, // Adjust the bookmark icon size
+                  ),
+                  onPressed: () {
+                    onBookmarkToggle(!isBookmarked);
+                  },
                 ),
               ),
             ),
           ),
           // Restaurant Name
-          const SizedBox(height: 10),
+          const SizedBox(height: 12), // Adjusted spacing
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
+            padding: const EdgeInsets.symmetric(horizontal: 12), // Adjusted padding
             child: Text(
               restaurantName,
               style: const TextStyle(
@@ -449,25 +603,25 @@ class ShopItem extends StatelessWidget {
             ),
           ),
           // Ratings and Estimated Time
-          const SizedBox(height: 10),
+          const SizedBox(height: 12), // Adjusted spacing
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
+            padding: const EdgeInsets.symmetric(horizontal: 12,), // Adjusted padding
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Row(
                   children: [
-                    const Icon(
+                    Icon(
                       Icons.star,
                       color: Colors.yellow,
-                      size: 10,
+                      size: 12, // Adjusted icon size
                     ),
                     const SizedBox(width: 5),
                     Text(
-                      rating.toString(), // Assuming rating is a String
+                      rating.toString(),
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 10,
+                        fontSize: 12, // Adjusted font size
                       ),
                     ),
                   ],
@@ -477,14 +631,14 @@ class ShopItem extends StatelessWidget {
                     const Icon(
                       Icons.access_time,
                       color: Color(0xfff24f04),
-                      size: 10,
+                      size: 12, // Adjusted icon size
                     ),
                     const SizedBox(width: 5),
                     Text(
                       estimatedTime,
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 10,
+                        fontSize: 12, // Adjusted font size
                       ),
                     ),
                   ],
@@ -492,11 +646,9 @@ class ShopItem extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(height: 20),
         ],
       ),
     );
   }
 }
-
 

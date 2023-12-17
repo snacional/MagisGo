@@ -1,9 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:helloworld/Authenthication/Authent.dart';
 
+import 'Seller/bot2.dart';
 import 'bot.dart';
 import 'login.dart';
 
@@ -254,86 +256,113 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
-  void _register() async {
+void _register() async {
+  setState(() {
+    _isSigningUp = true;
+  });
+
+  String name = _nameController.text;
+  String email = _emailController.text;
+  String pass = _passwordController.text;
+  String confirmPassword = _confirmPasswordController.text;
+  String phone = _phoneController.text;
+
+  // Basic validation
+  if (name.isEmpty ||
+      email.isEmpty ||
+      pass.isEmpty ||
+      confirmPassword.isEmpty ||
+      phone.isEmpty) {
+    _showError("Please fill in all fields");
     setState(() {
-      _isSigningUp = true;
+      _isSigningUp = false;
+    });
+    return;
+  }
+
+  
+
+  if (!isValidEmail(email)) {
+    _showError("Please enter a valid email address");
+    setState(() {
+      _isSigningUp = false;
+    });
+    return;
+  }
+
+  if (pass.length < 8) {
+    _showError("Password must be at least 8 characters long");
+    setState(() {
+      _isSigningUp = false;
+    });
+    return;
+  }
+
+  if (pass != confirmPassword) {
+    _showError("Passwords do not match");
+    setState(() {
+      _isSigningUp = false;
+    });
+    return;
+  }
+
+  try {
+    // Create user in Firebase Authentication
+    UserCredential userCredential =
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      email: email,
+      password: pass,
+    );
+
+    // Get the user ID
+    String userId = userCredential.user!.uid;
+
+    // Create a user document in Firestore with the same ID as the user UID
+    await FirebaseFirestore.instance.collection('User').doc(userId).set({
+      'Name': name,
+      'Email': email,
+      'Phone': phone,
+      'Type': _userType,
+      // Add more fields as needed
     });
 
-    String name = _nameController.text;
-    String email = _emailController.text;
-    String pass = _passwordController.text;
-    String confirmPassword = _confirmPasswordController.text;
-    String phone = _phoneController.text;
+    // User successfully registered
+     print("User successfully registered");
+    _showSuccessMessage("User successfully registered");
 
-    // Basic validation
-    if (name.isEmpty ||
-        email.isEmpty ||
-        pass.isEmpty ||
-        confirmPassword.isEmpty ||
-        phone.isEmpty) {
-      _showError("Please fill in all fields");
-      setState(() {
-        _isSigningUp = false;
-      });
-      return;
-    }
-
-    if (!isValidEmail(email)) {
-      _showError("Please enter a valid email address");
-      setState(() {
-        _isSigningUp = false;
-      });
-      return;
-    }
-
-    if (pass.length < 8) {
-      _showError("Password must be at least 8 characters long");
-      setState(() {
-        _isSigningUp = false;
-      });
-      return;
-    }
-
-    if (pass != confirmPassword) {
-      _showError("Passwords do not match");
-      setState(() {
-        _isSigningUp = false;
-      });
-      return;
-    }
-
-    try {
-      // Check if the email is already in use
-      UserCredential userCredential =
-          await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: email,
-        password: pass,
+    if (_userType == 'Seller') {
+      // If the user type is "Seller," navigate to bot2.dart
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const BottomNav2()),
       );
-
-      // User successfully registered
-      print("User successfully registered");
-      _showSuccessMessage("User successfully registered");
+    } else {
+      // Otherwise, navigate to bot.dart
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => const BottomNav()),
       );
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'email-already-in-use') {
-        _showError("The account already exists for that email.");
-        print("The account already exists for that email.");
-      } else {
-        _showError("Error occurred during registration: ${e.message}");
-        print("Error occurred during registration: ${e.message}");
-      }
-    } catch (e) {
-      _showError("Error occurred during registration: $e");
-      print("Error occurred during registration: $e");
     }
-
-    setState(() {
-      _isSigningUp = false;
-    });
+  } on FirebaseAuthException catch (e) {
+    if (e.code == 'email-already-in-use') {
+      _showError("The account already exists for that email.");
+      print("The account already exists for that email.");
+    } else {
+      _showError("Error occurred during registration: ${e.message}");
+      print("Error occurred during registration: ${e.message}");
+    }
+  } catch (e) {
+    _showError("Error occurred during registration: $e");
+    print("Error occurred during registration: $e");
   }
+
+  setState(() {
+    _isSigningUp = false;
+  });
+
+  
+}
+
 
   void _showError(String message) {
     // Display the error message using a SnackBar
