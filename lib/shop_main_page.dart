@@ -26,17 +26,17 @@ class _ShopMainPageState extends State<ShopMainPage> {
             future: _fetchRestaurantName(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return CircularProgressIndicator();
+                return const CircularProgressIndicator();
               } else if (snapshot.hasError) {
                 return Text('Error: ${snapshot.error}');
               } else if (snapshot.hasData) {
                 return Container(
-                  padding: EdgeInsets.all(16),
+                  padding: const EdgeInsets.all(16),
                   color: Colors.white,
                   child: Row(
                     children: [
                       IconButton(
-                        icon: Icon(Icons.arrow_back),
+                        icon: const Icon(Icons.arrow_back),
                         onPressed: () {
                           Navigator.pop(context);
                         },
@@ -44,7 +44,7 @@ class _ShopMainPageState extends State<ShopMainPage> {
                       const SizedBox(width: 8),
                       Text(
                         snapshot.data!,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontFamily: 'Poppins',
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
@@ -59,8 +59,8 @@ class _ShopMainPageState extends State<ShopMainPage> {
               }
             },
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 4, horizontal: 16),
             child: Text(
               'Our Food',
               style: TextStyle(
@@ -71,8 +71,8 @@ class _ShopMainPageState extends State<ShopMainPage> {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 4, horizontal: 16),
             child: Text(
               'Special For You',
               style: TextStyle(
@@ -101,14 +101,14 @@ class _ShopMainPageState extends State<ShopMainPage> {
                   textAlignVertical: TextAlignVertical.center,
                   decoration: InputDecoration(
                     hintText: 'Search for foods/shop',
-                    hintStyle: TextStyle(
+                    hintStyle: const TextStyle(
                       fontFamily: 'Poppins',
                       fontSize: 13,
                       fontWeight: FontWeight.w400,
-                      color: const Color(0x7f000000),
+                      color: Color(0x7f000000),
                     ),
                     border: InputBorder.none,
-                    contentPadding: EdgeInsets.symmetric(horizontal: 16),
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 16),
                     prefixIcon: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Image.asset(
@@ -118,16 +118,16 @@ class _ShopMainPageState extends State<ShopMainPage> {
                         color: const Color(0xff000000),
                       ),
                     ),
-                    prefixIconConstraints: BoxConstraints(
+                    prefixIconConstraints: const BoxConstraints(
                       minWidth: 40,
                       minHeight: 40,
                     ),
                   ),
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontFamily: 'Poppins',
                     fontSize: 13,
                     fontWeight: FontWeight.w400,
-                    color: const Color(0xff000000),
+                    color: Color(0xff000000),
                   ),
                 ),
               ),
@@ -137,7 +137,7 @@ class _ShopMainPageState extends State<ShopMainPage> {
   height: 50,
   child: ListView(
     scrollDirection: Axis.horizontal,
-    physics: BouncingScrollPhysics(),
+    physics: const BouncingScrollPhysics(),
     children: [
       UnderlineButton(
         title: 'All', // You may replace 'All' with the appropriate property of ShopModel
@@ -235,12 +235,12 @@ class PageMenu extends StatelessWidget {
       future: getMenuItems(selectedPageIndex, shop),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return CircularProgressIndicator();
+          return const CircularProgressIndicator();
         } else if (snapshot.hasError) {
           return Text('Error: ${snapshot.error}');
         } else if (snapshot.hasData) {
           return GridView.builder(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               crossAxisSpacing: 8,
               mainAxisSpacing: 8,
@@ -341,7 +341,7 @@ class PageMenu extends StatelessWidget {
           );
         },
         child: Container(
-          margin: EdgeInsets.all(5),
+          margin: const EdgeInsets.all(5),
           decoration: BoxDecoration(
             color: Colors.grey[300],
             borderRadius: BorderRadius.circular(10),
@@ -351,7 +351,7 @@ class PageMenu extends StatelessWidget {
             children: [
               Flexible(
                 child: ClipRRect(
-                  borderRadius: BorderRadius.only(
+                  borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(10),
                     topRight: Radius.circular(10),
                   ),
@@ -371,28 +371,28 @@ class PageMenu extends StatelessWidget {
                     children: [
                       Text(
                         title,
-                        style: TextStyle(fontFamily: 'Poppins', fontSize: 16, fontWeight: FontWeight.bold),
+                        style: const TextStyle(fontFamily: 'Poppins', fontSize: 16, fontWeight: FontWeight.bold),
                       ),
-                      SizedBox(height: 8),
+                      const SizedBox(height: 8),
                       Text(
                         '\$$price',
-                        style: TextStyle(fontFamily: 'Poppins', fontSize: 14, color: Colors.black87),
+                        style: const TextStyle(fontFamily: 'Poppins', fontSize: 14, color: Colors.black87),
                       ),
-                      SizedBox(height: 8),
+                      const SizedBox(height: 8),
                       Row(
                         children: [
-                          Icon(Icons.star, color: Colors.yellow),
-                          SizedBox(width: 4),
+                          const Icon(Icons.star, color: Colors.yellow),
+                          const SizedBox(width: 4),
                           Text(
                             '$rating',
-                            style: TextStyle(fontFamily: 'Poppins', fontSize: 14, color: Colors.black87),
+                            style: const TextStyle(fontFamily: 'Poppins', fontSize: 14, color: Colors.black87),
                           ),
-                          SizedBox(width: 8),
-                          Icon(Icons.timer, color: Colors.black54, size: 16),
-                          SizedBox(width: 4),
+                          const SizedBox(width: 8),
+                          const Icon(Icons.timer, color: Colors.black54, size: 16),
+                          const SizedBox(width: 4),
                           Text(
                             preparationTime,
-                            style: TextStyle(fontFamily: 'Poppins', fontSize: 14, color: Colors.black87),
+                            style: const TextStyle(fontFamily: 'Poppins', fontSize: 14, color: Colors.black87),
                           ),
                         ],
                       ),
@@ -425,9 +425,9 @@ class UnderlineButton extends StatelessWidget {
     return InkWell(
       onTap: onPressed,
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         decoration: BoxDecoration(
-          border: isSelected ? Border(bottom: BorderSide(width: 2)) : null,
+          border: isSelected ? const Border(bottom: BorderSide(width: 2)) : null,
         ),
         child: Text(
           title,
